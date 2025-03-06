@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Benedict Lee's Project Portfolio Page
+title: Daniel Goh's Project Portfolio Page
 ---
 
 ### Project: NeuroSync

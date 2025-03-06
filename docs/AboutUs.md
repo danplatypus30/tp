@@ -63,3 +63,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src ="images/andrechia.png.jpg"> width="200px">
 [[github](http://github.com/andrechia)]
 [[portfolio](team/andrechia.md)]
+
+### Jin Diyue
+
+<img src="images/golddirio.png" width="200px">
+
+[[github](https://github.com/Golddirio)]
+[[portfolio](team/golddirio.md)]
+
+- Role: Developer
+- Responsibilities: Full stack development

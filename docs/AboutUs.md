@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
 ### Benedict Lee
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/benedictleejr)]
 [[portfolio](team/benedictLee.md)]
 
-* Role: 10x Developer, Code Quality :police_car:
-* Responsibilities: Full-Stack Development
+- Role: 10x Developer, Code Quality :police_car:
+- Responsibilities: Full-Stack Development
 
 ### Johnny Doe
 
@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
 ### Jean Doe
 
@@ -45,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### Daniel Goh
 
@@ -55,5 +55,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/danplatypus30)]
 [[portfolio](team/danielGoh.md)]
 
-* Role: Developer
-* Responsibilities: Testing, Scheduling and tracking
+- Role: Developer
+- Responsibilities: UI
+
+### Andre Chia
+
+<img src ="images/andrechia.png.jpg"> width="200px">
+[[github](http://github.com/andrechia)]
+[[portfolio](team/andrechia.md)]

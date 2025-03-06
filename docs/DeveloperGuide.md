@@ -288,16 +288,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NeuroSync` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list patients
+2.  NeuroSync shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  NeuroSync deletes the person
 
     Use case ends.
 
@@ -309,11 +309,80 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NeuroSync shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: View all patients**
+
+**MSS**
+
+1.  User requests to list patients
+2.  NeuroSync shows list of all patients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Add a patient**
+
+**MSS**
+
+1.  User requests to add a patient
+2.  NeuroSync adds the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given patient has missing information.
+
+   * 2a1. NeuroSync shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. Duplicate patient exists.
+
+   * 2b1. NeuroSync shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The given patient has invalid phone number format.
+
+   * 2b1. NeuroSync shows an error message.
+
+   Use case resumes at step 1.
+
+* 2d. The given patient has invalid email format.
+
+   * 2d1. NeuroSync shows an error message.
+
+   Use case resumes at step 1.
+
+* 2e. The given patient's name contains special characters.
+
+   * 2e1. NeuroSync shows an error message.
+
+   Use case resumes at step 1.
+
+* 2f. The given patient's name exceeds the maximum length of 50 characters.
+
+   * 2f1. NeuroSync shows an error message.
+
+   Use case resumes at step 1.
+
+* 2g. The given patient's occupation exceeds the maximum length of 50 characters.
+
+   * 2g1. NeuroSync shows an error message.
+
+   Use case resumes at step 1.
+
 *{More to be added}*
+
 
 ### Non-Functional Requirements
 
@@ -326,7 +395,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Psyhiatrist**: A medical doctor who specializes in mental health. They diagnose, treat, and prevent mental, emotional, and behavioral disorders.
+* **Patient**: A patient of the psychiatrist, a patient who is seeking mental health treatment.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/danplatypus30.png" width="200px">
 
 [[github](http://github.com/danplatypus30)]
-[[portfolio](https://www.linkedin.com/in/daniel-goh-chin-hao-013149167/)]
+[[portfolio](team/danielGoh.md)]
 
 * Role: Developer
 * Responsibilities: Testing, Scheduling and tracking

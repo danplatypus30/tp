@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Benedict Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benedictLee.png.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/benedictleejr)]
+[[portfolio](team/benedictLee.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: 10x Developer, Code Quality :police_car:
+* Responsibilities: Full-Stack Development
 
 ### Johnny Doe
 

@@ -21,32 +21,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Benedict Lee
 
-<img src="images/benedictLee.png.jpg" width="200px">
+<img src="images/benedictlee.png" width="200px">
 
 [[github](http://github.com/benedictleejr)]
 [[portfolio](team/benedictLee.md)]
 
 - Role: 10x Developer, Code Quality :police_car:
 - Responsibilities: Full-Stack Development
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: Dev Ops + Threading
 
 ### Daniel Goh
 
@@ -56,13 +37,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/danielGoh.md)]
 
 - Role: Developer
-- Responsibilities: UI
+- Responsibilities: UI, Git Gud Engineer
 
 ### Andre Chia
 
-<img src ="images/andrechia.png.jpg"> width="200px">
+<img src ="images/andrechia.png" width="200px">
 [[github](http://github.com/andrechia)]
 [[portfolio](team/andrechia.md)]
+
+- Role: Principle Prompt Engineer
+- Responsibilities: Report Writing, User Experience
 
 ### Jin Diyue
 

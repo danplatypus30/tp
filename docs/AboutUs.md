@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Wong Yu Zhang
 
-<img src="images/Fieash.png" width="200px">
+<img src="images/fieash.png" width="200px">
 
 [[homepage](https://fieash.github.io/)]
 [[github](https://github.com/fieash)]
@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/benedictLee.md)]
 
 - Role: 10x Developer, Code Quality :police_car:
-- Responsibilities: Full-Stack Development, Prompt Engineering
+- Responsibilities: Full-Stack Development
 
 ### Daniel Goh
 
@@ -39,7 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Andre Chia
 
-<img src ="images/AndreChia.png" width="200px">
+<img src ="images/andrechia.png" width="200px">
 
 [[github](http://github.com/andrechia)]
 [[portfolio](team/andrechia.md)]
@@ -49,7 +49,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jin Diyue
 
-<img src="images/Golddirio.png" width="200px">
+<img src="images/golddirio.png" width="200px">
 
 [[github](https://github.com/Golddirio)]
 [[portfolio](team/golddirio.md)]

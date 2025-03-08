@@ -5,13 +5,11 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Wong Yu Zhang
 
-<img src="images/fieash.png" width="200px">
+<img src="images/Fieash.png" width="200px">
 
 [[homepage](https://fieash.github.io/)]
 [[github](https://github.com/fieash)]
@@ -21,13 +19,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Benedict Lee
 
-<img src="images/benedictlee.png" width="200px">
+<img src="images/benedictleejr.png" width="200px">
 
 [[github](http://github.com/benedictleejr)]
 [[portfolio](team/benedictLee.md)]
 
 - Role: 10x Developer, Code Quality :police_car:
-- Responsibilities: Full-Stack Development
+- Responsibilities: Full-Stack Development, Prompt Engineering
 
 ### Daniel Goh
 
@@ -41,7 +39,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Andre Chia
 
-<img src ="images/andrechia.png" width="200px">
+<img src ="images/AndreChia.png" width="200px">
+
 [[github](http://github.com/andrechia)]
 [[portfolio](team/andrechia.md)]
 
@@ -50,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jin Diyue
 
-<img src="images/golddirio.png" width="200px">
+<img src="images/Golddirio.png" width="200px">
 
 [[github](https://github.com/Golddirio)]
 [[portfolio](team/golddirio.md)]

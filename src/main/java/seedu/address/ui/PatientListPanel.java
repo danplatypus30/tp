@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
-import seedu.address.ui.PatientListPanel.PatientListViewCell;
 
 /**
  * Panel containing the list of patients.

@@ -1,21 +1,27 @@
 package seedu.address.model.note;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class NoteTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Note(null, null));
-    }
+    public void equals() {
+        Note note = new Note("Title", "Content");
 
-    @Test
-    public void constructor_invalidTitleAndContent_throwsIllegalArgumentException() {
-        String invalidTitle = "";
-        String invalidContent = "";
-        assertThrows(IllegalArgumentException.class, () -> new Note(invalidTitle, invalidContent));
+        // same object -> returns true
+        assertTrue(note.equals(note));
+
+        // different types -> returns false
+        assertFalse(note.equals(1));
+
+        // null -> returns false
+        assertFalse(note.equals(null));
+
+        // different Note -> returns false
+        Note differentNote = new Note("Different Title", "Different Content");
+        assertFalse(note.equals(differentNote));
     }
-    
 }

@@ -70,7 +70,7 @@ public class Patient {
     /**
      * Retrieves the ordered set of notes associated with the patient
      * @return an immutable navigable note set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     *     if modification is attempted.
      */
     public NavigableSet<Note> getNotes() {
         return Collections.unmodifiableNavigableSet(notes);

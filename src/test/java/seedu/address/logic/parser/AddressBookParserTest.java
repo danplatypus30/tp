@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
@@ -24,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.note.Note;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -101,7 +104,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_note() throws Exception {
-        assertTrue(parser.parseCommand(NoteCommand.COMMAND_WORD) instanceof NoteCommand);
+     public void parseCommand_remark() throws Exception {
+        final Note note = new Note("Some title", "Some content");
+
+        NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PATIENT.getOneBased() + " " + PREFIX_NOTE_TITLE + note.getTitle()
+                + " " + PREFIX_NOTE_CONTENT + note.getContent());
+        assertEquals(new NoteCommand(INDEX_FIRST_PATIENT, note), command);
     }
+
 }

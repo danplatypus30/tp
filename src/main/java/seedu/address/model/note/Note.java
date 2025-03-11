@@ -1,7 +1,7 @@
 package seedu.address.model.note;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * Class which encapsulates all the information and methods pertaining to notes
  * Notes have a many-to-one relationship with patients
  */
-public class Note implements Comparable<Note>{
+public class Note implements Comparable<Note> {
 
     public static final String TITLE_AND_CONTENT_CONSTRAINTS = "Title and content cannot be empty";
 
@@ -24,8 +24,7 @@ public class Note implements Comparable<Note>{
      * @param content content of the note
      */
     public Note(String title, String content) {
-        requireNonNull(title);
-        requireNonNull(content);
+        requireAllNonNull(title, content);
         checkArgument(isValidTitleAndContent(title, content), TITLE_AND_CONTENT_CONSTRAINTS);
         this.title = title;
         this.content = content;
@@ -63,7 +62,9 @@ public class Note implements Comparable<Note>{
     /**
      * Enables sorting of notes based on date and time created
      * @param other another note object to compare with
-     * @return 0 if the two notes were created at the same time, a positive integer if this note was created after the other note, and a negative integer if this note was created before the other note
+     * @return 0 if the two notes were created at the same time, a positive integer if
+     *     this note was created after the other note, and a negative integer if this
+     *     note was created before the other note
      */
     @Override
     public int compareTo(Note other) {
@@ -78,5 +79,10 @@ public class Note implements Comparable<Note>{
         return "Title: " + this.title + "\n" + "Content: " + this.content + "\n" + "Date and Time Created: "
                 + this.dateTimeCreated.toString();
     }
+
+    // @Override
+    // public int hashCode() {
+    //     return this.title.hashCode() + this.content.hashCode() + this.dateTimeCreated.hashCode();
+    // }
 
 }

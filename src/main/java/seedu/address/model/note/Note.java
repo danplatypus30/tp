@@ -76,8 +76,7 @@ public class Note implements Comparable<Note> {
      */
     @Override
     public String toString() {
-        return "Title: " + this.title + "\n" + "Content: " + this.content + "\n" + "Date and Time Created: "
-                + this.dateTimeCreated.toString();
+        return "[" + this.title + "]";
     }
 
     // @Override

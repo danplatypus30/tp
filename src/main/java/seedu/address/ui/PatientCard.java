@@ -40,6 +40,8 @@ public class PatientCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane notes;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.

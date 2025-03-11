@@ -57,9 +57,23 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345"));
+        assertTrue(predicate.test(new PatientBuilder().withName("Bob").withPhone("12345").build()));  // Should match phone "12345"
+
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "12345"));
+        assertTrue(predicate.test(new PatientBuilder().withName("Bob").withPhone("12345").build()));
+
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("alice@email.com"));
+        assertTrue(predicate.test(new PatientBuilder().withName("Bob").withEmail("alice@email.com").build()));
+
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Main Street"));
+        assertTrue(predicate.test(new PatientBuilder().withName("Bob").withAddress("Main Street").build()));
+
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertTrue(predicate.test(new PatientBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
+
+
     }
 
     @Test

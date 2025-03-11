@@ -1,5 +1,8 @@
 package seedu.address.model.note;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 
 /**
@@ -7,6 +10,9 @@ import java.time.LocalDateTime;
  * Notes have a many-to-one relationship with patients
  */
 public class Note implements Comparable<Note>{
+
+    public static final String TITLE_AND_CONTENT_CONSTRAINTS = "Title and content cannot be empty";
+
     private final String title;
     private final String content;
     private final LocalDateTime dateTimeCreated;
@@ -18,9 +24,16 @@ public class Note implements Comparable<Note>{
      * @param content content of the note
      */
     public Note(String title, String content) {
+        requireNonNull(title);
+        requireNonNull(content);
+        checkArgument(isValidTitleAndContent(title, content), TITLE_AND_CONTENT_CONSTRAINTS);
         this.title = title;
         this.content = content;
         this.dateTimeCreated = LocalDateTime.now();
+    }
+
+    public boolean isValidTitleAndContent(String title, String content) {
+        return !title.isEmpty() && !content.isEmpty();
     }
 
     /**

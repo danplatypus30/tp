@@ -66,7 +66,7 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("alice@email.com"));
         assertTrue(predicate.test(new PatientBuilder().withName("Bob").withEmail("alice@email.com").build()));
 
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Main Street"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Main", "Street"));
         assertTrue(predicate.test(new PatientBuilder().withName("Bob").withAddress("Main Street").build()));
 
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));

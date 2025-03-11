@@ -58,7 +58,7 @@ public class NameContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Bob").withPhone("12345").build()));  // Should match phone "12345"
+        assertTrue(predicate.test(new PatientBuilder().withName("Bob").withPhone("12345").build()));
 
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "12345"));
         assertTrue(predicate.test(new PatientBuilder().withName("Bob").withPhone("12345").build()));

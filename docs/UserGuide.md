@@ -112,19 +112,21 @@ Examples:
 
 ### Locating patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names, phone numbers, email addresses or addresses contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Name / phone number / email address / address can be searched separately or together.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
+* `find 98765432` returns `John Doe`<br>
+* ![result for `find 98765432`](images/findPhoneNumberResult.png)
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 

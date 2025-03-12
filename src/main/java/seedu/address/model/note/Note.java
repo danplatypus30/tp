@@ -23,7 +23,6 @@ public class Note implements Comparable<Note> {
     /**
      * Initializes a new Note object with the given title and content
      * dateTimeCreated is initialized to the current time
-     * 
      * @param title   title of the note
      * @param content content of the note
      */
@@ -36,13 +35,13 @@ public class Note implements Comparable<Note> {
         this.dateTimeCreated = LocalDateTime.now();
     }
 
-    @JsonCreator
     /**
      * Initializes a new Note object with the given title, content and LocalDateTime
      * @param title title of the note
      * @param content content of the note
      * @param dateTimeCreated date and time the note was created
      */
+    @JsonCreator
     public Note(@JsonProperty("title") String title,
                 @JsonProperty("content") String content,
                 @JsonProperty("dateTimeCreated") LocalDateTime dateTimeCreated) {

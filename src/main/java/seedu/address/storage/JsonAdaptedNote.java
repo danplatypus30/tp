@@ -23,7 +23,7 @@ class JsonAdaptedNote {
      * Constructs a {@code JsonAdaptedNote} with the given {@code title}, {@code content} and {@code LocalDateTime}.
      */
     @JsonCreator
-    public JsonAdaptedNote(@JsonProperty("title") String title, 
+    public JsonAdaptedNote(@JsonProperty("title") String title,
             @JsonProperty("content") String content,
             @JsonProperty("dateTimeCreated") LocalDateTime dateTimeCreated) {
         this.title = title;

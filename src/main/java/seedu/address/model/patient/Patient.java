@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -43,6 +42,19 @@ public class Patient {
         this.notes = new TreeSet<>();
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags, TreeSet<Note> notes) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.notes = notes;
+    }
+
     public Name getName() {
         return name;
     }
@@ -72,8 +84,8 @@ public class Patient {
      * @return an immutable navigable note set, which throws {@code UnsupportedOperationException}
      *     if modification is attempted.
      */
-    public NavigableSet<Note> getNotes() {
-        return Collections.unmodifiableNavigableSet(notes);
+    public TreeSet<Note> getNotes() {
+        return this.notes;
     }
 
     /**

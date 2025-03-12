@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Class which encapsulates all the information and methods pertaining to notes
  * Notes have a many-to-one relationship with patients
@@ -20,18 +23,37 @@ public class Note implements Comparable<Note> {
     /**
      * Initializes a new Note object with the given title and content
      * dateTimeCreated is initialized to the current time
-     * @param title title of the note
+     * 
+     * @param title   title of the note
      * @param content content of the note
      */
-    public Note(String title, String content) {
+    public Note(@JsonProperty("title") String title,
+            @JsonProperty("content") String content) {
         requireAllNonNull(title, content);
-        checkArgument(isValidTitleAndContent(title, content), TITLE_AND_CONTENT_CONSTRAINTS);
+        checkArgument(isValidNote(title, content), TITLE_AND_CONTENT_CONSTRAINTS);
         this.title = title;
         this.content = content;
         this.dateTimeCreated = LocalDateTime.now();
     }
 
-    public boolean isValidTitleAndContent(String title, String content) {
+    @JsonCreator
+    /**
+     * Initializes a new Note object with the given title, content and LocalDateTime
+     * @param title title of the note
+     * @param content content of the note
+     * @param dateTimeCreated date and time the note was created
+     */
+    public Note(@JsonProperty("title") String title,
+                @JsonProperty("content") String content,
+                @JsonProperty("dateTimeCreated") LocalDateTime dateTimeCreated) {
+        requireAllNonNull(title, content);
+        checkArgument(isValidNote(title, content), TITLE_AND_CONTENT_CONSTRAINTS);
+        this.title = title;
+        this.content = content;
+        this.dateTimeCreated = dateTimeCreated;
+    }
+
+    public static boolean isValidNote(String title, String content) {
         return !title.isEmpty() && !content.isEmpty();
     }
 
@@ -72,6 +94,27 @@ public class Note implements Comparable<Note> {
     }
 
     /**
+     * Checks if two notes are equal
+     * @param other another object to compare with
+     * @return true if the two notes are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Note)) {
+            return false;
+        }
+
+        Note otherNote = (Note) other;
+        return this.title.equals(otherNote.title)
+                && this.content.equals(otherNote.content)
+                && this.dateTimeCreated.equals(otherNote.dateTimeCreated);
+    }
+
+    /**
      * Returns a string representation of the note
      */
     @Override
@@ -79,9 +122,9 @@ public class Note implements Comparable<Note> {
         return "[" + this.title + "]";
     }
 
-    // @Override
-    // public int hashCode() {
-    //     return this.title.hashCode() + this.content.hashCode() + this.dateTimeCreated.hashCode();
-    // }
+    @Override
+    public int hashCode() {
+        return this.title.hashCode() + this.content.hashCode() + this.dateTimeCreated.hashCode();
+    }
 
 }

@@ -11,30 +11,51 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 
 /**
- * A utility class containing a list of {@code Patient} objects to be used in tests.
+ * A utility class containing a list of {@code Patient} objects to be used in
+ * tests.
  */
 public class TypicalPatients {
 
     public static final Patient ALICE = new PatientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withNotes(
+                    new Note("4th Session with Alice",
+                            "Discussed progress",
+                            LocalDateTime.parse("2023-03-11T12:00:00")))
+            .build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withNotes(
+                    new Note("Benson is a piece of work",
+                            "He has many issues",
+                            LocalDateTime.parse("2025-03-11T12:00:00")))
+            .build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Patient DANIEL = new PatientBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+    public static final Patient DANIEL = new PatientBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withAddress("10th street")
+            .withTags("friends")
+            .withNotes(
+                    new Note("Daniel owes me money",
+                            "He owes me $4000",
+                            LocalDateTime.parse("2025-03-12T12:00:00")))
+            .build();
     public static final Patient ELLE = new PatientBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Patient FIONA = new PatientBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -57,7 +78,8 @@ public class TypicalPatients {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPatients() {} // prevents instantiation
+    private TypicalPatients() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical patients.

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.note.Note;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -29,6 +31,7 @@ class JsonAdaptedPatient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -36,13 +39,16 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (notes != null) {
+            this.notes.addAll(notes);
         }
     }
 
@@ -57,6 +63,9 @@ class JsonAdaptedPatient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        notes.addAll(source.getNotes().stream()
+                .map(JsonAdaptedNote::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -65,11 +74,6 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Tag> patientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            patientTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -102,8 +106,20 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
+        final List<Tag> patientTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tags) {
+            patientTags.add(tag.toModelType());
+        }
         final Set<Tag> modelTags = new HashSet<>(patientTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        // Notes are stored as a TreeSet to maintain chronological order without
+        // duplicates (based on dateTimeCreated).
+        final TreeSet<Note> modelNotes = new TreeSet<>();
+        for (JsonAdaptedNote note : notes) {
+            modelNotes.add(note.toModelType());
+        }
+
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNotes);
     }
 
 }

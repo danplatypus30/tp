@@ -36,6 +36,10 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NOTE_TITLE_AMY = "Amy's new obsession";
+    public static final String VALID_NOTE_CONTENT_AMY = "Patient has a severe obsession with cats.";
+    public static final String VALID_NOTE_TITLE_BOB = "Bob's allergies";
+    public static final String VALID_NOTE_CONTENT_BOB = "Patient is allergic to penicillin.";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

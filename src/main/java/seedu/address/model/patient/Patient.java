@@ -6,8 +6,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.note.Note;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +26,7 @@ public class Patient {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final TreeSet<Note> notes;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +38,20 @@ public class Patient {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.notes = new TreeSet<>();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags, TreeSet<Note> notes) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.notes = notes;
     }
 
     public Name getName() {
@@ -59,6 +76,15 @@ public class Patient {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Retrieves the ordered set of notes associated with the patient
+     * @return an immutable navigable note set, which throws {@code UnsupportedOperationException}
+     *     if modification is attempted.
+     */
+    public TreeSet<Note> getNotes() {
+        return this.notes;
     }
 
     /**
@@ -94,13 +120,14 @@ public class Patient {
                 && phone.equals(otherPatient.phone)
                 && email.equals(otherPatient.email)
                 && address.equals(otherPatient.address)
-                && tags.equals(otherPatient.tags);
+                && tags.equals(otherPatient.tags)
+                && notes.equals(otherPatient.notes);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, notes);
     }
 
     @Override
@@ -111,6 +138,7 @@ public class Patient {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("notes", notes)
                 .toString();
     }
 

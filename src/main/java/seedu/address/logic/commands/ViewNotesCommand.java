@@ -24,7 +24,7 @@ public class ViewNotesCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_SUCCESS = "Notes for %1$s:\n%2$s";
+    public static final String MESSAGE_SUCCESS = "Notes for %1$s:\n\n%2$s";
     public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes.";
 
     private final Index targetIndex;
@@ -43,20 +43,33 @@ public class ViewNotesCommand extends Command {
         }
 
         Patient patientToView = lastShownList.get(targetIndex.getZeroBased());
-
-        // Get notes as a formatted string
         List<Note> notesList = patientToView.getNotes().stream().toList();
 
         if (notesList.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_NO_NOTES, patientToView.getName().fullName));
         }
 
-        // Format notes into a readable string
-        String formattedNotes = notesList.stream()
-                .map(note -> "- [" + note.getTitle() + "] " + note.getContent())
-                .collect(Collectors.joining("\n"));
+        // Format notes properly with numbering
+        String formattedNotes = formatNotes(notesList);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName().fullName, formattedNotes));
+    }
+
+    /**
+     * Formats notes dynamically with numbering and proper wrapping.
+     */
+    private String formatNotes(List<Note> notesList) {
+        StringBuilder sb = new StringBuilder();
+        int noteNumber = 1;
+
+        for (Note note : notesList) {
+            sb.append(noteNumber).append(". ").append(note.getTitle()).append("\n")
+                    .append("   ").append(note.getContent()) // The UI will handle wrapping
+                    .append("\n\n");
+            noteNumber++;
+        }
+
+        return sb.toString().trim();
     }
 
     @Override

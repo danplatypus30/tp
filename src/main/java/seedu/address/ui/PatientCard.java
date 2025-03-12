@@ -1,28 +1,22 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.patient.Patient;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * A UI component that displays information of a {@code Patient}.
  */
 public class PatientCard extends UiPart<Region> {
 
     private static final String FXML = "PatientListCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
 
     public final Patient patient;
 
@@ -41,10 +35,10 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane notes;
+    private VBox notes;
 
     /**
-     * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
+     * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
      */
     public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
@@ -54,11 +48,21 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
+
+        // Display tags
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        patient.getNotes().stream()
+
+        // Display only note titles inside square brackets
+        String noteTitles = patient.getNotes().stream()
                 .sorted(Comparator.comparing(note -> note.getDateTimeCreated()))
-                .forEach(note -> notes.getChildren().add(new Label("[" + note.getTitle() + "]")));
+                .map(note -> "[" + note.getTitle() + "]") // Formatting titles as [title]
+                .collect(Collectors.joining(" ")); // Join titles with a space
+
+        // Set text dynamically
+        Label notesLabel = new Label(noteTitles);
+        notesLabel.setWrapText(true); // Ensure wrapping if necessary
+        notes.getChildren().add(notesLabel);
     }
 }

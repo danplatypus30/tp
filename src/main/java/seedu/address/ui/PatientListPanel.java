@@ -41,9 +41,9 @@ public class PatientListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                // Ensure correct index alignment for ViewNotesCommand
                 setGraphic(new PatientCard(patient, getIndex() + 1).getRoot());
             }
         }
     }
-
 }

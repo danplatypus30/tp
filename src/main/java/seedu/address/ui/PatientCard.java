@@ -59,6 +59,6 @@ public class PatientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         patient.getNotes().stream()
                 .sorted(Comparator.comparing(note -> note.getDateTimeCreated()))
-                .forEach(note -> notes.getChildren().add(new Label(note.getTitle())));
+                .forEach(note -> notes.getChildren().add(new Label("[" + note.getTitle() + "]")));
     }
 }

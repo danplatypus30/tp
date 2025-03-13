@@ -30,6 +30,7 @@ public class ViewNotesCommandTest {
         notes = new ArrayList<>();
         notes.add(new Note("Test Note", "This is a test note."));
     }
+
     @Test
     public void execute_validPatientWithoutNotes_noNotesMessage() {
         Index index = Index.fromOneBased(3); // Carl Kurz
@@ -44,6 +45,7 @@ public class ViewNotesCommandTest {
 
         assertCommandSuccess(command, model, expectedCommandResult, model);
     }
+
     @Test
     public void execute_validPatientWithNotes_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

@@ -38,8 +38,9 @@ class JsonAdaptedPatient {
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("notes") List<JsonAdaptedNote> notes) {
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -60,9 +61,11 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+
         notes.addAll(source.getNotes().stream()
                 .map(JsonAdaptedNote::new)
                 .collect(Collectors.toList()));
@@ -106,14 +109,14 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
+        // Convert tags from JSON to the internal Set<Tag> model structure
         final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             patientTags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(patientTags);
 
-        // Notes are stored as a TreeSet to maintain chronological order without
-        // duplicates (based on dateTimeCreated).
+        // Convert notes from JSON to the internal TreeSet<Note> model structure
         final TreeSet<Note> modelNotes = new TreeSet<>();
         for (JsonAdaptedNote note : notes) {
             modelNotes.add(note.toModelType());
@@ -121,5 +124,4 @@ class JsonAdaptedPatient {
 
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNotes);
     }
-
 }

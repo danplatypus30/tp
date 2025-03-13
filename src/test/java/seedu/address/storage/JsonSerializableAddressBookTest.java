@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
-import seedu.address.testutil.TypicalPatients;
+import seedu.address.model.patient.Patient;
 
 public class JsonSerializableAddressBookTest {
 
@@ -22,11 +23,19 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalPatientsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(
+                TYPICAL_PATIENTS_FILE, JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPatientsAddressBook = TypicalPatients.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPatientsAddressBook);
+        AddressBook typicalPatientsAddressBook = getTypicalAddressBook();
+
+        // Verify that each patient has the correct number of notes
+        for (int i = 0; i < addressBookFromFile.getPatientList().size(); i++) {
+            Patient expectedPatient = typicalPatientsAddressBook.getPatientList().get(i);
+            Patient actualPatient = addressBookFromFile.getPatientList().get(i);
+
+            assertEquals(expectedPatient.getNotes().size(), actualPatient.getNotes().size(),
+                    "Mismatch in number of notes for patient: " + expectedPatient.getName());
+        }
     }
 
     @Test

@@ -22,11 +22,32 @@ public class PatientListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
+     *
+     * @param patientList The list of patients to display.
      */
     public PatientListPanel(ObservableList<Patient> patientList) {
         super(FXML);
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> new PatientListViewCell());
+    }
+
+    /**
+     * Retrieves the number of patients in the list.
+     *
+     * @return The size of the patient list.
+     */
+    public int getPatientListSize() {
+        return patientListView.getItems().size();
+    }
+
+    /**
+     * Retrieves a patient at a given index.
+     *
+     * @param index The index of the patient to retrieve.
+     * @return The patient at the specified index.
+     */
+    public Patient getPatientAtIndex(int index) {
+        return patientListView.getItems().get(index);
     }
 
     /**
@@ -45,5 +66,4 @@ public class PatientListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

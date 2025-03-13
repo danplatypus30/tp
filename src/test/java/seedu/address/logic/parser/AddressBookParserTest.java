@@ -19,12 +19,12 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
+import seedu.address.logic.commands.ViewNotesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.note.Note;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
@@ -60,7 +60,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Patient patient = new PatientBuilder().build();
-        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
+        EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PATIENT, descriptor), command);
@@ -93,9 +93,9 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
+    public void parseCommand_unrecognizedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-     public void parseCommand_remark() throws Exception {
+    public void parseCommand_note() throws Exception {
         final Note note = new Note("Some title", "Some content");
 
         NoteCommand command = (NoteCommand) parser.parseCommand(NoteCommand.COMMAND_WORD + " "
@@ -113,4 +113,19 @@ public class AddressBookParserTest {
         assertEquals(new NoteCommand(INDEX_FIRST_PATIENT, note), command);
     }
 
+    @Test
+    public void parseCommand_viewNotesValidIndex_returnsViewNotesCommand() throws Exception {
+        ViewNotesCommand command = (ViewNotesCommand) parser.parseCommand("viewnotes 1");
+        assertEquals(new ViewNotesCommand(INDEX_FIRST_PATIENT), command);
+    }
+
+    @Test
+    public void parseCommand_viewNotesInvalidIndex_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes abc"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes -1"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes 0"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes 9999999999999999999999"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes @!#"));
+    }
 }

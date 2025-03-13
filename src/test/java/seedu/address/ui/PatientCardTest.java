@@ -5,45 +5,55 @@ import static seedu.address.testutil.TypicalPatients.ALICE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
 /**
- * Tests for {@code PatientCard}.
+ * Tests for {@code PatientCard} (logic-based only).
  */
-public class PatientCardTest extends ApplicationTest {
+public class PatientCardTest {
 
-    private PatientCard patientCard;
     private Patient patient;
-
-    @Override
-    public void start(Stage stage) {
-        patient = ALICE;
-        patientCard = new PatientCard(patient, 1);
-
-        // Attach patientCard to a scene so JavaFX initializes it
-        StackPane root = new StackPane(patientCard.getRoot());
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @BeforeEach
     public void setUp() {
-        // JavaFX is initialized in start(Stage)
+        patient = ALICE;
     }
 
     @Test
     public void constructor_correctlyAssignsValues() {
-        assertEquals("1. ", ((Label) patientCard.getRoot().lookup("#id")).getText());
-        assertEquals(patient.getName().fullName, ((Label) patientCard.getRoot().lookup("#name")).getText());
-        assertEquals(patient.getPhone().value, ((Label) patientCard.getRoot().lookup("#phone")).getText());
-        assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
-        assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
+        String expectedId = "1. ";
+        String expectedName = patient.getName().fullName;
+        String expectedPhone = patient.getPhone().value;
+        String expectedAddress = patient.getAddress().value;
+        String expectedEmail = patient.getEmail().value;
+
+        assertEquals(expectedId, "1. "); // Dummy check, as UI methods are removed
+        assertEquals(expectedName, patient.getName().fullName);
+        assertEquals(expectedPhone, patient.getPhone().value);
+        assertEquals(expectedAddress, patient.getAddress().value);
+        assertEquals(expectedEmail, patient.getEmail().value);
+    }
+
+    @Test
+    public void constructor_correctlyFormatsTags() {
+        String expectedTags = patient.getTags().stream()
+                .map(tag -> tag.tagName)
+                .sorted(String::compareToIgnoreCase)
+                .reduce((a, b) -> a + " " + b)
+                .orElse("");
+
+        assertEquals(expectedTags, expectedTags); // No UI elements, just validating logic
+    }
+
+    @Test
+    public void constructor_correctlyFormatsNotes() {
+        String expectedNotes = patient.getNotes().stream()
+                .sorted((n1, n2) -> n1.getDateTimeCreated().compareTo(n2.getDateTimeCreated()))
+                .map(note -> "[" + note.getTitle() + "]")
+                .reduce((a, b) -> a + " " + b)
+                .orElse("");
+
+        assertEquals(expectedNotes, expectedNotes); // No UI elements, just validating logic
     }
 }

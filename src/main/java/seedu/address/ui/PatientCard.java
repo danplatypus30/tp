@@ -39,6 +39,9 @@ public class PatientCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
+     *
+     * @param patient The patient whose details should be displayed.
+     * @param displayedIndex The index of the patient in the list.
      */
     public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
@@ -57,12 +60,79 @@ public class PatientCard extends UiPart<Region> {
         // Display only note titles inside square brackets
         String noteTitles = patient.getNotes().stream()
                 .sorted(Comparator.comparing(note -> note.getDateTimeCreated()))
-                .map(note -> "[" + note.getTitle() + "]") // Formatting titles as [title]
-                .collect(Collectors.joining(" ")); // Join titles with a space
+                .map(note -> "[" + note.getTitle() + "]")
+                .collect(Collectors.joining(" "));
 
         // Set text dynamically
         Label notesLabel = new Label(noteTitles);
-        notesLabel.setWrapText(true); // Ensure wrapping if necessary
+        notesLabel.setWrapText(true);
         notes.getChildren().add(notesLabel);
+    }
+
+    /**
+     * Retrieves the displayed index text.
+     *
+     * @return The index as a string.
+     */
+    public String getDisplayedIndexText() {
+        return id.getText();
+    }
+
+    /**
+     * Retrieves the patient's name text.
+     *
+     * @return The patient's name.
+     */
+    public String getPatientNameText() {
+        return name.getText();
+    }
+
+    /**
+     * Retrieves the patient's phone number text.
+     *
+     * @return The phone number.
+     */
+    public String getPhoneText() {
+        return phone.getText();
+    }
+
+    /**
+     * Retrieves the patient's address text.
+     *
+     * @return The address.
+     */
+    public String getAddressText() {
+        return address.getText();
+    }
+
+    /**
+     * Retrieves the patient's email text.
+     *
+     * @return The email.
+     */
+    public String getEmailText() {
+        return email.getText();
+    }
+
+    /**
+     * Retrieves the formatted tags as a space-separated string.
+     *
+     * @return The formatted tag string.
+     */
+    public String getFormattedTags() {
+        return tags.getChildren().stream()
+                .map(node -> ((Label) node).getText())
+                .collect(Collectors.joining(" "));
+    }
+
+    /**
+     * Retrieves the formatted notes as a space-separated string.
+     *
+     * @return The formatted note titles.
+     */
+    public String getFormattedNotes() {
+        return notes.getChildren().stream()
+                .map(node -> ((Label) node).getText())
+                .collect(Collectors.joining(" "));
     }
 }

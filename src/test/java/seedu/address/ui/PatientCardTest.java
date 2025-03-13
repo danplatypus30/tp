@@ -7,8 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
@@ -19,23 +20,27 @@ public class PatientCardTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) {
-        // Initialize JavaFX application
-        Platform.runLater(() -> {});
+        patient = ALICE;
+        patientCard = new PatientCard(patient, 1);
+
+        // Attach patientCard to a scene so JavaFX initializes it
+        StackPane root = new StackPane(patientCard.getRoot());
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @BeforeEach
     public void setUp() {
-        patient = ALICE;
-        patientCard = new PatientCard(patient, 1);
+        // Do not reinitialize JavaFX here since it is already done in start(Stage)
     }
+
     @Test
     public void display_correctlyFormatsPatientDetails() {
-        Platform.runLater(() -> {
-            assertEquals("1. ", ((Label) patientCard.getRoot().lookup("#id")).getText());
-            assertEquals(patient.getName().fullName, ((Label) patientCard.getRoot().lookup("#name")).getText());
-            assertEquals(patient.getPhone().value, ((Label) patientCard.getRoot().lookup("#phone")).getText());
-            assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
-            assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
-        });
+        assertEquals("1. ", ((Label) patientCard.getRoot().lookup("#id")).getText());
+        assertEquals(patient.getName().fullName, ((Label) patientCard.getRoot().lookup("#name")).getText());
+        assertEquals(patient.getPhone().value, ((Label) patientCard.getRoot().lookup("#phone")).getText());
+        assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
+        assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
     }
 }

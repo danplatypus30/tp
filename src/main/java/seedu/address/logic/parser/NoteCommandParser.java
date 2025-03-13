@@ -34,20 +34,9 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         }
 
         AddNoteDescriptor editNoteDescriptor = new AddNoteDescriptor();
-
-//        if (argMultimap.getValue(PREFIX_NOTE_TITLE).isPresent()) {
-//            Note titleNote = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE_TITLE).get(),
-//            "placeholderContent");
-//            editNoteDescriptor.setTitle(titleNote.getTitle());
-//        }
-//
-//        if (argMultimap.getValue(PREFIX_NOTE_CONTENT).isPresent()) {
-//            Note contentNote = ParserUtil.parseNote("placeholderTitle",
-//            argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
-//            editNoteDescriptor.setContent(contentNote.getContent());
-//        }
-        if (argMultimap.getValue(PREFIX_NOTE_TITLE).isPresent() &&
-                argMultimap.getValue(PREFIX_NOTE_CONTENT).isPresent()) {
+        
+        if (argMultimap.getValue(PREFIX_NOTE_TITLE).isPresent()
+                && argMultimap.getValue(PREFIX_NOTE_CONTENT).isPresent()) {
             Note fullNote = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE_TITLE).get(),
                     argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
             editNoteDescriptor.setTitle(fullNote.getTitle());

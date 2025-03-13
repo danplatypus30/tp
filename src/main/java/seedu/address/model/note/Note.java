@@ -73,6 +73,14 @@ public class Note implements Comparable<Note> {
     }
 
     /**
+     * Gets content of a note
+     * @return content of the note
+     */
+    public String getTitledContent() {
+        return "[" + this.title + "]" + this.content;
+    }
+
+    /**
      * Gets the date and time the note was created
      * @return LocalDateTime object, which stores the date and time the note was created
      */

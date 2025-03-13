@@ -3,25 +3,25 @@ package seedu.address.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
-public class PatientCardTest {
+public class PatientCardTest extends ApplicationTest {
 
     private PatientCard patientCard;
     private Patient patient;
 
-    @BeforeAll
-    public static void initJavaFX() {
-        if (!Platform.isFxApplicationThread()) {
-            Platform.startup(() -> {});
-        }
+    @Override
+    public void start(Stage stage) {
+        // Initialize JavaFX application
+        Platform.runLater(() -> {});
     }
 
     @BeforeEach

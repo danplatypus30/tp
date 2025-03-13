@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.note.Note;
+import seedu.address.model.patient.Patient;
 
 /**
  * Container for user visible messages.

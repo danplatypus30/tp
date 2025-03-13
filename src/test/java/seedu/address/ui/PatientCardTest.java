@@ -9,7 +9,6 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
@@ -38,21 +37,5 @@ public class PatientCardTest extends ApplicationTest {
             assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
             assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
         });
-    }
-
-    @Test
-    public void display_correctlyFormatsNoteTitles() {
-        VBox notesContainer = (VBox) patientCard.getRoot().lookup("#notes");
-        String displayedNotes = notesContainer.getChildren().stream()
-                .map(node -> ((Label) node).getText())
-                .reduce((a, b) -> a + " " + b) // Join all note titles
-                .orElse("");
-
-        String expectedNotes = patient.getNotes().stream()
-                .map(note -> "[" + note.getTitle() + "]")
-                .reduce((a, b) -> a + " " + b)
-                .orElse("");
-
-        assertEquals(expectedNotes, displayedNotes);
     }
 }

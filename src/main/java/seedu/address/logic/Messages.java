@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.note.Note;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.patient.Patient;
 
@@ -43,6 +44,8 @@ public class Messages {
                 .append(patient.getEmail())
                 .append("; Address: ")
                 .append(patient.getAddress())
+                .append("; \nNotes: ")
+                .append(patient.getNotes().stream().map(Note::getTitledContent).collect(Collectors.joining(", ")))
                 .append("; Tags: ");
         patient.getTags().forEach(builder::append);
         return builder.toString();

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
@@ -25,6 +24,7 @@ public class ViewNotesCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Notes for %1$s:\n\n%2$s";
     public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
 
     private final Index targetIndex;
 
@@ -37,8 +37,9 @@ public class ViewNotesCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        // Handle invalid index cases
+        if (targetIndex.getZeroBased() < 0 || targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_INDEX);
         }
 
         Patient patientToView = lastShownList.get(targetIndex.getZeroBased());

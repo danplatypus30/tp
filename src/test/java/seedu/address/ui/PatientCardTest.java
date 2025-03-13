@@ -1,2 +1,57 @@
-package seedu.address.ui;public class PatientCardTest {
+package seedu.address.ui;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import javafx.application.Platform;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import seedu.address.model.patient.Patient;
+
+public class PatientCardTest {
+
+    private PatientCard patientCard;
+    private Patient patient;
+
+    @BeforeAll
+    public static void initJavaFX() {
+        if (!Platform.isFxApplicationThread()) {
+            Platform.startup(() -> {});
+        }
+    }
+
+    @BeforeEach
+    public void setUp() {
+        patient = ALICE;
+        patientCard = new PatientCard(patient, 1);
+    }
+
+    @Test
+    public void display_correctlyFormatsPatientDetails() {
+        assertEquals("1. ", ((Label) patientCard.getRoot().lookup("#id")).getText());
+        assertEquals(patient.getName().fullName, ((Label) patientCard.getRoot().lookup("#name")).getText());
+        assertEquals(patient.getPhone().value, ((Label) patientCard.getRoot().lookup("#phone")).getText());
+        assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
+        assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
+    }
+
+    @Test
+    public void display_correctlyFormatsNoteTitles() {
+        VBox notesContainer = (VBox) patientCard.getRoot().lookup("#notes");
+        String displayedNotes = notesContainer.getChildren().stream()
+                .map(node -> ((Label) node).getText())
+                .reduce((a, b) -> a + " " + b) // Join all note titles
+                .orElse("");
+
+        String expectedNotes = patient.getNotes().stream()
+                .map(note -> "[" + note.getTitle() + "]")
+                .reduce((a, b) -> a + " " + b)
+                .orElse("");
+
+        assertEquals(expectedNotes, displayedNotes);
+    }
 }

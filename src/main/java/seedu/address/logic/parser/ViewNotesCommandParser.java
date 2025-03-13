@@ -14,16 +14,31 @@ public class ViewNotesCommandParser implements Parser<ViewNotesCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewNotesCommand
      * and returns a ViewNotesCommand object for execution.
-     * @throws ParseException if the user input does not conform to the expected format.
+     *
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public ViewNotesCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+
+        // Ensure input is not empty
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
+        }
+
         try {
-            Index index = ParserUtil.parseIndex(args.trim()); // Extracts the patient index
+            Index index = ParserUtil.parseIndex(trimmedArgs);
+
+            // Ensure the parsed index is a valid positive number
+            if (index.getZeroBased() < 0) { // This check is redundant, as parseIndex should handle it
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
+            }
+
             return new ViewNotesCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE), pe
-            );
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
         }
     }
+
 }

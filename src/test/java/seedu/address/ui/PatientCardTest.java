@@ -29,14 +29,15 @@ public class PatientCardTest extends ApplicationTest {
         patient = ALICE;
         patientCard = new PatientCard(patient, 1);
     }
-
     @Test
     public void display_correctlyFormatsPatientDetails() {
-        assertEquals("1. ", ((Label) patientCard.getRoot().lookup("#id")).getText());
-        assertEquals(patient.getName().fullName, ((Label) patientCard.getRoot().lookup("#name")).getText());
-        assertEquals(patient.getPhone().value, ((Label) patientCard.getRoot().lookup("#phone")).getText());
-        assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
-        assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
+        Platform.runLater(() -> {
+            assertEquals("1. ", ((Label) patientCard.getRoot().lookup("#id")).getText());
+            assertEquals(patient.getName().fullName, ((Label) patientCard.getRoot().lookup("#name")).getText());
+            assertEquals(patient.getPhone().value, ((Label) patientCard.getRoot().lookup("#phone")).getText());
+            assertEquals(patient.getAddress().value, ((Label) patientCard.getRoot().lookup("#address")).getText());
+            assertEquals(patient.getEmail().value, ((Label) patientCard.getRoot().lookup("#email")).getText());
+        });
     }
 
     @Test

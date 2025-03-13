@@ -85,6 +85,10 @@ public class NoteCommand extends Command {
         return new CommandResult(generateSuccessMessage(editedPatient));
     }
 
+    /**
+     * Stores the details to add the note with. Each non-empty field value will replace the
+     * corresponding field value of the note.
+     */
     public static class AddNoteDescriptor {
         private String title;
         private String content;

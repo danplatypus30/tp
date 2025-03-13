@@ -34,7 +34,6 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         }
 
         AddNoteDescriptor editNoteDescriptor = new AddNoteDescriptor();
-        
         if (argMultimap.getValue(PREFIX_NOTE_TITLE).isPresent()
                 && argMultimap.getValue(PREFIX_NOTE_CONTENT).isPresent()) {
             Note fullNote = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE_TITLE).get(),

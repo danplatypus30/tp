@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -36,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private VBox commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox commandBoxContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -109,6 +113,20 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
+    // void fillInnerParts() {
+    //     patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+    //     patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+    //     resultDisplay = new ResultDisplay();
+    //     resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+    //     StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+    //     statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+    //     CommandBox commandBox = new CommandBox(this::executeCommand);
+    //     commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    // }
+
     void fillInnerParts() {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
@@ -121,7 +139,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        // Ensure the command box can grow dynamically
+        VBox.setVgrow(commandBoxPlaceholder, javafx.scene.layout.Priority.ALWAYS);
+        VBox.setVgrow(commandBoxContainer, javafx.scene.layout.Priority.ALWAYS);
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.

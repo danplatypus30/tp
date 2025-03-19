@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.FilterNoteCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
@@ -44,8 +45,8 @@ public class FilterNoteCommandTest {
 
     @Test
     public void execute_validPatientWithoutNotes_noNotesMessage() {
-        Index index = Index.fromOneBased(1);
-        FilterNoteCommand command = new FilterNoteCommand(index, " ");
+        Index index = Index.fromOneBased(6);
+        FilterNoteCommand command = new FilterNoteCommand(index, "test");
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         assertThrows(CommandException.class, () -> command.execute(model));
     }
@@ -54,8 +55,8 @@ public class FilterNoteCommandTest {
     public void execute_validPatientWithMatchingNote_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Patient patientToView = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        String expectedNote = "Title: first session" + "\nContent: good progress";
-        FilterNoteCommand command = new FilterNoteCommand(INDEX_FIRST_PATIENT, "first");
+        String expectedNote = "Title: 4th Session with Alice" + "\nContent: Discussed progress";
+        FilterNoteCommand command = new FilterNoteCommand(INDEX_FIRST_PATIENT, "Alice");
         String expectedMessage = String.format(FilterNoteCommand.MESSAGE_SUCCESS, patientToView.getName().fullName,
                 expectedNote);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());

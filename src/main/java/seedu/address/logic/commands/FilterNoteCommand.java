@@ -2,21 +2,21 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.note.Note;
-
 import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.note.Note;
+import seedu.address.model.patient.Patient;
 
 /**
  * Filter out to display the note whose title matches the keyword under the specific patient with the index
  * Keyword matching is case insensitive.
  */
-public class FilterNoteCommand extends Command{
+public class FilterNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "filternote";
 
@@ -38,6 +38,11 @@ public class FilterNoteCommand extends Command{
 
     private final String title;
 
+    /**
+     * Creates a NoteCommand to add the specified {@code Note}
+     * @param index index of the patient in the filtered patient list
+     * @param title title of the note
+     */
     public FilterNoteCommand(Index index, String title) {
         this.index = index;
         this.title = title;

@@ -83,11 +83,11 @@ public class AddressBookParser {
         case NoteCommand.COMMAND_WORD:
             return new NoteCommandParser().parse(arguments);
 
-        case ViewNotesCommand.COMMAND_WORD:
-            return new ViewNotesCommandParser().parse(arguments);
-
         case FilterNoteCommand.COMMAND_WORD:
             return new FilterNoteCommandParser().parse(arguments);
+
+        case ViewNotesCommand.COMMAND_WORD:
+            return new ViewNotesCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

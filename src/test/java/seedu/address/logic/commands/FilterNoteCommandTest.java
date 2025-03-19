@@ -47,7 +47,7 @@ public class FilterNoteCommandTest {
         Index index = Index.fromOneBased(1);
         FilterNoteCommand command = new FilterNoteCommand(index, " ");
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        assertThrows(CommandException.class,() -> command.execute(model));
+        assertThrows(CommandException.class, () -> command.execute(model));
     }
 
     @Test

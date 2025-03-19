@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.util.Collections;
@@ -48,7 +48,7 @@ public class FilterNoteCommandTest {
     public void execute_noTitle_noNotesFound() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE);
         FilterNoteCommand command = new FilterNoteCommand(Index.fromOneBased(1), " ");
-        assertCommandSuccess(command, model, expectedMessage, model);
+        assertCommandFailure(command, model, expectedMessage);
         assertEquals(Collections.emptyList(), model.getFilteredPatientList());
     }
 
@@ -56,7 +56,7 @@ public class FilterNoteCommandTest {
     public void execute_noIndex_noPatientFound() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE);
         FilterNoteCommand command = new FilterNoteCommand(null, "test");
-        assertCommandSuccess(command, model, expectedMessage, model);
+        assertCommandFailure(command, model, expectedMessage);
         assertEquals(Collections.emptyList(), model.getFilteredPatientList());
     }
 

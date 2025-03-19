@@ -37,7 +37,6 @@ public class ViewNotesCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        // Handle invalid index cases
         if (targetIndex.getZeroBased() < 0 || targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
@@ -49,11 +48,11 @@ public class ViewNotesCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_NOTES, patientToView.getName().fullName));
         }
 
-        // Format notes properly with numbering
+        // Format the notes using the formatNotes method and include them in the CommandResult
         String formattedNotes = formatNotes(notesList);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName().fullName, formattedNotes));
     }
+
 
     /**
      * Formats notes dynamically with numbering and proper wrapping.
@@ -63,12 +62,18 @@ public class ViewNotesCommand extends Command {
         int noteNumber = 1;
 
         for (Note note : notesList) {
-            sb.append(noteNumber).append(". ").append(note.getTitle()).append("\n")
-                    .append("   ").append(note.getContent()) // The UI will handle wrapping
-                    .append("\n\n");
+            sb.append(noteNumber).append(". ")
+                    .append(note.getTitle()).append("\n")
+                    .append("   ").append(note.getContent()).append("\n");
+
+            // Add date if available
+            if (note.getDateTimeCreated() != null) {
+                sb.append("   Created: ").append(note.getDateTimeCreated().toString()).append("\n");
+            }
+
+            sb.append("\n"); // Add space between notes
             noteNumber++;
         }
-
         return sb.toString().trim();
     }
 

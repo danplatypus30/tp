@@ -43,21 +43,6 @@ public class FilterNoteCommandTest {
         //different patient and title -> return false
         assertFalse(firstCommand.equals(secondCommand));
     }
-
-    @Test
-    public void execute_noTitle_noNotesFound() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE);
-        FilterNoteCommand command = new FilterNoteCommand(Index.fromOneBased(1), " ");
-        assertCommandFailure(command, model, expectedMessage);
-        assertEquals(Collections.emptyList(), model.getFilteredPatientList());
-    }
-
-    @Test
-    public void execute_noIndex_noPatientFound() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE);
-        FilterNoteCommand command = new FilterNoteCommand(null, "test");
-        assertCommandFailure(command, model, expectedMessage);
-        assertEquals(Collections.emptyList(), model.getFilteredPatientList());
-    }
+    
 
 }

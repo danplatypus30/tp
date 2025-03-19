@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
@@ -45,14 +44,10 @@ public class FilterNoteCommandTest {
 
     @Test
     public void execute_validPatientWithoutNotes_noNotesMessage() {
-        Index index = Index.fromOneBased(1); // Carl Kurz
+        Index index = Index.fromOneBased(1);
         FilterNoteCommand command = new FilterNoteCommand(index, " ");
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE)
-        );
-        assertCommandSuccess(command, model, expectedCommandResult, model);
+        assertThrows(CommandException.class,() -> command.execute(model));
     }
 
     @Test
@@ -61,9 +56,8 @@ public class FilterNoteCommandTest {
         Patient patientToView = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         String expectedNote = "Title: first session" + "\nContent: good progress";
         FilterNoteCommand command = new FilterNoteCommand(INDEX_FIRST_PATIENT, "first");
-        String expectedMessage = String.format(ViewNotesCommand.MESSAGE_SUCCESS, patientToView.getName().fullName,
+        String expectedMessage = String.format(FilterNoteCommand.MESSAGE_SUCCESS, patientToView.getName().fullName,
                 expectedNote);
-
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         assertCommandSuccess(command, model, expectedMessage.trim(), expectedModel);
     }
@@ -73,7 +67,6 @@ public class FilterNoteCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
         FilterNoteCommand command = new FilterNoteCommand(outOfBoundsIndex, "test");
-
         assertThrows(CommandException.class, () -> command.execute(model));
     }
 }

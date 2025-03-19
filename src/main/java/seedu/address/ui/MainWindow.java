@@ -113,20 +113,6 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    // void fillInnerParts() {
-    //     patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
-    //     patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
-
-    //     resultDisplay = new ResultDisplay();
-    //     resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-    //     StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-    //     statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-    //     CommandBox commandBox = new CommandBox(this::executeCommand);
-    //     commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    // }
-
     void fillInnerParts() {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());

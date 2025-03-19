@@ -28,7 +28,7 @@ public class FilterNoteCommandTest {
         assertTrue(firstCommand.equals(firstCommand));
 
         //same values -> return true
-        FilterNoteCommand firstCommandCopy = new FilterNoteCommand(Index.fromOneBased(0), "test1");
+        FilterNoteCommand firstCommandCopy = new FilterNoteCommand(Index.fromOneBased(2), "test1");
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         //different types -> return false

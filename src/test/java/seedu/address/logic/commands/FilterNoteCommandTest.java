@@ -47,7 +47,7 @@ public class FilterNoteCommandTest {
     @Test
     public void execute_noTitle_noNotesFound() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE);
-        FilterNoteCommand command = new FilterNoteCommand(Index.fromOneBased(1),"" );
+        FilterNoteCommand command = new FilterNoteCommand(Index.fromOneBased(1), " ");
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(Collections.emptyList(), model.getFilteredPatientList());
     }
@@ -55,7 +55,7 @@ public class FilterNoteCommandTest {
     @Test
     public void execute_noIndex_noPatientFound() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterNoteCommand.MESSAGE_USAGE);
-        FilterNoteCommand command = new FilterNoteCommand(null,"test" );
+        FilterNoteCommand command = new FilterNoteCommand(null, "test");
         assertCommandSuccess(command, model, expectedMessage, model);
         assertEquals(Collections.emptyList(), model.getFilteredPatientList());
     }

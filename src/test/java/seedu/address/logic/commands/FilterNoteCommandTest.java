@@ -21,7 +21,7 @@ public class FilterNoteCommandTest {
 
     @Test
     public void equals() {
-        FilterNoteCommand firstCommand = new FilterNoteCommand(Index.fromOneBased(0), "test1");
+        FilterNoteCommand firstCommand = new FilterNoteCommand(Index.fromOneBased(2), "test1");
         FilterNoteCommand secondCommand = new FilterNoteCommand(Index.fromOneBased(1), "test2");
 
         //same object -> return true

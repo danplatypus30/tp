@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterNoteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -127,5 +128,12 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes 0"));
         assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes 9999999999999999999999"));
         assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes @!#"));
+    }
+
+    @Test
+    public void parseCommand_filterNote() throws Exception {
+        FilterNoteCommand command = (FilterNoteCommand) parser.parseCommand(FilterNoteCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PATIENT.getOneBased() + " " + PREFIX_NOTE_TITLE + "test");
+        assertEquals(new FilterNoteCommand(INDEX_FIRST_PATIENT, "test"), command);
     }
 }

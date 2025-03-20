@@ -65,20 +65,22 @@
 }
 
 /* Notes Section */
+/* Notes Section */
 .notes-container {
     -fx-background-color: #3C3F41;
     -fx-border-color: transparent;
     -fx-border-radius: 6px;
     -fx-background-radius: 6px;
     -fx-padding: 10px;
-    -fx-spacing: 8px;
+    -fx-spacing: 12px; /* Increased from 8px for better spacing between notes */
 }
 
 .note-box {
     -fx-background-color: #4A4D4F;
     -fx-background-radius: 4px;
-    -fx-padding: 8px;
-    -fx-spacing: 4px;
+    -fx-padding: 10px; /* Increased from 8px for better internal padding */
+    -fx-spacing: 6px; /* Increased from 4px for better spacing between title and date */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 3, 0, 0, 1); /* Added subtle shadow */
 }
 
 .note-title {
@@ -87,17 +89,19 @@
     -fx-font-size: 13px;
 }
 
-.note-content {
-    -fx-text-fill: #DBCDC6;
-    -fx-padding: 4px 0 0 8px;
-    -fx-font-size: 12px;
-}
-
 .note-date {
     -fx-text-fill: #A0A0A0;
     -fx-font-size: 10px;
     -fx-font-style: italic;
-    -fx-padding: 2px 0 0 8px;
+    -fx-padding: 2px 0 0 0; /* Removed left padding */
+}
+
+/* Notes label styling */
+.notes-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #EAD7D1;
+    -fx-font-size: 13px;
+    -fx-padding: 0 0 5px 0;
 }
 
 /* Tag Styling */

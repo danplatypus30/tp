@@ -94,7 +94,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    public static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
@@ -141,6 +141,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private TreeSet<Note> notes;
 
         public EditPatientDescriptor() {}
 
@@ -154,6 +155,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setNotes(toCopy.notes);
         }
 
         /**
@@ -189,6 +191,14 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public void setNotes(TreeSet<Note> notes) {
+            this.notes = notes;
+        }
+
+        public Optional<TreeSet<Note>> getNotes() {
+            return Optional.ofNullable(notes);
         }
 
         public Optional<Address> getAddress() {

@@ -197,6 +197,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**note** | `note INDEX [nt/TITLE] [nc/CONTENT]`<br> e.g.,`note 1 nt/JohnFirstCrashout nc/john crashed out when confronted by amy`
+**deletenote | `deletenote INDEX [nt/TITLE]` <br> e.g., `deletenote 1 nt/JohnFirstCrashout`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`

@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_PATIENT;
-import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
 import java.util.TreeSet;
@@ -16,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
+import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 
 /**
  * Deletes a patient identified using it's displayed index from the address book.
@@ -25,7 +25,8 @@ public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "deletenote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a specified note of a patient identified by the title string used in the displayed note list.\n"
+            + ": Deletes a specified note of a patient identified by the title string used "
+            + "in the displayed note list.\n"
             + "Parameters: INDEX (must be a positive integer) nt/TITLE (must be a valid string)\n"
             + "Example: " + COMMAND_WORD + " 1 nt/JohnFirstCrashout";
 
@@ -37,6 +38,11 @@ public class DeleteNoteCommand extends Command {
     private final String targetTitle;
     private final EditPatientDescriptor editPatientDescriptor;
 
+    /**
+     * Delete the Note associated with the note title in the patient specified by targetIndex
+     * @param targetIndex of the patient in the patient list to delete note from
+     * @param targetTitle of the note in the patient specified by the index to delete
+     */
     public DeleteNoteCommand(Index targetIndex, String targetTitle) {
         this.targetIndex = targetIndex;
         this.targetTitle = targetTitle;
@@ -52,14 +58,14 @@ public class DeleteNoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        if(targetTitle.isEmpty() || targetTitle.equals(" ")) { // catch empty or blank space case
+        if (targetTitle.isEmpty() || targetTitle.equals(" ")) { // catch empty or blank space case
             throw new CommandException(Messages.MESSAGE_INVALID_NOTE_DELETE_TITLE);
         }
 
         Patient patientToEdit = lastShownList.get(targetIndex.getZeroBased());
         TreeSet<Note> allNotes = patientToEdit.getNotes();
 
-        if(allNotes.isEmpty()){
+        if (allNotes.isEmpty()) {
             throw new CommandException(MESSAGE_NO_NOTES);
         }
 
@@ -67,7 +73,7 @@ public class DeleteNoteCommand extends Command {
                 .filter(n -> n.getTitle().equalsIgnoreCase(targetTitle))
                 .findFirst().orElse(null);
 
-        if(matchingNote == null){
+        if (matchingNote == null) {
             throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, targetTitle));
         }
 

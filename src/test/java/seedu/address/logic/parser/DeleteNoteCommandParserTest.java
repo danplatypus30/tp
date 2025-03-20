@@ -28,24 +28,23 @@ public class DeleteNoteCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteNoteCommand.MESSAGE_USAGE);
-
         // missing all parameters
-        assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD, expectedMessage);
+        assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD, MESSAGE_INVALID_FORMAT);
 
         // missing index only (deletenote nt/Some title.)
         assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD + " " + PREFIX_NOTE_TITLE
-                + nonEmptyTitle, expectedMessage);
+                + nonEmptyTitle, MESSAGE_INVALID_FORMAT);
 
         // missing title only (deletenote 1 nt/)
         assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT
-                + " " + PREFIX_NOTE_TITLE, expectedMessage);
+                + " " + PREFIX_NOTE_TITLE + " ", MESSAGE_INVALID_FORMAT);
 
         // missing title prefix only (deletenote 1 Some title.)
         assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT
-                + " " + nonEmptyTitle, expectedMessage);
+                + " " + nonEmptyTitle, MESSAGE_INVALID_FORMAT);
 
-        // missing title prefix and title (deletenote 1
-        assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT, expectedMessage);
+        // missing title prefix and title (deletenote 1)
+        assertParseFailure(parser, DeleteNoteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT,
+                MESSAGE_INVALID_FORMAT);
     }
 }

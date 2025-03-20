@@ -71,13 +71,6 @@ public class DeleteNoteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, targetTitle));
         }
 
-
-        // get the patient, then get the note we want to delete
-        // find patient > find note > get note > treeset.remove(Note n)
-        // use a treeset search?
-        // then treeset remove?
-        // check if the note exists in the Treeset First
-        // if it does not, return error
         patientToEdit.getNotes().remove(matchingNote);
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 

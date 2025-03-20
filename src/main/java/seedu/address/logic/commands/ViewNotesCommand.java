@@ -22,7 +22,7 @@ public class ViewNotesCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_SUCCESS = "Notes for %1$s:\n\n%2$s";
+    public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
     public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes.";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
 
@@ -48,33 +48,8 @@ public class ViewNotesCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_NOTES, patientToView.getName().fullName));
         }
 
-        // Format the notes using the formatNotes method and include them in the CommandResult
-        String formattedNotes = formatNotes(notesList);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName().fullName, formattedNotes));
-    }
-
-
-    /**
-     * Formats notes dynamically with numbering and proper wrapping.
-     */
-    private String formatNotes(List<Note> notesList) {
-        StringBuilder sb = new StringBuilder();
-        int noteNumber = 1;
-
-        for (Note note : notesList) {
-            sb.append(noteNumber).append(". ")
-                    .append(note.getTitle()).append("\n")
-                    .append("   ").append(note.getContent()).append("\n");
-
-            // Add date if available
-            if (note.getDateTimeCreated() != null) {
-                sb.append("   Created: ").append(note.getDateTimeCreated().toString()).append("\n");
-            }
-
-            sb.append("\n"); // Add space between notes
-            noteNumber++;
-        }
-        return sb.toString().trim();
+        // Return a simpler success message since notes display is now handled by the UI
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName().fullName));
     }
 
     @Override

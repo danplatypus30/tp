@@ -58,32 +58,33 @@ public class PatientCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-// Display notes in a more structured way
-        VBox notesContainer = new VBox(8); // Increased spacing from 4px to 8px
-        notesContainer.getStyleClass().add("notes-container");
+        // Display notes in a more structured way
+        // Make sure the notes container in your FXML has the notes-container style class
+        notes.getStyleClass().add("notes-container");
 
         patient.getNotes().stream()
                 .sorted(Comparator.comparing(note -> note.getDateTimeCreated()))
                 .forEach(note -> {
-                    VBox noteBox = new VBox(4);
+                    VBox noteBox = new VBox();
                     noteBox.getStyleClass().add("note-box");
 
+                    // Create a label with the title and add style
                     Label titleLabel = new Label(note.getTitle());
                     titleLabel.getStyleClass().add("note-title");
                     titleLabel.setWrapText(true);
 
-                    Label contentLabel = new Label(note.getContent());
-                    contentLabel.getStyleClass().add("note-content");
-                    contentLabel.setWrapText(true);
-
-                    Label dateLabel = new Label(note.getDateTimeCreated().toString());
+                    // Format the date as DD-MM-YYYY
+                    String formattedDate = note.getDateTimeCreated().format(
+                            java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                    Label dateLabel = new Label(formattedDate);
                     dateLabel.getStyleClass().add("note-date");
 
-                    noteBox.getChildren().addAll(titleLabel, contentLabel, dateLabel);
-                    notesContainer.getChildren().add(noteBox);
-                });
+                    // Add the title and date directly to the noteBox
+                    noteBox.getChildren().addAll(titleLabel, dateLabel);
 
-        notes.getChildren().add(notesContainer);
+                    // Add the noteBox directly to the notes VBox
+                    notes.getChildren().add(noteBox);
+                });
     }
 
     /**

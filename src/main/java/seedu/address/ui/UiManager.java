@@ -58,7 +58,7 @@ public class UiManager implements Ui {
         Image originalImage = new Image(MainApp.class.getResourceAsStream(imagePath));
 
         // Resize the image to a more appropriate size for the icon
-        double iconWidth = 256;  // Set to the size you want
+        double iconWidth = 256; // Set to the size you want
         double iconHeight = 256; // Set to the size you want
 
         // Create an ImageView to scale the image

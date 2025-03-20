@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_PATIENT;
+import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -12,10 +12,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
-import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 
 /**
  * Deletes a patient identified using it's displayed index from the address book.

@@ -23,7 +23,44 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+    <VBox>
+      <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="File">
+              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+              <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+      </MenuBar>
+
+      <!-- Wrap CommandBox in a VBox for dynamic resizing -->
+      <VBox fx:id="commandBoxContainer" VBox.vgrow="ALWAYS">
+          <VBox fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <padding>
+                  <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+          </VBox>
+      </VBox>
+
+
+      <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                minHeight="100" prefHeight="100" maxHeight="100">
+          <padding>
+              <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+      </StackPane>
+
+      <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+      </VBox>
+
+      <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+    </VBox>
+
+      <!-- <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -54,7 +91,7 @@
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+      </VBox> -->
     </Scene>
   </scene>
 </fx:root>

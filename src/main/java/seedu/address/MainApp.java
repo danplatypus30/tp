@@ -173,8 +173,8 @@ public class MainApp extends Application {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
 
-        // add css styling here
-
+        String css = getClass().getResource("/styles.css").toExternalForm();
+        primaryStage.getScene().getStylesheets().add(css);
     }
 
     @Override

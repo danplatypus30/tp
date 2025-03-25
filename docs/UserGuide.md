@@ -1,268 +1,143 @@
+# NeuroSync User Guide
+
+**NeuroSync: All-In-One App for Psychiatrists!**
+
+NeuroSync is a powerful, user-friendly desktop application that helps psychiatrists to keep track of patients’ contacts, details and notes from their sessions. No more searching through thick files of paper, just search by name and get everything you need in seconds.
+
 ---
-layout: page
-title: User Guide
+
+## 💡 Key Features
+
+- Add, edit, and delete patient records (name, phone, email, address, and tags).
+- Take and organize session notes per patient.
+- Filter and search notes by title.
+- View all notes for any patient at a glance.
+- Simple, fast, and intuitive CLI-style command interface.
+
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## 👩‍⚕️ Target Users
 
-* Table of Contents
-{:toc}
+Psychiatrists and mental health professionals who need a digital assistant to manage large volumes of patient information and session documentation.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## Quick start
+## 🚀 Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. **Download the latest release** from the [Releases](https://github.com/AY2223S1-CS2103T-W14-4/tp/releases) page.
+2. Place the JAR file in your preferred directory.
+3. Open your terminal.
+4. Navigate to the folder containing the file.
+5. Run the app with:
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+```bash
+java -jar NeuroSync.jar
+```
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+---
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+## 📘 Sample Commands
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### Add a Patient
 
-   * `list` : Lists all contacts.
+```
+add n/John Doe p/98765432 e/johnd@example.com a/123 Baker Street t/ADHD
+```
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the app.
+### Edit a Patient
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+```
+edit 1 p/91234567 e/john.doe@protonmail.com
+```
 
-   * `clear` : Deletes all contacts.
+### Delete a Patient
 
-   * `exit` : Exits the app.
+```
+delete 2
+```
 
-1. Refer to the [Features](#features) below for details of each command.
+### Add a Note
 
---------------------------------------------------------------------------------------------------------------------
+```
+note 1 nt/Mood Assessment nc/Discussed mood swings, sleep patterns.
+```
 
-## Features
+### View Notes
 
-<div markdown="block" class="alert alert-info">
+```
+viewnotes 1
+```
 
-**:information_source: Notes about the command format:**<br>
+### Edit a Note
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+```
+editnote 1 nt/Updated Title nc/Updated note content.
+```
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+### Delete a Note
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+```
+deletenote 1 nt/Updated Title
+```
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+### Filter Notes by Title
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+```
+filternote 1 nt/Assessment
+```
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
+## 🧭 Command Summary
 
-### Viewing help : `help`
+| Action          | Format, Examples                                                                                                                                         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd t/friend t/client` |
+| **Delete**      | `delete INDEX` <br> e.g., `delete 3`                                                                                                                     |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                            |
+| **Note**        | `note INDEX nt/TITLE nc/CONTENT` <br> e.g., `note 1 nt/Session1 nc/Discussed recent anxiety episodes`                                                    |
+| **Delete Note** | `deletenote INDEX nt/TITLE` <br> e.g., `deletenote 1 nt/Session1`                                                                                        |
+| **View Notes**  | `viewnotes INDEX` <br> e.g., `viewnotes 1`                                                                                                               |
+| **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` <br> e.g., `filternote 1 nt/anxiety`                                                                                 |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                              |
+| **List**        | `list`                                                                                                                                                   |
+| **Clear**       | `clear`                                                                                                                                                  |
+| **Help**        | `help`                                                                                                                                                   |
 
-Shows a message explaning how to access the help page.
+---
 
-![help message](images/helpMessage.png)
+## ❓ Frequently Asked Questions (FAQ)
 
-Format: `help`
+**Q1: How do I transfer my data to another computer?**  
+**A:** Install NeuroSync on the other computer and run it once. Then, replace the data file created (usually in the same directory or under `/data`) with your original data file from your previous device.
 
+**Q2: Where is the data stored?**  
+**A:** Your patient and note data is saved in a file called `addressbook.json` located in the `/data` folder in the same directory where you launch `NeuroSync.jar`.
 
-### Adding a patient: `add`
+**Q3: I deleted a note/patient by accident. Can I undo it?**  
+**A:** Currently, NeuroSync does not support an undo feature. We recommend regularly backing up your data file if you need to keep a revision history.
 
-Adds a patient to the app.
+**Q4: What happens when I run `clear`?**  
+**A:** The `clear` command removes all stored patient and note data. This action is irreversible, so use it with caution.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+---
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
-</div>
+---
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+## 🛠 Technology Stack
 
-### Listing all patients : `list`
+- Java 17
+- JavaFX for UI
+- Gradle for build automation
 
-Shows a list of all patients in the app.
+---
 
-Format: `list`
+## 🙌 Acknowledgements
 
-### Editing a patient : `edit`
+This project is based on the AddressBook-Level3 project by the SE-EDU initiative.
 
-Edits an existing patient in the app.
+Visit [se-education.org](https://se-education.org) for more open-source CS education projects.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+---
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without
-    specifying any tags after it.
+## 📬 Contact
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-
-### Locating patients by name: `find`
-
-Finds patients whose names, phone numbers, email addresses or addresses contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Name / phone number / email address / address can be searched separately or together.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find 98765432` returns `John Doe`<br>
-* ![result for `find 98765432`](images/findPhoneNumberResult.png)
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a patient : `delete`
-
-Deletes the specified patient from the app.
-
-Format: `delete INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the app.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-
-### Viewing a note of a patient : `viewnotes`
-
-Views all the notes of a specified patient in the app.
-
-Format: `viewnotes INDEX​`
-
-* Views all the notes of the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-*  `list` followed by `viewnotes 1` displays all notes and its contents that the 1st patient has.
-
-### Filter a note of a patient : `filternote`
-
-Search for notes of a specified patient in the app based on matching note titles.
-
-Format: `filternote INDEX [nt/NOTE TITLE]​`
-
-* Search for notes of the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-*  `list` followed by `filternote 1 nt/Consult` displays all notes and its contents that the 1st patient has that has the word `Consult` (or a word that contains `Consult`) in its note title.
-
-### Adding a note of a patient : `note`
-
-Adds a note of a specified patient in the app.
-
-Format: `note INDEX [nt/NOTE TITLE] [nc/NOTE CONTENTS]​`
-
-* Adds a note of the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-*  `list` followed by `note 1 nt/Consultation Session 2 nc/Patient is showing signs of depression and anxiety.` Adds a note to the 1st patient with the title `Consultation Session 2` and contents `Patient is showing signs of depression and anxiety.`.
-
-### Editing a note of a patient : `editnote`
-
-Edits a note of a specified patient in the app.
-
-Format: `editnote INDEX [nt/NOTE TITLE] [nc/NOTE CONTENTS]​`
-
-* Edits a note belonging to the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* Existing note contents will be updated to the input note contents.
-
-Examples:
-*  `list` followed by `editnote 1 nt/Consultation Session 2 nc/Patient is showing signs of depression and anxiety.` Edits the contents of the 1st patient's note with the title `Consultation Session 2` to `Patient is showing signs of depression and anxiety.`.
-
-### Deleting a note of a patient : `deletenote`
-
-Deletes a note of a specified patient in the app.
-
-Format: `deletenote INDEX [nt/NOTE TITLE]​`
-
-* Deletes a note of the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-*  `list` followed by `deletenote 1 nt/Consultation Session 2` Deletes the contents of the 1st patient's note with the title `Consultation Session 2`.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the app.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**note** | `note INDEX [nt/TITLE] [nc/CONTENT]`<br> e.g.,`note 1 nt/JohnFirstCrashout nc/john crashed out when confronted by amy`
-**deletenote | `deletenote INDEX [nt/TITLE]` <br> e.g., `deletenote 1 nt/JohnFirstCrashout`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+For issues and contributions, please raise an issue or pull request in the [GitHub repository](https://github.com/AY2223S1-CS2103T-W14-4/tp).

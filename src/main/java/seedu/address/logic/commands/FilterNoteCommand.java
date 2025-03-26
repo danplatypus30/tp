@@ -13,7 +13,8 @@ import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 
 /**
- * Filter out to display the note whose title matches the keyword under the specific patient with the index
+ * Filter out to display the note whose title matches the keyword under the
+ * specific patient with the index
  * Keyword matching is case insensitive.
  */
 public class FilterNoteCommand extends Command {
@@ -40,6 +41,7 @@ public class FilterNoteCommand extends Command {
 
     /**
      * Creates a NoteCommand to add the specified {@code Note}
+     *
      * @param index index of the patient in the filtered patient list
      * @param title title of the note
      */
@@ -72,8 +74,12 @@ public class FilterNoteCommand extends Command {
             throw new CommandException(MESSAGE_NO_TITLED_NOTE);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToFilter.getName().fullName),
-                false, false, false, null, matchingNotes);
+        String message = String.format(MESSAGE_SUCCESS, patientToFilter.getName().fullName);
+        return new CommandResult(message,
+                false, false, true,
+                patientToFilter.getName().fullName,
+                matchingNotes,
+                null);
     }
 
     @Override
@@ -89,5 +95,13 @@ public class FilterNoteCommand extends Command {
 
         FilterNoteCommand otherFilterNoteCommand = (FilterNoteCommand) other;
         return index.equals(otherFilterNoteCommand.index) && title.equals(otherFilterNoteCommand.title);
+    }
+
+    public Index getIndex() {
+        return index;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

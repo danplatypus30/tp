@@ -68,8 +68,16 @@ note 1 nt/Mood Assessment nc/Discussed mood swings, sleep patterns.
 ### View Notes
 
 ```
-viewnotes 1
+viewnotes 1      # View notes for a specific patient
+viewnotes all    # View notes for all patients
 ```
+
+The `viewnotes` command allows you to:
+
+- View all notes for a specific patient by providing their index
+- View notes for all patients using the `all` parameter
+- Notes are displayed with titles, content, and creation dates
+- When viewing all patients' notes, they are grouped by patient name for easy reference
 
 ### Edit a Note
 
@@ -99,7 +107,7 @@ filternote 1 nt/Assessment
 | **Note**        | `note INDEX nt/TITLE nc/CONTENT` <br> e.g., `note 1 nt/Session1 nc/Discussed recent anxiety episodes`                                                             |
 | **Delete Note** | `deletenote INDEX nt/TITLE` <br> e.g., `deletenote 1 nt/Session1`                                                                                                 |
 | **Edit Note**   | `editnote INDEX nt/TITLE nc/CONTENT` <br> e.g., `editnote 1 nt/Session 1 nc/Patient has mild Schizophrenia`                                                       |
-| **View Notes**  | `viewnotes INDEX` <br> e.g., `viewnotes 1`                                                                                                                        |
+| **View Notes**  | `viewnotes INDEX` or `viewnotes all` <br> e.g., `viewnotes 1` or `viewnotes all`                                                                                  |
 | **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` <br> e.g., `filternote 1 nt/anxiety`                                                                                          |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                       |
 | **List**        | `list`                                                                                                                                                            |

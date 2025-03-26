@@ -7,5 +7,8 @@
             promptText="Enter command here..."
             wrapText="true"
             editable="true"
-            focusTraversable="false"/>
+            focusTraversable="false"
+            minHeight="30"
+            prefHeight="30"
+            maxHeight="120"/>
 </VBox>

@@ -11,7 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
-import seedu.address.ui.NotesDisplayPanel;
 
 /**
  * Filter out to display the note whose title matches the keyword under the specific patient with the index

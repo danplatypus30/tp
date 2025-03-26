@@ -80,9 +80,6 @@ public class DeleteNoteCommand extends Command {
         patientToEdit.getNotes().remove(matchingNote);
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
-        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
-        }
 
         model.deletePatientNote(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);

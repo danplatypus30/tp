@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.NON_EXISTENT_NOTE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
@@ -38,5 +40,13 @@ public class DeleteNoteCommandTest {
         assertFalse(standardCommand.equals(
                 new DeleteNoteCommand(INDEX_SECOND_PATIENT, "4th Session with Alice")
         ));
+    }
+
+    @Test
+    public void execute_patientWithNoNotes_failure() {
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT,NON_EXISTENT_NOTE_TITLE);
+        String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_NOTE_NOT_FOUND, NON_EXISTENT_NOTE_TITLE);
+
+        assertCommandFailure(deleteNoteCommand, model, expectedMessage);
     }
 }

@@ -149,7 +149,7 @@ list
 1. John Doe (Phone: 98005442, Email: john.doe@email.com)
 2. Jane Smith (Phone: 91234567, Email: jane.smith@example.com)
 ```
-⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.
+⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.<br>
 💡 **Tip:** Use the **Find** command to quickly locate a patient.
 
 
@@ -169,7 +169,7 @@ find John
 ```
 1. John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
-⚠️ **Warning:** Multiple matches may be returned if you use a common name.
+⚠️ **Warning:** Multiple matches may be returned if you use a common name.<br>
 💡 **Tip:** Use specific names or IDs to narrow your search.
 
 
@@ -189,7 +189,7 @@ add n/John Doe p/98005442 e/john.doe@email.com a/123 Clementi Street t/ADHD
 ```
 Patient added: John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
-⚠️ **Warning:** Avoid duplicate names for clarity.
+⚠️ **Warning:** Avoid duplicate names for clarity.<br>
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
 
 
@@ -209,7 +209,7 @@ edit 1 p/91234567 e/john.doe@newemail.com
 ```
 Updated patient: John Doe (Phone: 91234567, Email: john.doe@newemail.com)
 ```
-⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.
+⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, like only the phone number or email.
 
 [🔝 Back to Top](#table-of-contents)
@@ -228,7 +228,7 @@ delete 2
 ```
 Deleted patient at index 2.
 ```
-⚠️ **Warning:** This action is **irreversible**. Double-check before deleting.
+⚠️ **Warning:** This action is **irreversible**. Double-check before deleting.<br>
 💡 **Tip:** Be careful when using this command, especially with large patient lists.
 
 
@@ -249,7 +249,7 @@ viewnotes 1
 1. Mood Assessment - Discussed mood swings.
 2. Sleep Patterns - Irregular sleep schedule.
 ```
-⚠️ **Warning:** If a patient has many notes, it may take a moment to load.
+⚠️ **Warning:** If a patient has many notes, it may take a moment to load.<br>
 💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
 
 
@@ -269,7 +269,7 @@ filternote 1 nt/anxiety
 ```
 Showing notes for Patient 1 with keyword: "anxiety"
 ```
-⚠️ **Warning:** Be specific with keywords to avoid too many results.
+⚠️ **Warning:** Be specific with keywords to avoid too many results.<br>
 💡 **Tip:** Keywords should be part of the note's title for better results.
 
 
@@ -289,7 +289,7 @@ note 1 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 ```
 Note added for Patient 1: "Mood Assessment"
 ```
-⚠️ **Warning:** Ensure the title is relevant and specific to the session.
+⚠️ **Warning:** Ensure the title is relevant and specific to the session.<br>
 💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
 
 
@@ -309,7 +309,7 @@ editnote 1 nt/Mood Assessment nc/Updated content with more details.
 ```
 Note updated for Patient 1: "Mood Assessment"
 ```
-⚠️ **Warning:** Changes are permanent once saved, so be sure the content is correct.
+⚠️ **Warning:** Changes are permanent once saved, so be sure the content is correct.<br>
 💡 **Tip:** Edit only the necessary fields without altering other details.
 
 
@@ -329,7 +329,7 @@ deletenote 1 nt/Mood Assessment
 ```
 Deleted note: "Mood Assessment" for Patient 1.
 ```
-⚠️ **Warning:** **Deleted notes cannot be recovered.**
+⚠️ **Warning:** **Deleted notes cannot be recovered.**<br>
 💡 **Tip:** Keep backups if needed.
 
 
@@ -349,7 +349,7 @@ clear
 ```
 All patient and note data cleared.
 ```
-⚠️ **Warning:** This is a **permanent** action. Use with caution.
+⚠️ **Warning:** This is a **permanent** action. Use with caution.<br>
 💡 **Tip:** Regularly back up your data before using this command.
 
 
@@ -369,7 +369,7 @@ help
 ```
 List of available commands and syntax.
 ```
-⚠️ **Warning:** This is just a list of commands, not a tutorial.
+⚠️ **Warning:** This is just a list of commands, not a tutorial.<br>
 💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
 
 

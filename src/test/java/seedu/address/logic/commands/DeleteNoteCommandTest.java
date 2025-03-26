@@ -1,18 +1,30 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.NON_EXISTENT_NOTE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
+import java.util.TreeSet;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.note.Note;
+import seedu.address.model.patient.Patient;
+import seedu.address.testutil.PatientBuilder;
 
 public class DeleteNoteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -44,9 +56,25 @@ public class DeleteNoteCommandTest {
 
     @Test
     public void execute_patientWithNoNotes_failure() {
+        // Delete non existent note from patient -> failure
         DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, NON_EXISTENT_NOTE_TITLE);
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_NOTE_NOT_FOUND, NON_EXISTENT_NOTE_TITLE);
 
         assertCommandFailure(deleteNoteCommand, model, expectedMessage);
     }
+
+    @Test
+    public void execute_validPatientWithoutNotes_noNotesMessage() {
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, "test");
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        assertThrows(CommandException.class, () -> deleteNoteCommand.execute(model));
+    }
+
+    @Test
+    public void execute_invalidPatientIndex_throwsCommandException() {
+        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(outOfBoundsIndex, "test");
+        assertThrows(CommandException.class, () -> deleteNoteCommand.execute(model));
+    }
+
 }

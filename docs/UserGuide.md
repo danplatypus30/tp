@@ -37,7 +37,7 @@ function searchFunction() {
 
 ---
 
-## 📜 Table of Contents
+## 📜 Table of Contents {#table-of-contents}
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Core Features](#core-features)

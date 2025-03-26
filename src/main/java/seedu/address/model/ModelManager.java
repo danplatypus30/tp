@@ -100,7 +100,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePatientNote(Patient target, Patient editedPatient) {
-        setPatient(target, editedPatient);
+        addressBook.setPatient(target, editedPatient);
     }
 
     @Override

@@ -1,5 +1,3 @@
-# NeuroSync User Guide
-
 **NeuroSync: All-In-One App for Psychiatrists!**
 
 NeuroSync is a powerful, user-friendly desktop application that helps psychiatrists to keep track of patients’ contacts, details and notes from their sessions. No more searching through thick files of paper, just search by name and get everything you need in seconds.

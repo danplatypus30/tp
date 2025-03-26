@@ -21,11 +21,14 @@ function searchFunction() {
     dropdown.innerHTML = "";
     dropdown.style.display = filter.length > 0 ? "block" : "none";
 
-    document.querySelectorAll("h1, h2, h3, p, li, code").forEach(function(el) {
-        var txtValue = el.textContent || el.innerText;
+    // Select only the links in the Table of Contents
+    var tocLinks = document.querySelectorAll("a[href^='#']");
+    
+    tocLinks.forEach(function(link) {
+        var txtValue = link.textContent || link.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             var div = document.createElement("div");
-            div.innerHTML = '<a href="#' + el.id + '" style="display:block; padding:5px; text-decoration:none; color:black;">' + txtValue.substring(0, 50) + '...</a>';
+            div.innerHTML = '<a href="' + link.getAttribute('href') + '" style="display:block; padding:5px; text-decoration:none; color:black;">' + txtValue.substring(0, 50) + '...</a>';
             div.style.borderBottom = "1px solid #ddd";
             div.style.padding = "5px";
             div.style.cursor = "pointer";
@@ -34,6 +37,7 @@ function searchFunction() {
     });
 }
 </script>
+
 
 ---
 

@@ -44,7 +44,7 @@ public class DeleteNoteCommandTest {
 
     @Test
     public void execute_patientWithNoNotes_failure() {
-        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT,NON_EXISTENT_NOTE_TITLE);
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, NON_EXISTENT_NOTE_TITLE);
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_NOTE_NOT_FOUND, NON_EXISTENT_NOTE_TITLE);
 
         assertCommandFailure(deleteNoteCommand, model, expectedMessage);

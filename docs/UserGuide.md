@@ -41,7 +41,7 @@ java -jar NeuroSync.jar
 ### Add a Patient
 
 ```
-add n/John Doe p/98765432 e/johnd@example.com a/123 Baker Street t/ADHD
+add n/John Doe p/98005442 e/jamesho@imh.gov.sg a/123 Clementi Street t/ADHD
 ```
 
 ### Edit a Patient
@@ -71,7 +71,7 @@ viewnotes 1
 ### Edit a Note
 
 ```
-editnote 1 nt/Updated Title nc/Updated note content.
+editnote 1 nt/Childhood Trauma nc/Seems to have behavioural issues.
 ```
 
 ### Delete a Note
@@ -88,19 +88,20 @@ filternote 1 nt/Assessment
 
 ## 🧭 Command Summary
 
-| Action          | Format, Examples                                                                                                                                         |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd t/friend t/client` |
-| **Delete**      | `delete INDEX` <br> e.g., `delete 3`                                                                                                                     |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                            |
-| **Note**        | `note INDEX nt/TITLE nc/CONTENT` <br> e.g., `note 1 nt/Session1 nc/Discussed recent anxiety episodes`                                                    |
-| **Delete Note** | `deletenote INDEX nt/TITLE` <br> e.g., `deletenote 1 nt/Session1`                                                                                        |
-| **View Notes**  | `viewnotes INDEX` <br> e.g., `viewnotes 1`                                                                                                               |
-| **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` <br> e.g., `filternote 1 nt/anxiety`                                                                                 |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                              |
-| **List**        | `list`                                                                                                                                                   |
-| **Clear**       | `clear`                                                                                                                                                  |
-| **Help**        | `help`                                                                                                                                                   |
+| Action          | Format, Examples                                                                                                                                                  |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/98005442 e/jamesho@imh.gov.sg a/123 Clementi Rd t/ADHD t/Violent Tendencies` |
+| **Delete**      | `delete INDEX` <br> e.g., `delete 3`                                                                                                                              |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                     |
+| **Note**        | `note INDEX nt/TITLE nc/CONTENT` <br> e.g., `note 1 nt/Session1 nc/Discussed recent anxiety episodes`                                                             |
+| **Delete Note** | `deletenote INDEX nt/TITLE` <br> e.g., `deletenote 1 nt/Session1`                                                                                                 |
+| **Edit Note**   | `editnote INDEX nt/TITLE nc/CONTENT` <br> e.g., `editnote 1 nt/Session 1 nc/Patient has mild Schizophrenia`                                                       |
+| **View Notes**  | `viewnotes INDEX` <br> e.g., `viewnotes 1`                                                                                                                        |
+| **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` <br> e.g., `filternote 1 nt/anxiety`                                                                                          |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                       |
+| **List**        | `list`                                                                                                                                                            |
+| **Clear**       | `clear`                                                                                                                                                           |
+| **Help**        | `help`                                                                                                                                                            |
 
 ---
 
@@ -117,8 +118,6 @@ filternote 1 nt/Assessment
 
 **Q4: What happens when I run `clear`?**  
 **A:** The `clear` command removes all stored patient and note data. This action is irreversible, so use it with caution.
-
----
 
 ---
 

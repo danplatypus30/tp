@@ -399,6 +399,9 @@ List of available commands and syntax.
 - JavaFX for UI
 - Gradle for build automation
 
+
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
 ## 🙌 Acknowledgements {#acknowledgements}
@@ -407,11 +410,16 @@ This project is based on the AddressBook-Level3 project by the SE-EDU initiative
 
 Visit [se-education.org](https://se-education.org) for more open-source CS education projects.
 
+
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
 ## 📬 Contact & Support {#contact-support}
 
 For issues and contributions, please raise an issue or pull request in the [GitHub repository](https://github.com/AY2425S2-CS2103T-F13-1/tp).
 
+
+[🔝 Back to Top](#table-of-contents)
 
 🚀 *Enjoy using NeuroSync!*

@@ -11,28 +11,29 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 
 ## 🔍 **Search the User Guide**
 <input type="text" id="search-box" placeholder="Search this guide..." onkeyup="searchFunction()">
-<ul id="search-results"></ul>
+<div id="search-dropdown" style="display:none; position:absolute; background:white; border:1px solid #ccc; width:300px; max-height:200px; overflow:auto;"></div>
 
 <script>
 function searchFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("search-box");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("search-results");
-    ul.innerHTML = "";
+    var input = document.getElementById("search-box");
+    var filter = input.value.toUpperCase();
+    var dropdown = document.getElementById("search-dropdown");
+    dropdown.innerHTML = "";
+    dropdown.style.display = filter.length > 0 ? "block" : "none";
 
     document.querySelectorAll("h1, h2, h3, p, li, code").forEach(function(el) {
-        txtValue = el.textContent || el.innerText;
+        var txtValue = el.textContent || el.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            var li = document.createElement("li");
-            li.innerHTML = '<a href="#' + el.id + '">' + txtValue.substring(0, 50) + '...</a>';
-            ul.appendChild(li);
+            var div = document.createElement("div");
+            div.innerHTML = '<a href="#' + el.id + '" style="display:block; padding:5px; text-decoration:none; color:black;">' + txtValue.substring(0, 50) + '...</a>';
+            div.style.borderBottom = "1px solid #ddd";
+            div.style.padding = "5px";
+            div.style.cursor = "pointer";
+            dropdown.appendChild(div);
         }
     });
 }
 </script>
-
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
 
 ---
 
@@ -51,8 +52,6 @@ function searchFunction() {
 7. [Technology Stack](#technology-stack)
 8. [Contact & Support](#contact--support)
 
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
-
 ---
 
 ## 📢 **Introduction** {#introduction}
@@ -65,7 +64,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 ✅ **Powerful Search & Filters** - Retrieve patient data in seconds.
 ✅ **Organized & Secure** - Keep confidential data well-structured.
 
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
@@ -85,7 +84,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 - **Java**: Version 17 or later
 - **OS Compatibility**: Windows, macOS, Linux
 
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
@@ -96,7 +95,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 - 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
 - ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
 
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
@@ -104,32 +103,72 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 | **Action**       | **Command Syntax** |
 |-----------------|-----------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Delete**      | `delete INDEX` |
+| **List Patients** | `list` |
+| **Find Patient** | `find KEYWORD [MORE_KEYWORDS]` |
+| **Add Patient**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` |
+| **Edit Patient**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Delete Patient**      | `delete INDEX` |
+|-----------------|-----------------------------------------------------------------------------------------|
+| **View Notes**  | `viewnotes INDEX` |
+| **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` |
 | **Add Note**    | `note INDEX nt/TITLE nc/CONTENT` |
 | **Edit Note**   | `editnote INDEX nt/TITLE nc/CONTENT` |
 | **Delete Note** | `deletenote INDEX nt/TITLE` |
-| **View Notes**  | `viewnotes INDEX` |
-| **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` |
-| **Find Patient** | `find KEYWORD [MORE_KEYWORDS]` |
-| **List Patients** | `list` |
+|-----------------|-----------------------------------------------------------------------------------------|
 | **Clear Data** | `clear` |
 | **Help** | `help` |
 
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
+[🔝 Back to Top](#table-of-contents)
 
 ---
+
 
 ## 🎯 **Commands & Usage** {#commands--usage}
 
 Each command is designed to make patient and session management **fast and intuitive**.
 
+### **Listing Patients** {#listing-patients}
+```bash
+list
+```
+**Example:**
+```bash
+list
+```
+✔️ **Expected Output:**
+```
+1. John Doe (Phone: 98005442, Email: john.doe@email.com)
+2. Jane Smith (Phone: 91234567, Email: jane.smith@example.com)
+```
+⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.
+💡 **Tip:** Use the **Find** command to quickly locate a patient.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Finding a Patient** {#finding-a-patient}
+```bash
+find KEYWORD [MORE_KEYWORDS]
+```
+**Example:**
+```bash
+find John
+```
+✔️ **Expected Output:**
+```
+1. John Doe (Phone: 98005442, Email: john.doe@email.com)
+```
+⚠️ **Warning:** Multiple matches may be returned if you use a common name.
+💡 **Tip:** Use specific names or IDs to narrow your search.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
 ### **Adding a Patient** {#adding-a-patient}
 ```bash
 add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​
 ```
-Example:
+**Example:**
 ```bash
 add n/John Doe p/98005442 e/john.doe@email.com a/123 Clementi Street t/ADHD
 ```
@@ -139,8 +178,188 @@ Patient added: John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
 ⚠️ **Warning:** Avoid duplicate names for clarity.
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+[🔝 Back to Top](#table-of-contents)
 
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
+---
+
+### **Editing a Patient** {#editing-a-patient}
+```bash
+edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+```
+**Example:**
+```bash
+edit 1 p/91234567 e/john.doe@newemail.com
+```
+✔️ **Expected Output:**
+```
+Updated patient: John Doe (Phone: 91234567, Email: john.doe@newemail.com)
+```
+⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.
+💡 **Tip:** You can edit just one piece of data, like only the phone number or email.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Deleting a Patient** {#deleting-a-patient}
+```bash
+delete INDEX
+```
+**Example:**
+```bash
+delete 2
+```
+✔️ **Expected Output:**
+```
+Deleted patient at index 2.
+```
+⚠️ **Warning:** This action is **irreversible**. Double-check before deleting.
+💡 **Tip:** Be careful when using this command, especially with large patient lists.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Viewing Notes** {#viewing-notes}
+```bash
+viewnotes INDEX
+```
+**Example:**
+```bash
+viewnotes 1
+```
+✔️ **Expected Output:**
+```
+1. Mood Assessment - Discussed mood swings.
+2. Sleep Patterns - Irregular sleep schedule.
+```
+⚠️ **Warning:** If a patient has many notes, it may take a moment to load.
+💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Filtering Notes** {#filtering-notes}
+```bash
+filternote INDEX nt/TITLE_KEYWORD
+```
+**Example:**
+```bash
+filternote 1 nt/anxiety
+```
+✔️ **Expected Output:**
+```
+Showing notes for Patient 1 with keyword: "anxiety"
+```
+⚠️ **Warning:** Be specific with keywords to avoid too many results.
+💡 **Tip:** Keywords should be part of the note's title for better results.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Adding a Note** {#adding-a-note}
+```bash
+note INDEX nt/TITLE nc/CONTENT
+```
+**Example:**
+```bash
+note 1 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
+```
+✔️ **Expected Output:**
+```
+Note added for Patient 1: "Mood Assessment"
+```
+⚠️ **Warning:** Ensure the title is relevant and specific to the session.
+💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Editing a Note** {#editing-a-note}
+```bash
+editnote INDEX nt/TITLE nc/CONTENT
+```
+**Example:**
+```bash
+editnote 1 nt/Mood Assessment nc/Updated content with more details.
+```
+✔️ **Expected Output:**
+```
+Note updated for Patient 1: "Mood Assessment"
+```
+⚠️ **Warning:** Changes are permanent once saved, so be sure the content is correct.
+💡 **Tip:** Edit only the necessary fields without altering other details.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Deleting a Note** {#deleting-a-note}
+```bash
+deletenote INDEX nt/TITLE
+```
+**Example:**
+```bash
+deletenote 1 nt/Mood Assessment
+```
+✔️ **Expected Output:**
+```
+Deleted note: "Mood Assessment" for Patient 1.
+```
+⚠️ **Warning:** **Deleted notes cannot be recovered.**
+💡 **Tip:** Keep backups if needed.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Clear All Data** {#clear-data}
+```bash
+clear
+```
+**Example:**
+```bash
+clear
+```
+✔️ **Expected Output:**
+```
+All patient and note data cleared.
+```
+⚠️ **Warning:** This is a **permanent** action. Use with caution.
+💡 **Tip:** Regularly back up your data before using this command.
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Help** {#help}
+```bash
+help
+```
+**Example:**
+```bash
+help
+```
+✔️ **Expected Output:**
+```
+List of available commands and syntax.
+```
+⚠️ **Warning:** This is just a list of commands, not a tutorial.
+💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
+[🔝 Back to Top](#table-of-contents)
+
+
+---
+
+## ❓ **FAQs & Troubleshooting**
+
+**Q: Where is my data stored?**  
+**A:** Your data is saved in `addressbook.json` inside the `/data` folder.
+
+**Q: Can I undo a deletion?**  
+**A:** No. There is **no undo** feature, so backup your data frequently.
+
+**Q: How do I transfer data to another device?**  
+**A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
+
+**Q: What happens when I run `clear`?**  
+**A:** It **deletes all data permanently**. Use it with caution.
+[🔝 Back to Top](#table-of-contents)
 
 ---
 

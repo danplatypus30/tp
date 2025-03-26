@@ -64,6 +64,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 ✅ **Powerful Search & Filters** - Retrieve patient data in seconds.
 ✅ **Organized & Secure** - Keep confidential data well-structured.
 
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -84,6 +85,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 - **Java**: Version 17 or later
 - **OS Compatibility**: Windows, macOS, Linux
 
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -94,6 +96,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 - 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
 - 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
 - ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -117,6 +120,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 |-----------------|-----------------------------------------------------------------------------------------|
 | **Clear Data** | `clear` |
 | **Help** | `help` |
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -142,6 +146,8 @@ list
 ```
 ⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.
 💡 **Tip:** Use the **Find** command to quickly locate a patient.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -160,6 +166,8 @@ find John
 ```
 ⚠️ **Warning:** Multiple matches may be returned if you use a common name.
 💡 **Tip:** Use specific names or IDs to narrow your search.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -178,6 +186,8 @@ Patient added: John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
 ⚠️ **Warning:** Avoid duplicate names for clarity.
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -196,6 +206,7 @@ Updated patient: John Doe (Phone: 91234567, Email: john.doe@newemail.com)
 ```
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.
 💡 **Tip:** You can edit just one piece of data, like only the phone number or email.
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -214,6 +225,8 @@ Deleted patient at index 2.
 ```
 ⚠️ **Warning:** This action is **irreversible**. Double-check before deleting.
 💡 **Tip:** Be careful when using this command, especially with large patient lists.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -233,6 +246,8 @@ viewnotes 1
 ```
 ⚠️ **Warning:** If a patient has many notes, it may take a moment to load.
 💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -251,6 +266,8 @@ Showing notes for Patient 1 with keyword: "anxiety"
 ```
 ⚠️ **Warning:** Be specific with keywords to avoid too many results.
 💡 **Tip:** Keywords should be part of the note's title for better results.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -269,6 +286,8 @@ Note added for Patient 1: "Mood Assessment"
 ```
 ⚠️ **Warning:** Ensure the title is relevant and specific to the session.
 💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -287,6 +306,8 @@ Note updated for Patient 1: "Mood Assessment"
 ```
 ⚠️ **Warning:** Changes are permanent once saved, so be sure the content is correct.
 💡 **Tip:** Edit only the necessary fields without altering other details.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -305,6 +326,8 @@ Deleted note: "Mood Assessment" for Patient 1.
 ```
 ⚠️ **Warning:** **Deleted notes cannot be recovered.**
 💡 **Tip:** Keep backups if needed.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -323,6 +346,8 @@ All patient and note data cleared.
 ```
 ⚠️ **Warning:** This is a **permanent** action. Use with caution.
 💡 **Tip:** Regularly back up your data before using this command.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---
@@ -341,12 +366,14 @@ List of available commands and syntax.
 ```
 ⚠️ **Warning:** This is just a list of commands, not a tutorial.
 💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 
 ---
 
-## ❓ **FAQs & Troubleshooting**
+## ❓ **FAQs & Troubleshooting** {#faqs--troubleshooting}
 
 **Q: Where is my data stored?**  
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.
@@ -359,6 +386,8 @@ List of available commands and syntax.
 
 **Q: What happens when I run `clear`?**  
 **A:** It **deletes all data permanently**. Use it with caution.
+
+
 [🔝 Back to Top](#table-of-contents)
 
 ---

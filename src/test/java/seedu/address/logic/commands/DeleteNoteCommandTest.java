@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.NON_EXISTENT_NOTE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
@@ -55,7 +56,24 @@ public class DeleteNoteCommandTest {
     }
 
     @Test
-    public void execute_validPatientWithoutNotes_noNotesMessage() {
+    public void execute_validPatientNoNotes_throwsCommandException() {
+        // sixth patient, no notes
+        Index index_six = Index.fromOneBased(6);
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(index_six, NON_EXISTENT_NOTE_TITLE);
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        assertThrows(CommandException.class, () -> deleteNoteCommand.execute(model));
+    }
+
+    @Test
+    public void execute_validPatientInvalidNoteTitle_throwsCommandException() {
+        // Invalid note title, empty space
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, " ");
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        assertThrows(CommandException.class, () -> deleteNoteCommand.execute(model));
+    }
+
+    @Test
+    public void execute_validPatientWithoutNotes_throwsCommandException() {
         DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, "test");
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         assertThrows(CommandException.class, () -> deleteNoteCommand.execute(model));

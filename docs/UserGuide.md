@@ -9,6 +9,33 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 
 ---
 
+## 🔍 **Search the User Guide**
+<input type="text" id="search-box" placeholder="Search this guide..." onkeyup="searchFunction()">
+<ul id="search-results"></ul>
+
+<script>
+function searchFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("search-box");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("search-results");
+    ul.innerHTML = "";
+
+    document.querySelectorAll("h1, h2, h3, p, li, code").forEach(function(el) {
+        txtValue = el.textContent || el.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            var li = document.createElement("li");
+            li.innerHTML = '<a href="#' + el.id + '">' + txtValue.substring(0, 50) + '...</a>';
+            ul.appendChild(li);
+        }
+    });
+}
+</script>
+
+[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
+
+---
+
 ## 📜 Table of Contents
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
@@ -28,7 +55,7 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 
 ---
 
-## 📢 **Introduction**
+## 📢 **Introduction** {#introduction}
 
 ### What does NeuroSync do?
 NeuroSync **keeps track of patient details and session notes effortlessly**. No more searching through paper files—find what you need **instantly** using powerful search and filter commands.
@@ -42,7 +69,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ---
 
-## 🚀 **Getting Started**
+## 🚀 **Getting Started** {#getting-started}
 
 ### **1️⃣ Download & Install**
 1. **Download** the latest release from [NeuroSync Releases](https://github.com/AY2223S1-CS2103T-W14-4/tp/releases).
@@ -62,7 +89,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ---
 
-## 💡 **Core Features**
+## 💡 **Core Features** {#core-features}
 
 - 📁 **Manage Patient Records** - Add, edit, and delete patient details.
 - 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
@@ -73,7 +100,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ---
 
-## 🧭 **Command Summary**
+## 🧭 **Command Summary** {#command-summary}
 
 | **Action**       | **Command Syntax** |
 |-----------------|-----------------------------------------------------------------------------------------|
@@ -94,11 +121,11 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ---
 
-## 🎯 **Commands & Usage**
+## 🎯 **Commands & Usage** {#commands--usage}
 
 Each command is designed to make patient and session management **fast and intuitive**.
 
-### **Adding a Patient**
+### **Adding a Patient** {#adding-a-patient}
 ```bash
 add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​
 ```
@@ -112,56 +139,6 @@ Patient added: John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
 ⚠️ **Warning:** Avoid duplicate names for clarity.
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
-
----
-
-### **Filtering Notes**
-```bash
-filternote INDEX nt/TITLE_KEYWORD
-```
-Example:
-```bash
-filternote 1 nt/anxiety
-```
-✔️ **Expected Output:**
-```
-Showing notes for Patient 1 with keyword: "anxiety"
-```
-💡 **Tip:** Use **specific keywords** for precise results.
-
----
-
-### **Editing a Patient**
-```bash
-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
-```
-Example:
-```bash
-edit 1 p/91234567 e/johnd@example.com
-```
-✔️ **Expected Output:**
-```
-Updated patient: John Doe (Phone: 91234567, Email: johnd@example.com)
-```
-💡 **Tip:** You **don’t need** to enter all fields—only what you want to change!
-
-[🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
-
----
-
-## ❓ **FAQs & Troubleshooting**
-
-**Q: Where is my data stored?**  
-**A:** Your data is saved in `addressbook.json` inside the `/data` folder.
-
-**Q: Can I undo a deletion?**  
-**A:** No. There is **no undo** feature, so backup your data frequently.
-
-**Q: How do I transfer data to another device?**  
-**A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
-
-**Q: What happens when I run `clear`?**  
-**A:** It **deletes all data permanently**. Use it with caution.
 
 [🔝 Back to Top](#welcome-to-the-neurosync-user-guide)
 

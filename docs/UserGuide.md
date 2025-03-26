@@ -50,7 +50,8 @@ function searchFunction() {
    - [Filtering Notes](#filtering-notes)
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)
 7. [Technology Stack](#technology-stack)
-8. [Contact & Support](#contact--support)
+8. [Acknowledgemets](#acknowledgements)
+9. [Contact & Support](#contact-support)
 
 ---
 
@@ -391,5 +392,26 @@ List of available commands and syntax.
 [🔝 Back to Top](#table-of-contents)
 
 ---
+
+## 🛠 Technology Stack {#technology-stack}
+
+- Java 17
+- JavaFX for UI
+- Gradle for build automation
+
+---
+
+## 🙌 Acknowledgements {#acknowledgements}
+
+This project is based on the AddressBook-Level3 project by the SE-EDU initiative.
+
+Visit [se-education.org](https://se-education.org) for more open-source CS education projects.
+
+---
+
+## 📬 Contact & Support {#contact-support}
+
+For issues and contributions, please raise an issue or pull request in the [GitHub repository](https://github.com/AY2425S2-CS2103T-F13-1/tp).
+
 
 🚀 *Enjoy using NeuroSync!*

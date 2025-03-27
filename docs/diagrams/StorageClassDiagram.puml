@@ -5,6 +5,12 @@ skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage as StoragePackage {
+  note as StorageNote
+    Comprehensive storage management 
+    system, handling user preferences 
+    and address book data with JSON 
+    serialization
+  end note
 
 package "UserPrefs Storage" #F4F6F6{
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
@@ -37,9 +43,9 @@ Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPatient
-JsonAdaptedPatient --> "*" JsonAdaptedTag
-JsonAdaptedPatient --> "*" JsonAdaptedNote
+JsonAddressBookStorage ..> JsonSerializableAddressBook : creates/uses
+JsonSerializableAddressBook --> "*" JsonAdaptedPatient : contains
+JsonAdaptedPatient --> "*" JsonAdaptedTag : has
+JsonAdaptedPatient --> "*" JsonAdaptedNote : has
 
 @enduml

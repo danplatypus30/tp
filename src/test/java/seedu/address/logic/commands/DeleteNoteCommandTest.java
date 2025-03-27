@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -49,7 +50,7 @@ public class DeleteNoteCommandTest {
     public void execute_patientWithNoNotes_failure() {
         // Delete non existent note from patient -> failure
         DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, NON_EXISTENT_NOTE_TITLE);
-        String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_NOTE_NOT_FOUND, NON_EXISTENT_NOTE_TITLE);
+        String expectedMessage = String.format(Messages.MESSAGE_NOTE_NOT_FOUND, NON_EXISTENT_NOTE_TITLE);
 
         assertCommandFailure(deleteNoteCommand, model, expectedMessage);
     }
@@ -57,8 +58,8 @@ public class DeleteNoteCommandTest {
     @Test
     public void execute_validPatientNoNotes_throwsCommandException() {
         // sixth patient, no notes
-        Index index_six = Index.fromOneBased(6);
-        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(index_six, NON_EXISTENT_NOTE_TITLE);
+        Index indexSix = Index.fromOneBased(6);
+        DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(indexSix, NON_EXISTENT_NOTE_TITLE);
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         assertThrows(CommandException.class, () -> deleteNoteCommand.execute(model));
     }

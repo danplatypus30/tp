@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 
 import java.util.List;
 

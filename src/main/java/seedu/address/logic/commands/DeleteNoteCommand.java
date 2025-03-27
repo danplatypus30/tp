@@ -64,12 +64,13 @@ public class DeleteNoteCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(targetIndex.getZeroBased());
         TreeSet<Note> allNotes = patientToEdit.getNotes();
+        TreeSet<Note> newCopyNotes = new TreeSet<>(allNotes);
 
-        if (allNotes.isEmpty()) {
+        if (newCopyNotes.isEmpty()) {
             throw new CommandException(MESSAGE_NO_NOTES);
         }
 
-        Note matchingNote = allNotes.stream()
+        Note matchingNote = newCopyNotes.stream()
                 .filter(n -> n.getTitle().equalsIgnoreCase(targetTitle))
                 .findFirst().orElse(null);
 
@@ -77,8 +78,14 @@ public class DeleteNoteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, targetTitle));
         }
 
-        patientToEdit.getNotes().remove(matchingNote);
-        Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
+        newCopyNotes.remove(matchingNote);
+        Patient editedPatient = new Patient(
+                patientToEdit.getName(),
+                patientToEdit.getPhone(),
+                patientToEdit.getEmail(),
+                patientToEdit.getAddress(),
+                patientToEdit.getTags(),
+                newCopyNotes);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);

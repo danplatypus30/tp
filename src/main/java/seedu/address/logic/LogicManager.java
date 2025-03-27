@@ -8,7 +8,14 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FilterNoteCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewNotesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -101,8 +108,8 @@ public class LogicManager implements Logic {
         boolean isViewNotesCommand = command instanceof ViewNotesCommand;
         boolean isFilterNoteCommand = command instanceof FilterNoteCommand;
         boolean isFindCommand = command instanceof FindCommand;
-        boolean shouldSave = !(isUndoCommand || isRedoCommand || isListCommand || isViewNotesCommand ||
-                isFilterNoteCommand || isFindCommand);
+        boolean shouldSave = !(isUndoCommand || isRedoCommand || isListCommand || isViewNotesCommand
+                || isFilterNoteCommand || isFindCommand);
         return shouldSave;
     }
 }

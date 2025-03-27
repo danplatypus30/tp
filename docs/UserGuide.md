@@ -84,7 +84,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 ## 🚀 **Getting Started** {#getting-started}
 
 ### **1️⃣ Download & Install**
-1. **Download** the latest release from [NeuroSync Releases](https://github.com/AY2223S1-CS2103T-W14-4/tp/releases).
+1. **Download** the latest release from [NeuroSync Releases](https://github.com/AY2425S2-CS2103T-F13-1/tp/releases).
 2. Place the `NeuroSync.jar` file in your preferred directory.
 3. Open **Terminal/Command Prompt**.
 4. Navigate to the folder containing `NeuroSync.jar`.

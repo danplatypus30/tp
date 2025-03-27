@@ -157,6 +157,26 @@ public class AddCommandTest {
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveCurrentAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoExceptionalCommand() throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

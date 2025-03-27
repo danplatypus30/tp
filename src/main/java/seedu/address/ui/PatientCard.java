@@ -18,6 +18,14 @@ public class PatientCard extends UiPart<Region> {
 
     private static final String FXML = "PatientListCard.fxml";
 
+    private static final String[] TAG_COLORS = {
+        "#7B506F", // dark pink
+        "#718355", // olive green
+        "#C1666B", // dusty rose
+        "#4B5267", // slate blue
+        "#A17C6B" // warm brown
+    };
+
     public final Patient patient;
 
     @FXML
@@ -39,9 +47,10 @@ public class PatientCard extends UiPart<Region> {
     private VBox notes;
 
     /**
-     * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
+     * Creates a {@code PatientCard} with the given {@code Patient} and index to
+     * display.
      *
-     * @param patient The patient whose details should be displayed.
+     * @param patient        The patient whose details should be displayed.
      * @param displayedIndex The index of the patient in the list.
      */
     public PatientCard(Patient patient, int displayedIndex) {
@@ -53,13 +62,34 @@ public class PatientCard extends UiPart<Region> {
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
 
-        // Display tags
-        patient.getTags().stream()
+        // Display tags with dynamic colors only for multiple tags
+        var patientTags = patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .collect(Collectors.toList());
+
+        boolean hasMultipleTags = patientTags.size() > 1;
+
+        for (int i = 0; i < patientTags.size(); i++) {
+            var tag = patientTags.get(i);
+            Label tagLabel = new Label(tag.tagName);
+            tagLabel.getStyleClass().add("label");
+
+            // If patient has multiple tags, use different colors
+            String tagColor;
+            if (hasMultipleTags) {
+                tagColor = TAG_COLORS[i % TAG_COLORS.length];
+            } else {
+                // Single tag - use default color
+                tagColor = "#7B506F";
+            }
+
+            tagLabel.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: #EAD7D1;", tagColor));
+            tags.getChildren().add(tagLabel);
+        }
 
         // Display notes in a more structured way
-        // Make sure the notes container in your FXML has the notes-container style class
+        // Make sure the notes container in your FXML has the notes-container style
+        // class
         notes.getStyleClass().add("notes-container");
 
         patient.getNotes().stream()

@@ -1,70 +1,49 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 
 public class ViewNotesCommandTest {
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    private Model model;
-    private List<Note> notes;
+    @Test
+    public void execute_validIndex_success() {
+        Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
+        ViewNotesCommand command = new ViewNotesCommand(String.valueOf(INDEX_FIRST_PATIENT.getOneBased()));
 
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        notes = new ArrayList<>();
-        notes.add(new Note("Test Note", "This is a test note."));
+        String expectedMessage = String.format(ViewNotesCommand.MESSAGE_SUCCESS, patient.getName().fullName);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_validPatientWithoutNotes_noNotesMessage() {
-        Index index = Index.fromOneBased(3); // Carl Kurz
-        ViewNotesCommand command = new ViewNotesCommand(index);
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    public void execute_viewAll_success() {
+        ViewNotesCommand command = new ViewNotesCommand(ViewNotesCommand.ALL_PARAMETER);
 
-        Patient patient = model.getFilteredPatientList().get(index.getZeroBased());
+        String expectedMessage = ViewNotesCommand.MESSAGE_SUCCESS_ALL;
 
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(ViewNotesCommand.MESSAGE_NO_NOTES, patient.getName().fullName)
-        );
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(command, model, expectedCommandResult, model);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_validPatientWithNotes_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Patient patientToView = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-
-        ViewNotesCommand viewNotesCommand = new ViewNotesCommand(INDEX_FIRST_PATIENT);
-        String expectedNotes = "1. 4th Session with Alice\n   Discussed progress";
-        String expectedMessage = String.format(ViewNotesCommand.MESSAGE_SUCCESS, patientToView.getName().fullName,
-                expectedNotes);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        CommandTestUtil.assertCommandSuccess(viewNotesCommand, model, expectedMessage.trim(), expectedModel);
-    }
-
-    @Test
-    public void execute_invalidPatientIndex_throwsCommandException() {
+    public void execute_invalidIndex_failure() {
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
-        ViewNotesCommand command = new ViewNotesCommand(outOfBoundsIndex);
+        ViewNotesCommand command = new ViewNotesCommand(String.valueOf(outOfBoundsIndex.getOneBased()));
 
-        assertThrows(CommandException.class, () -> command.execute(model));
+        assertCommandFailure(command, model, ViewNotesCommand.MESSAGE_USAGE);
     }
 }

@@ -7,55 +7,84 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 
 /**
- * Command to view all notes associated with a specific patient.
+ * Views notes for a specific patient or all patients in NeuroSync.
  */
 public class ViewNotesCommand extends Command {
 
     public static final String COMMAND_WORD = "viewnotes";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays all notes for the patient identified by the index number.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 2";
+            + ": Views notes for the patient identified by the index number used in the displayed patient list "
+            + "or views notes for all patients.\n"
+            + "Parameters: INDEX (must be a positive integer) or 'all'\n"
+            + "Example: " + COMMAND_WORD + " 1 OR " + COMMAND_WORD + " all";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
-    public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes.";
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
+    public static final String MESSAGE_SUCCESS_ALL = "Displaying notes for all patients";
+    public static final String ALL_PARAMETER = "all";
 
-    private final Index targetIndex;
+    private final String parameter;
 
-    public ViewNotesCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    /**
+     * Creates a ViewNotesCommand to view notes for a specific patient or all
+     * patients.
+     *
+     * @param parameter The index of the patient or "all" to view all patients'
+     *                  notes
+     */
+    public ViewNotesCommand(String parameter) {
+        this.parameter = parameter;
     }
 
+    /**
+     * Executes the view notes command for either a specific patient or all
+     * patients.
+     *
+     * @param model The model containing patient data
+     * @return CommandResult containing the appropriate message and patient data
+     * @throws CommandException if the patient index is invalid
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (targetIndex.getZeroBased() < 0 || targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+        if (parameter.equals(ALL_PARAMETER)) {
+            return new CommandResult(MESSAGE_SUCCESS_ALL,
+                    false, false, true,
+                    "all patients",
+                    null,
+                    lastShownList);
         }
 
-        Patient patientToView = lastShownList.get(targetIndex.getZeroBased());
-        List<Note> notesList = patientToView.getNotes().stream().toList();
+        try {
+            Index targetIndex = Index.fromOneBased(Integer.parseInt(parameter));
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(MESSAGE_USAGE);
+            }
 
-        if (notesList.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_NO_NOTES, patientToView.getName().fullName));
+            Patient patientToView = lastShownList.get(targetIndex.getZeroBased());
+            return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName().fullName),
+                    false, false, true,
+                    patientToView.getName().fullName,
+                    patientToView.getNotes().stream().toList(),
+                    null);
+        } catch (NumberFormatException e) {
+            throw new CommandException(MESSAGE_USAGE);
         }
-
-        // Return a simpler success message since notes display is now handled by the UI
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName().fullName));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof ViewNotesCommand
-                && targetIndex.equals(((ViewNotesCommand) other).targetIndex));
+        return other == this // short circuit if same object
+                || (other instanceof ViewNotesCommand // instanceof handles nulls
+                        && parameter.equals(((ViewNotesCommand) other).parameter)); // state check
+    }
+
+    public String getParameter() {
+        return parameter;
     }
 }

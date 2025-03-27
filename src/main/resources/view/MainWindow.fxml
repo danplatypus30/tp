@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="NeuroSync" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
@@ -27,35 +28,41 @@
           </Menu>
         </MenuBar>
 
-                <!-- Wrap CommandBox in a VBox for dynamic resizing -->
-                <VBox fx:id="commandBoxContainer" VBox.vgrow="ALWAYS">
-                    <VBox fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets top="5" right="10" bottom="5" left="10" />
-                        </padding>
-                    </VBox>
-                </VBox>
+        <!-- Command box and result display at the top -->
+        <VBox fx:id="topContainer" VBox.vgrow="NEVER">
+            <VBox fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                </padding>
+            </VBox>
 
-                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="60" prefHeight="60" maxHeight="60">
+            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                       minHeight="60" prefHeight="60" maxHeight="60">
+                <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                </padding>
+            </StackPane>
+        </VBox>
+
+        <!-- Main content area with patient list and notes display side by side -->
+        <HBox VBox.vgrow="ALWAYS">
+            <!-- Patient List on the left -->
+            <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="200" prefWidth="340" maxWidth="Infinity" HBox.hgrow="SOMETIMES">
+                <padding>
+                    <Insets top="10" right="5" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <!-- Notes Display on the right -->
+            <VBox minWidth="300" prefWidth="460" maxWidth="Infinity" HBox.hgrow="SOMETIMES">
+                <StackPane VBox.vgrow="ALWAYS" fx:id="notesDisplayPanelPlaceholder" styleClass="pane-with-border">
                     <padding>
-                        <Insets top="5" right="10" bottom="5" left="10" />
+                        <Insets top="10" right="10" bottom="10" left="5" />
                     </padding>
                 </StackPane>
-
-                <StackPane VBox.vgrow="ALWAYS" fx:id="notesDisplayPanelPlaceholder" styleClass="pane-with-border"
-                           minHeight="200" prefHeight="200">
-                    <padding>
-                        <Insets top="5" right="10" bottom="5" left="10" />
-                    </padding>
-                </StackPane>
-
-                <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
-                    </padding>
-                    <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
+            </VBox>
+        </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

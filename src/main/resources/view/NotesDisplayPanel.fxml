@@ -4,16 +4,20 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox styleClass="viewnotes-display" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1">
+      xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
 
-    <Label fx:id="patientNameLabel" styleClass="viewnotes-header" />
+    <Label fx:id="patientNameLabel" styleClass="viewnotes-header" wrapText="true" />
 
-    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="viewnotes-scrollpane">
         <content>
-            <VBox fx:id="notesContainer" styleClass="viewnotes-container" />
+            <VBox fx:id="notesContainer" styleClass="viewnotes-container" spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+            </VBox>
         </content>
     </ScrollPane>
 </VBox>

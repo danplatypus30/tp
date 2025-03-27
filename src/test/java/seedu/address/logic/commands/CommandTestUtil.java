@@ -12,11 +12,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.note.Note;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
@@ -76,7 +78,8 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult}
+     * <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
@@ -91,12 +94,37 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to
+     * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult;
+        if (command instanceof ViewNotesCommand) {
+            ViewNotesCommand viewNotesCommand = (ViewNotesCommand) command;
+            if (viewNotesCommand.getParameter().equals(ViewNotesCommand.ALL_PARAMETER)) {
+                expectedCommandResult = new CommandResult(expectedMessage, false, false, true,
+                        "all patients", null, actualModel.getFilteredPatientList());
+            } else {
+                Patient patient = actualModel.getFilteredPatientList()
+                        .get(Integer.parseInt(viewNotesCommand.getParameter()) - 1);
+                expectedCommandResult = new CommandResult(expectedMessage, false, false, true,
+                        patient.getName().fullName, patient.getNotes().stream().toList(), null);
+            }
+        } else if (command instanceof FilterNoteCommand) {
+            FilterNoteCommand filterNoteCommand = (FilterNoteCommand) command;
+            Patient patient = actualModel.getFilteredPatientList()
+                    .get(filterNoteCommand.getIndex().getZeroBased());
+            List<Note> matchingNotes = patient.getNotes().stream()
+                    .filter(note -> note.getTitle().toLowerCase()
+                            .contains(filterNoteCommand.getTitle().toLowerCase()))
+                    .collect(Collectors.toList());
+            expectedCommandResult = new CommandResult(expectedMessage, false, false, true,
+                    patient.getName().fullName, matchingNotes, null);
+        } else {
+            expectedCommandResult = new CommandResult(expectedMessage);
+        }
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -104,7 +132,8 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the app, filtered patient list and selected patient in {@code actualModel} remain unchanged
+     * - the app, filtered patient list and selected patient in {@code actualModel}
+     * remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -116,8 +145,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the patient at the given
+     * {@code targetIndex} in the
      * {@code model}'s app.
      */
     public static void showPatientAtIndex(Model model, Index targetIndex) {

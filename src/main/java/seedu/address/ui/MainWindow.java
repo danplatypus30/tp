@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -15,9 +16,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FilterNoteCommand;
 import seedu.address.logic.commands.ViewNotesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -58,7 +61,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private VBox commandBoxContainer;
+    private VBox topContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -88,6 +91,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -137,9 +141,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Ensure the command box can grow dynamically
         VBox.setVgrow(commandBoxPlaceholder, javafx.scene.layout.Priority.ALWAYS);
-        VBox.setVgrow(commandBoxContainer, javafx.scene.layout.Priority.ALWAYS);
     }
-
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -198,6 +200,8 @@ public class MainWindow extends UiPart<Stage> {
             // Check if this is a ViewNotesCommand result
             if (commandText.trim().toLowerCase().startsWith(ViewNotesCommand.COMMAND_WORD)) {
                 handleViewNotesCommand(commandResult, commandText);
+            } else if (commandText.trim().toLowerCase().startsWith(FilterNoteCommand.COMMAND_WORD)) {
+                handleFilterNoteCommand(commandResult, commandText);
             } else {
                 // Reset notes panel for non-viewnotes commands
                 notesDisplayPanel.reset();
@@ -226,12 +230,52 @@ public class MainWindow extends UiPart<Stage> {
      * dedicated NotesDisplayPanel.
      *
      * @param commandResult The result of the command execution
-     * @param commandText The original command text
+     * @param commandText   The original command text
      */
     private void handleViewNotesCommand(CommandResult commandResult, String commandText) {
         try {
-            String feedback = commandResult.getFeedbackToUser();
+            // Display a simple confirmation message in the result display
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            // Extract the argument from the command
+            String[] parts = commandText.trim().split("\\s+");
+            if (parts.length < 2) {
+                return; // Invalid command format, already handled elsewhere
+            }
+
+            // Check if it's "viewnotes all"
+            if (parts[1].equalsIgnoreCase("all")) {
+                if (commandResult.getAllPatients() != null) {
+                    notesDisplayPanel.displayAllNotes(commandResult.getAllPatients());
+                }
+                return;
+            }
+
+            // Handle single patient view
+            try {
+                int index = Integer.parseInt(parts[1]) - 1; // Convert to zero-based index
+                if (index >= 0 && index < logic.getFilteredPatientList().size()) {
+                    Patient patient = logic.getFilteredPatientList().get(index);
+                    notesDisplayPanel.displayNotes(patient);
+                }
+            } catch (NumberFormatException e) {
+                // Invalid index format, already handled by the parser
+            }
+        } catch (Exception e) {
+            logger.warning("Error handling ViewNotesCommand: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Handles the special case of a FilterNoteCommand by displaying the notes in
+     * the
+     * dedicated NotesDisplayPanel.
+     *
+     * @param commandResult The result of the command execution
+     * @param commandText   The original command text
+     */
+    private void handleFilterNoteCommand(CommandResult commandResult, String commandText) {
+        try {
             // Display a simple confirmation message in the result display
             resultDisplay.setFeedbackToUser("Displaying notes. See notes panel below.");
 
@@ -244,10 +288,11 @@ public class MainWindow extends UiPart<Stage> {
             int index = Integer.parseInt(parts[1]) - 1; // Convert to zero-based index
             if (index >= 0 && index < logic.getFilteredPatientList().size()) {
                 Patient patient = logic.getFilteredPatientList().get(index);
-                notesDisplayPanel.displayNotes(patient);
+                List<Note> matchingNotes = commandResult.getNotesList();
+                notesDisplayPanel.displayNotes(patient, matchingNotes);
             }
         } catch (Exception e) {
-            logger.warning("Error handling ViewNotesCommand: " + e.getMessage());
+            logger.warning("Error handling FilterNoteCommand: " + e.getMessage());
             // Fallback to showing the raw output in case of error
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
         }

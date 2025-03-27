@@ -72,12 +72,13 @@ public class EditNoteCommand extends Command {
         Patient patientToEdit = lastShownList.get(userIndex.getZeroBased());
         // Copy existing notes, delete note, add note, send it back
         TreeSet<Note> updatedNotes = patientToEdit.getNotes();
-        if (updatedNotes.isEmpty()) {
+        TreeSet<Note> newCopyNotes = new TreeSet<>(updatedNotes);
+        if (newCopyNotes.isEmpty()) {
             throw new CommandException(MESSAGE_NO_NOTES);
         }
 
         Note deleteNote = null;
-        for (Note i: updatedNotes) {
+        for (Note i: newCopyNotes) {
             if (i.getTitle().equalsIgnoreCase(noteTitle)) {
                 deleteNote = i;
                 break;
@@ -87,9 +88,9 @@ public class EditNoteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, noteTitle));
         }
 
-        patientToEdit.getNotes().remove(deleteNote);
+        newCopyNotes.remove(deleteNote);
         Note editedNote = new Note(noteTitle, content);
-        updatedNotes.add(editedNote);
+        newCopyNotes.add(editedNote);
 
         // Create updated patient
         Patient editedPatient = new Patient(
@@ -98,7 +99,7 @@ public class EditNoteCommand extends Command {
                 patientToEdit.getEmail(),
                 patientToEdit.getAddress(),
                 patientToEdit.getTags(),
-                updatedNotes);
+                newCopyNotes);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);

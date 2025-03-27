@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PATIENT;
 import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
-import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -64,12 +62,13 @@ public class DeleteNoteCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(targetIndex.getZeroBased());
         TreeSet<Note> allNotes = patientToEdit.getNotes();
+        TreeSet<Note> newCopyNotes = new TreeSet<>(allNotes);
 
-        if (allNotes.isEmpty()) {
+        if (newCopyNotes.isEmpty()) {
             throw new CommandException(MESSAGE_NO_NOTES);
         }
 
-        Note matchingNote = allNotes.stream()
+        Note matchingNote = newCopyNotes.stream()
                 .filter(n -> n.getTitle().equalsIgnoreCase(targetTitle))
                 .findFirst().orElse(null);
 
@@ -77,14 +76,17 @@ public class DeleteNoteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, targetTitle));
         }
 
-        patientToEdit.getNotes().remove(matchingNote);
-        Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
+        newCopyNotes.remove(matchingNote);
+        Patient editedPatient = new Patient(
+                patientToEdit.getName(),
+                patientToEdit.getPhone(),
+                patientToEdit.getEmail(),
+                patientToEdit.getAddress(),
+                patientToEdit.getTags(),
+                newCopyNotes);
 
-        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
-        }
 
-        model.setPatient(patientToEdit, editedPatient);
+        model.deletePatientNote(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_NOTE_SUCCESS, Messages.format(patientToEdit)));

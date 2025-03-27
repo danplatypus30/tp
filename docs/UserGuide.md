@@ -3,143 +3,490 @@ layout: page
 title: User Guide
 ---
 
-**NeuroSync: All-In-One App for Psychiatrists!**
+# **Welcome to the NeuroSync User Guide!**
 
-NeuroSync is a powerful, user-friendly desktop application that helps psychiatrists to keep track of patients’ contacts, details and notes from their sessions. No more searching through thick files of paper, just search by name and get everything you need in seconds.
-
----
-
-## 💡 Key Features
-
-- Add, edit, and delete patient records (name, phone, email, address, and tags).
-- Take and organize session notes per patient.
-- Filter and search notes by title.
-- View all notes for any patient at a glance.
-- Simple, fast, and intuitive CLI-style command interface.
+NeuroSync helps psychiatrists **manage patient records and session notes efficiently**. Choose a topic below to get step-by-step instructions, troubleshoot issues, and maximize your productivity!
 
 ---
 
-## 👩‍⚕️ Target Users
+## 🔍 **Search the User Guide**
 
-Psychiatrists and mental health professionals who need a digital assistant to manage large volumes of patient information and session documentation.
+<input type="text" id="search-box" placeholder="Search this guide..." onkeyup="searchFunction()">
+<div id="search-dropdown" style="display:none; position:absolute; background:white; border:1px solid #ccc; width:300px; max-height:200px; overflow:auto;"></div>
+
+<script>
+function searchFunction() {
+    var input = document.getElementById("search-box");
+    var filter = input.value.toUpperCase();
+    var dropdown = document.getElementById("search-dropdown");
+    dropdown.innerHTML = "";
+    dropdown.style.display = filter.length > 0 ? "block" : "none";
+
+    // Select only the links in the Table of Contents
+    var tocLinks = document.querySelectorAll("a[href^='#']");
+
+    tocLinks.forEach(function(link) {
+        var txtValue = link.textContent || link.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            var div = document.createElement("div");
+            div.innerHTML = '<a href="' + link.getAttribute('href') + '" style="display:block; padding:5px; text-decoration:none; color:black;">' + txtValue.substring(0, 50) + '...</a>';
+            div.style.borderBottom = "1px solid #ddd";
+            div.style.padding = "5px";
+            div.style.cursor = "pointer";
+            dropdown.appendChild(div);
+        }
+    });
+}
+</script>
 
 ---
 
-## 🚀 Quick Start
+## 📜 Table of Contents {#table-of-contents}
 
-1. **Download the latest release** from the [Releases](https://github.com/AY2223S1-CS2103T-W14-4/tp/releases) page.
-2. Place the JAR file in your preferred directory.
-3. Open your terminal.
-4. Navigate to the folder containing the file.
-5. Run the app with:
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+3. [Core Features](#core-features)
+4. [Command Summary](#command-summary)
+5. [Commands & Usage](#commands--usage)
+   - [View All Patients](#listing-patients)
+   - [Finding a Patient](#finding-a-patient)
+   - [Adding a Patient](#adding-a-patient)
+   - [Editing a Patient](#editing-a-patient)
+   - [Deleting a Patient](#deleting-a-patient)
+   - [Viewing Notes](#viewing-notes)
+   - [Filtering Notes](#filtering-notes)
+   - [Adding a Note](#adding-a-note)
+   - [Edit a Note](#editing-a-note)
+   - [Delete a Note](#deleting-a-note)
+   - [Clear All Data](#clear-data)
+   - [Help](#help)
+6. [FAQs & Troubleshooting](#faqs--troubleshooting)
+7. [Technology Stack](#technology-stack)
+8. [Acknowledgemets](#acknowledgements)
+9. [Contact & Support](#contact-support)
+
+---
+
+## 📢 **Introduction** {#introduction}
+
+### What does NeuroSync do?
+
+NeuroSync **keeps track of patient details and session notes effortlessly**. No more searching through paper files—find what you need **instantly** using powerful search and filter commands.
+
+**Why Use NeuroSync?**
+✅ **Fast & Simple** - No unnecessary clicks, just type commands.
+✅ **Powerful Search & Filters** - Retrieve patient data in seconds.
+✅ **Organized & Secure** - Keep confidential data well-structured.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## 🚀 **Getting Started** {#getting-started}
+
+### **1️⃣ Download & Install**
+
+1. **Download** the latest release from [NeuroSync Releases](https://github.com/AY2425S2-CS2103T-F13-1/tp/releases).
+2. Place the `NeuroSync.jar` file in your preferred directory.
+3. Open **Terminal/Command Prompt**.
+4. Navigate to the folder containing `NeuroSync.jar`.
+5. Run the app using:
+   ```bash
+   java -jar NeuroSync.jar
+   ```
+
+### **2️⃣ System Requirements**
+
+- **Java**: Version 17 or later
+- **OS Compatibility**: Windows, macOS, Linux
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## 💡 **Core Features** {#core-features}
+
+- 📁 **Manage Patient Records** - Add, edit, and delete patient details.
+- 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
+- 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
+- ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## 🧭 **Command Summary** {#command-summary}
+
+| **Action**         | **Command Syntax**                                                                        |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| **List Patients**  | `list`                                                                                    |
+| **Find Patient**   | `find KEYWORD [MORE_KEYWORDS]`                                                            |
+| **Add Patient**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                                   |
+| **Edit Patient**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`                    |
+| **Delete Patient** | `delete INDEX`                                                                            |
+| -----------------  | ----------------------------------------------------------------------------------------- |
+| **View Notes**     | `viewnotes INDEX or viewnotes all`                                                        |
+| **Filter Note**    | `filternote INDEX nt/TITLE_KEYWORD`                                                       |
+| **Add Note**       | `note INDEX nt/TITLE nc/CONTENT`                                                          |
+| **Edit Note**      | `editnote INDEX nt/TITLE nc/CONTENT`                                                      |
+| **Delete Note**    | `deletenote INDEX nt/TITLE`                                                               |
+| -----------------  | ----------------------------------------------------------------------------------------- |
+| **Clear Data**     | `clear`                                                                                   |
+| **Help**           | `help`                                                                                    |
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## 🎯 **Commands & Usage** {#commands--usage}
+
+Each command is designed to make patient and session management **fast and intuitive**.
+
+### **Listing Patients** {#listing-patients}
 
 ```bash
-java -jar NeuroSync.jar
+list
 ```
+
+**Example:**
+
+```bash
+list
+```
+
+✔️ **Expected Output:**
+
+```
+1. John Doe (Phone: 98005442, Email: john.doe@email.com)
+2. Jane Smith (Phone: 91234567, Email: jane.smith@example.com)
+```
+
+⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.<br>
+💡 **Tip:** Use the **Find** command to quickly locate a patient.
+
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
-## 📘 Sample Commands
+### **Finding a Patient** {#finding-a-patient}
 
-### Add a Patient
-
-```
-add n/John Doe p/98005442 e/jamesho@imh.gov.sg a/123 Clementi Street t/ADHD
+```bash
+find KEYWORD [MORE_KEYWORDS]
 ```
 
-### Edit a Patient
+**Example:**
+
+```bash
+find John
+```
+
+✔️ **Expected Output:**
 
 ```
-edit 1 p/91234567 e/john.doe@protonmail.com
+1. John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
 
-### Delete a Patient
+⚠️ **Warning:** Multiple matches may be returned if you use a common name.<br>
+💡 **Tip:** Use specific names or IDs to narrow your search.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Adding a Patient** {#adding-a-patient}
+
+```bash
+add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​
+```
+
+**Example:**
+
+```bash
+add n/John Doe p/98005442 e/john.doe@email.com a/123 Clementi Street t/ADHD
+```
+
+✔️ **Expected Output:**
 
 ```
+Patient added: John Doe (Phone: 98005442, Email: john.doe@email.com)
+```
+
+⚠️ **Warning:** Avoid duplicate names for clarity.<br>
+💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Editing a Patient** {#editing-a-patient}
+
+```bash
+edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+```
+
+**Example:**
+
+```bash
+edit 1 p/91234567 e/john.doe@newemail.com
+```
+
+✔️ **Expected Output:**
+
+```
+Updated patient: John Doe (Phone: 91234567, Email: john.doe@newemail.com)
+```
+
+⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
+💡 **Tip:** You can edit just one piece of data, like only the phone number or email.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Deleting a Patient** {#deleting-a-patient}
+
+```bash
+delete INDEX
+```
+
+**Example:**
+
+```bash
 delete 2
 ```
 
-### Add a Note
+✔️ **Expected Output:**
 
 ```
-note 1 nt/Mood Assessment nc/Discussed mood swings, sleep patterns.
+Deleted patient at index 2.
 ```
 
-### View Notes
+⚠️ **Warning:** This action is **irreversible**. Double-check before deleting.<br>
+💡 **Tip:** Be careful when using this command, especially with large patient lists.
 
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Viewing Notes** {#viewing-notes}
+
+```bash
+viewnotes INDEX
+viewnotes all    # View notes for all patients
 ```
+
+**Example:**
+
+```bash
 viewnotes 1
 ```
 
-### Edit a Note
+✔️ **Expected Output:**
 
 ```
-editnote 1 nt/Childhood Trauma nc/Seems to have behavioural issues.
+1. Mood Assessment - Discussed mood swings.
+2. Sleep Patterns - Irregular sleep schedule.
 ```
 
-### Delete a Note
+⚠️ **Warning:** If a patient has many notes, it may take a moment to load.<br>
+💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
 
-```
-deletenote 1 nt/Updated Title
-```
-
-### Filter Notes by Title
-
-```
-filternote 1 nt/Assessment
-```
-
-## 🧭 Command Summary
-
-| Action          | Format, Examples                                                                                                                                                  |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/98005442 e/jamesho@imh.gov.sg a/123 Clementi Rd t/ADHD t/Violent Tendencies` |
-| **Delete**      | `delete INDEX` <br> e.g., `delete 3`                                                                                                                              |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                     |
-| **Note**        | `note INDEX nt/TITLE nc/CONTENT` <br> e.g., `note 1 nt/Session1 nc/Discussed recent anxiety episodes`                                                             |
-| **Delete Note** | `deletenote INDEX nt/TITLE` <br> e.g., `deletenote 1 nt/Session1`                                                                                                 |
-| **Edit Note**   | `editnote INDEX nt/TITLE nc/CONTENT` <br> e.g., `editnote 1 nt/Session 1 nc/Patient has mild Schizophrenia`                                                       |
-| **View Notes**  | `viewnotes INDEX` <br> e.g., `viewnotes 1`                                                                                                                        |
-| **Filter Note** | `filternote INDEX nt/TITLE_KEYWORD` <br> e.g., `filternote 1 nt/anxiety`                                                                                          |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                       |
-| **List**        | `list`                                                                                                                                                            |
-| **Clear**       | `clear`                                                                                                                                                           |
-| **Help**        | `help`                                                                                                                                                            |
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
-## ❓ Frequently Asked Questions (FAQ)
+### **Filtering Notes** {#filtering-notes}
 
-**Q1: How do I transfer my data to another computer?**  
-**A:** Install NeuroSync on the other computer and run it once. Then, replace the data file created (usually in the same directory or under `/data`) with your original data file from your previous device.
+```bash
+filternote INDEX nt/TITLE_KEYWORD
+```
 
-**Q2: Where is the data stored?**  
-**A:** Your patient and note data is saved in a file called `addressbook.json` located in the `/data` folder in the same directory where you launch `NeuroSync.jar`.
+**Example:**
 
-**Q3: I deleted a note/patient by accident. Can I undo it?**  
-**A:** Currently, NeuroSync does not support an undo feature. We recommend regularly backing up your data file if you need to keep a revision history.
+```bash
+filternote 1 nt/anxiety
+```
 
-**Q4: What happens when I run `clear`?**  
-**A:** The `clear` command removes all stored patient and note data. This action is irreversible, so use it with caution.
+✔️ **Expected Output:**
+
+```
+Showing notes for Patient 1 with keyword: "anxiety"
+```
+
+⚠️ **Warning:** Be specific with keywords to avoid too many results.<br>
+💡 **Tip:** Keywords should be part of the note's title for better results.
+
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
-## 🛠 Technology Stack
+### **Adding a Note** {#adding-a-note}
+
+```bash
+note INDEX nt/TITLE nc/CONTENT
+```
+
+**Example:**
+
+```bash
+note 1 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
+```
+
+✔️ **Expected Output:**
+
+```
+Note added for Patient 1: "Mood Assessment"
+```
+
+⚠️ **Warning:** Ensure the title is relevant and specific to the session.<br>
+💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Editing a Note** {#editing-a-note}
+
+```bash
+editnote INDEX nt/TITLE nc/CONTENT
+```
+
+**Example:**
+
+```bash
+editnote 1 nt/Mood Assessment nc/Updated content with more details.
+```
+
+✔️ **Expected Output:**
+
+```
+Note updated for Patient 1: "Mood Assessment"
+```
+
+⚠️ **Warning:** Changes are permanent once saved, so be sure the content is correct.<br>
+💡 **Tip:** Edit only the necessary fields without altering other details.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Deleting a Note** {#deleting-a-note}
+
+```bash
+deletenote INDEX nt/TITLE
+```
+
+**Example:**
+
+```bash
+deletenote 1 nt/Mood Assessment
+```
+
+✔️ **Expected Output:**
+
+```
+Deleted note: "Mood Assessment" for Patient 1.
+```
+
+⚠️ **Warning:** **Deleted notes cannot be recovered.**<br>
+💡 **Tip:** Keep backups if needed.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Clear All Data** {#clear-data}
+
+```bash
+clear
+```
+
+**Example:**
+
+```bash
+clear
+```
+
+✔️ **Expected Output:**
+
+```
+All patient and note data cleared.
+```
+
+⚠️ **Warning:** This is a **permanent** action. Use with caution.<br>
+💡 **Tip:** Regularly back up your data before using this command.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+### **Help** {#help}
+
+```bash
+help
+```
+
+**Example:**
+
+```bash
+help
+```
+
+✔️ **Expected Output:**
+
+```
+List of available commands and syntax.
+```
+
+⚠️ **Warning:** This is just a list of commands, not a tutorial.<br>
+💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## ❓ **FAQs & Troubleshooting** {#faqs--troubleshooting}
+
+**Q: Where is my data stored?**
+**A:** Your data is saved in `addressbook.json` inside the `/data` folder.
+
+**Q: Can I undo a deletion?**
+**A:** No. There is **no undo** feature, so backup your data frequently.
+
+**Q: How do I transfer data to another device?**
+**A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
+
+**Q: What happens when I run `clear`?**
+**A:** It **deletes all data permanently**. Use it with caution.
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## 🛠 Technology Stack {#technology-stack}
 
 - Java 17
 - JavaFX for UI
 - Gradle for build automation
 
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
-## 🙌 Acknowledgements
+## 🙌 Acknowledgements {#acknowledgements}
 
 This project is based on the AddressBook-Level3 project by the SE-EDU initiative.
 
 Visit [se-education.org](https://se-education.org) for more open-source CS education projects.
 
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
-## 📬 Contact
+## 📬 Contact & Support {#contact-support}
 
-For issues and contributions, please raise an issue or pull request in the [GitHub repository](https://github.com/AY2223S1-CS2103T-W14-4/tp).
+For issues and contributions, please raise an issue or pull request in the [GitHub repository](https://github.com/AY2425S2-CS2103T-F13-1/tp).
+
+[🔝 Back to Top](#table-of-contents)
+
+🚀 _Enjoy using NeuroSync!_

@@ -96,8 +96,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognizedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+            ) -> parser.parseCommand(""));
     }
 
     @Test
@@ -116,14 +116,14 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_viewNotesValidIndex_returnsViewNotesCommand() throws Exception {
-        ViewNotesCommand command = (ViewNotesCommand) parser.parseCommand("viewnotes 1");
-        assertEquals(new ViewNotesCommand(INDEX_FIRST_PATIENT), command);
+    public void parseCommand_viewNotes() throws Exception {
+        ViewNotesCommand command = (ViewNotesCommand) parser.parseCommand(
+                ViewNotesCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new ViewNotesCommand(String.valueOf(INDEX_FIRST_PATIENT.getOneBased())), command);
     }
 
     @Test
     public void parseCommand_viewNotesInvalidIndex_throwsParseException() {
-        assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes"));
         assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes abc"));
         assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes -1"));
         assertThrows(ParseException.class, () -> parser.parseCommand("viewnotes 0"));
@@ -134,7 +134,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_filterNote() throws Exception {
         FilterNoteCommand command = (FilterNoteCommand) parser.parseCommand(FilterNoteCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PATIENT.getOneBased() + " " + PREFIX_NOTE_TITLE + "test");
+                + " " + INDEX_FIRST_PATIENT.getOneBased() + " " + PREFIX_NOTE_TITLE + "test");
         assertEquals(new FilterNoteCommand(INDEX_FIRST_PATIENT, "test"), command);
     }
 

@@ -12,7 +12,7 @@ import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 
 /**
- * Panel that displays notes for a selected patient.
+ * Panel that displays notes for a selected patient or all patients.
  */
 public class NotesDisplayPanel extends UiPart<Region> {
 
@@ -38,6 +38,47 @@ public class NotesDisplayPanel extends UiPart<Region> {
     public void reset() {
         patientNameLabel.setText("No patient selected");
         notesContainer.getChildren().clear();
+    }
+
+    /**
+     * Updates the panel with notes from all patients in the list.
+     *
+     * @param patients The list of patients whose notes should be displayed.
+     */
+    public void displayAllNotes(List<Patient> patients) {
+        requireNonNull(patients);
+        patientNameLabel.setText("Notes for all patients");
+        notesContainer.getChildren().clear();
+
+        boolean hasAnyNotes = false;
+        int totalNoteNumber = 1;
+
+        for (Patient patient : patients) {
+            List<Note> patientNotes = patient.getNotes().stream().toList();
+            if (!patientNotes.isEmpty()) {
+                hasAnyNotes = true;
+
+                // Add patient header in a box
+                VBox patientHeaderBox = new VBox();
+                patientHeaderBox.getStyleClass().add("patient-header-box");
+                Label patientHeader = new Label(patient.getName().fullName);
+                patientHeader.getStyleClass().add("patient-section-header");
+                patientHeaderBox.getChildren().add(patientHeader);
+                notesContainer.getChildren().add(patientHeaderBox);
+
+                // Add patient's notes
+                for (Note note : patientNotes) {
+                    VBox noteBox = createNoteBox(note, totalNoteNumber++);
+                    notesContainer.getChildren().add(noteBox);
+                }
+            }
+        }
+
+        if (!hasAnyNotes) {
+            Label noNotesLabel = new Label("No notes found for any patients.");
+            noNotesLabel.getStyleClass().add("note-content");
+            notesContainer.getChildren().add(noNotesLabel);
+        }
     }
 
     /**
@@ -67,31 +108,74 @@ public class NotesDisplayPanel extends UiPart<Region> {
     }
 
     /**
+     * Updates the panel with the specific filtered note from the specified patient.
+     *
+     * @param patient      The patient whose notes should be displayed.
+     * @param matchingNote the notes that match the keyword
+     */
+    public void displayNotes(Patient patient, List<Note> matchingNote) {
+        requireNonNull(patient);
+        patientNameLabel.setText("Notes for " + patient.getName().fullName);
+
+        notesContainer.getChildren().clear();
+
+        if (matchingNote.isEmpty()) {
+            Label noNotesLabel = new Label("This patient has no notes.");
+            noNotesLabel.getStyleClass().add("filternote-content");
+            notesContainer.getChildren().add(noNotesLabel);
+            return;
+        }
+
+        int noteNumber = 1;
+        for (Note note : matchingNote) {
+            VBox noteBox = createNoteBox(note, noteNumber++);
+            notesContainer.getChildren().add(noteBox);
+        }
+    }
+
+    /**
      * Creates a formatted box for displaying a single note.
      *
-     * @param note The note to display.
+     * @param note       The note to display.
      * @param noteNumber The sequence number of this note.
      * @return A VBox containing the formatted note.
      */
     private VBox createNoteBox(Note note, int noteNumber) {
-        VBox noteBox = new VBox();
-        noteBox.getStyleClass().add("viewnotes-entry");
+        VBox noteBox = new VBox(8); // Spacing between title box and content
+        noteBox.getStyleClass().add("note-item");
 
-        // Number and title
-        Label titleLabel = new Label(noteNumber + ". " + note.getTitle());
-        titleLabel.getStyleClass().add("viewnotes-title");
-        titleLabel.setWrapText(true);
+        // Create a title container
+        VBox titleBox = new VBox();
+        titleBox.getStyleClass().add("note-title-box");
+
+        // Create a horizontal box for number and title
+        javafx.scene.layout.HBox titleContainer = new javafx.scene.layout.HBox(10); // 10 pixels spacing
+
+        // Note number
+        Label numberLabel = new Label("#" + noteNumber);
+        numberLabel.getStyleClass().add("note-number");
+
+        // Title with pink styling
+        Label titleLabel = new Label(note.getTitle());
+        titleLabel.getStyleClass().add("note-title");
+
+        titleContainer.getChildren().addAll(numberLabel, titleLabel);
+        titleBox.getChildren().add(titleContainer);
 
         // Content
         Label contentLabel = new Label(note.getContent());
-        contentLabel.getStyleClass().add("viewnotes-content");
+        contentLabel.getStyleClass().add("note-content");
         contentLabel.setWrapText(true);
 
-        // Date information
+        // Date information in its own container
+        VBox dateBox = new VBox();
+        dateBox.getStyleClass().add("note-date-box");
         Label dateLabel = new Label("Created: " + note.getDateTimeCreated().toString());
-        dateLabel.getStyleClass().add("viewnotes-date");
+        dateLabel.getStyleClass().add("note-date");
+        dateBox.getChildren().add(dateLabel);
 
-        noteBox.getChildren().addAll(titleLabel, contentLabel, dateLabel);
+        // Add all components to the note box
+        noteBox.getChildren().addAll(titleBox, contentLabel, dateBox);
         return noteBox;
     }
 }

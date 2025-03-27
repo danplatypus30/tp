@@ -29,7 +29,7 @@ public class FilterNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " [index]" + " nt/[title]";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
-  
+
     private final Index index;
 
     private final String title;

@@ -100,6 +100,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePatientNote(Patient target, Patient editedPatient) {
+        addressBook.setPatient(target, editedPatient);
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         addressBook.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);

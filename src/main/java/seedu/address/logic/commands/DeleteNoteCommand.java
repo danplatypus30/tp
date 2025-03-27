@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_PATIENT;
 import static seedu.address.logic.commands.EditCommand.createEditedPatient;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
@@ -80,11 +79,8 @@ public class DeleteNoteCommand extends Command {
         patientToEdit.getNotes().remove(matchingNote);
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
 
-        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
-        }
 
-        model.setPatient(patientToEdit, editedPatient);
+        model.deletePatientNote(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_NOTE_SUCCESS, Messages.format(patientToEdit)));

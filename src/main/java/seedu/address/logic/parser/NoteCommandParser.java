@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.NoteCommand.AddNoteDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,7 +44,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         }
 
         if (!editNoteDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(NoteCommand.MESSAGE_NOT_ADDED_NOTE);
+            throw new ParseException(Messages.MESSAGE_NOT_ADDED_NOTE);
         }
 
         String title = argMultimap.getValue(PREFIX_NOTE_TITLE).orElse("");

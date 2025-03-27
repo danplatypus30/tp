@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
+import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -29,8 +31,6 @@ public class DeleteNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 nt/JohnFirstCrashout";
 
     public static final String MESSAGE_DELETE_PATIENT_NOTE_SUCCESS = "Deleted Note of Patient: %1$s";
-    public static final String MESSAGE_NOTE_NOT_FOUND = "Note Title does not exist: %1$s";
-    public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes";
 
     private final Index targetIndex;
     private final String targetTitle;

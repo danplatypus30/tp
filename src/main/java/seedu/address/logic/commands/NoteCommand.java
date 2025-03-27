@@ -32,8 +32,6 @@ public class NoteCommand extends Command {
             + PREFIX_NOTE_CONTENT + "Allergies include:\n - Penicillin\n - Nuts";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Note Title: %2$s, Note Content: %3$s";
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
-    public static final String MESSAGE_NOT_ADDED_NOTE = "Note must have title and content! ";
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
 
     private final Index index;
     private final Note note;

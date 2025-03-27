@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_DUPLICATE_PATIENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PATIENT;
+import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
+import static seedu.address.logic.Messages.MESSAGE_NOT_ADDED_NOTE;
+import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
@@ -33,12 +36,7 @@ public class EditNoteCommand extends Command {
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NOTE_TITLE + "Patient has allergies! "
         + PREFIX_NOTE_CONTENT + "Allergies include:\n - Shellfish\n - Mushrooms";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-        "editnote command not implemented yet";
     public static final String MESSAGE_ARGUMENTS = "UserIndex: %1$d, ListIndex: %1$d, Content: %3$s";
-    public static final String MESSAGE_NOTE_NOT_FOUND = "Note Title cannot be found: %1$s";
-    public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes";
-    public static final String MESSAGE_BLANK_OR_EMPTY_NOTE = "Note Title and Contents cannot be empty or whitespaces";
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note of Person: %1$s";
 
     private final Index userIndex;
@@ -68,7 +66,7 @@ public class EditNoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
         if (isValidNote(noteTitle, content) == false) {
-            throw new CommandException(MESSAGE_BLANK_OR_EMPTY_NOTE + noteTitle + content);
+            throw new CommandException(MESSAGE_NOT_ADDED_NOTE + noteTitle + content);
         }
 
         Patient patientToEdit = lastShownList.get(userIndex.getZeroBased());

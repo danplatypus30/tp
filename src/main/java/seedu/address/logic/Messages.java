@@ -20,6 +20,11 @@ public class Messages {
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the app";
+    public static final String MESSAGE_NOTE_NOT_FOUND = "Note Title does not exist: %1$s";
+    public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes";
+    public static final String MESSAGE_NOT_ADDED_NOTE = "Note must have title and content! ";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
     public static final String MESSAGE_UNDO_FAILURE = "Already at the oldest change";
     public static final String MESSAGE_REDO_FAILURE = "Already at the latest change";
 

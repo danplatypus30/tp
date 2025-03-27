@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
+import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 
 import java.util.List;
 import java.util.TreeSet;
@@ -19,7 +22,6 @@ import seedu.address.model.patient.Patient;
 public class FilterNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "filternote";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter the note with the matching title "
             + "belonged to the indexed patient. "
             + "The specified keywords are case-insensitive.\n"
@@ -27,12 +29,6 @@ public class FilterNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " [index]" + " nt/[title]";
 
     public static final String MESSAGE_SUCCESS = "Note for %1$s:\n\n%2$s";
-
-    public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes.";
-
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
-
-    public static final String MESSAGE_NO_TITLED_NOTE = "There is no note matching your title.";
 
     private final Index index;
 
@@ -69,7 +65,7 @@ public class FilterNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (matchingNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_NO_TITLED_NOTE);
+            throw new CommandException(MESSAGE_NOTE_NOT_FOUND);
         }
 
         String notesContent = matchingNotes.stream()

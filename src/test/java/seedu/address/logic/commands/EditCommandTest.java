@@ -127,7 +127,7 @@ public class EditCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPatient).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PATIENT, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PATIENT,
                 new EditPatientDescriptorBuilder(patientInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test

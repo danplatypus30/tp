@@ -5,6 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -35,7 +36,7 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE_TITLE);
 
         if (argMultimap.getValue(PREFIX_NOTE_TITLE).isEmpty()) {
-            throw new ParseException(DeleteNoteCommand.MESSAGE_NOTE_NOT_FOUND);
+            throw new ParseException(Messages.MESSAGE_NOTE_NOT_FOUND);
         }
 
         String targetTitle = argMultimap.getValue(PREFIX_NOTE_TITLE).get();

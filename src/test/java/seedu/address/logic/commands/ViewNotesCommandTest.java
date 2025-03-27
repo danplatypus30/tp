@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -40,7 +41,7 @@ public class ViewNotesCommandTest {
         Patient patient = model.getFilteredPatientList().get(index.getZeroBased());
 
         CommandResult expectedCommandResult = new CommandResult(
-                String.format(ViewNotesCommand.MESSAGE_NO_NOTES, patient.getName().fullName)
+                String.format(Messages.MESSAGE_NO_NOTES, patient.getName().fullName)
         );
 
         assertCommandSuccess(command, model, expectedCommandResult, model);

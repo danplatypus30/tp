@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 
 import java.util.List;
 
@@ -23,8 +25,6 @@ public class ViewNotesCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
-    public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes.";
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
 
     private final Index targetIndex;
 

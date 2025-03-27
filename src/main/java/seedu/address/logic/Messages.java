@@ -20,6 +20,8 @@ public class Messages {
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_UNDO_FAILURE = "Already at the oldest change";
+    public static final String MESSAGE_REDO_FAILURE = "Already at the latest change";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

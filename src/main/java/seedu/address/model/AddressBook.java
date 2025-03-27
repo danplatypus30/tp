@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.exceptions.RedoException;
+import seedu.address.model.exceptions.UndoException;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -16,6 +18,7 @@ import seedu.address.model.patient.UniquePatientList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePatientList patients;
+    private final VersionedAddressBook versionedAddressBook = new VersionedAddressBook();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -128,4 +131,36 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return patients.hashCode();
     }
+
+    /**
+     * Stores the current states of the CampusConnect.
+     */
+    public void saveCurrentState() {
+        ReadOnlyAddressBook newAddressBook = new AddressBook(this);
+        versionedAddressBook.saveOldData(newAddressBook);
+        versionedAddressBook.clearFutureData();
+    }
+
+    /**
+     * Recovers from previous state.
+     */
+    public ReadOnlyAddressBook recoverPreviousState() throws UndoException {
+        ReadOnlyAddressBook res = versionedAddressBook.extractOldData();
+        versionedAddressBook.saveFutureData(new AddressBook(this));
+        return res;
+    }
+
+    /**
+     * Recovers the previously undone state.
+     */
+    public ReadOnlyAddressBook recoverFutureState() throws RedoException {
+        ReadOnlyAddressBook res = versionedAddressBook.extractFutureData();
+        versionedAddressBook.saveOldData(new AddressBook(this));
+        return res;
+    }
+
+    public ReadOnlyAddressBook recoverPreviousStateWithoutSaving() throws UndoException {
+        return versionedAddressBook.extractOldData();
+    }
+
 }

@@ -10,6 +10,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FilterNoteCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewNotesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -46,12 +52,21 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        if (shouldSavePatientList(command)) {
+            model.saveCurrentAddressBook();
+        }
 
+
+        CommandResult commandResult;
         try {
+            commandResult = command.execute(model);
             storage.saveAddressBook(model.getAddressBook());
+        } catch (CommandException e) {
+            if (!(command instanceof RedoCommand)) {
+                model.undoExceptionalCommand();
+            }
+            throw e;
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -84,5 +99,17 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    private boolean shouldSavePatientList(Command command) {
+        boolean isUndoCommand = command instanceof UndoCommand;
+        boolean isRedoCommand = command instanceof RedoCommand;
+        boolean isListCommand = command instanceof ListCommand;
+        boolean isViewNotesCommand = command instanceof ViewNotesCommand;
+        boolean isFilterNoteCommand = command instanceof FilterNoteCommand;
+        boolean isFindCommand = command instanceof FindCommand;
+        boolean shouldSave = !(isUndoCommand || isRedoCommand || isListCommand || isViewNotesCommand
+                || isFilterNoteCommand || isFindCommand);
+        return shouldSave;
     }
 }

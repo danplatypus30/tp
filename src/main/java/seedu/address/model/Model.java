@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -93,4 +94,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Undoes the previous actions of users.
+     */
+    void undoAddressBook() throws CommandException;
+
+    /**
+     * Redoes the future actions of users.
+     */
+    void redoAddressBook() throws CommandException;
+
+    /**
+     * Saves current state of model before execution.
+     */
+    void saveCurrentAddressBook();
+
+    /**
+     * Undo the previous actions without saving the current actions.
+     */
+    void undoExceptionalCommand() throws CommandException;
 }

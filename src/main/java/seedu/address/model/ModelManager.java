@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -150,4 +151,27 @@ public class ModelManager implements Model {
                 && filteredPatients.equals(otherModelManager.filteredPatients);
     }
 
+    @Override
+    public void undoAddressBook() throws CommandException {
+        ReadOnlyAddressBook previousState = addressBook.recoverPreviousState();
+        this.setAddressBook(previousState);
+    }
+
+    @Override
+    public void redoAddressBook() throws CommandException {
+        ReadOnlyAddressBook futureState = addressBook.recoverFutureState();
+        this.setAddressBook(futureState);
+    }
+
+
+    @Override
+    public void saveCurrentAddressBook() {
+        addressBook.saveCurrentState();
+    }
+
+    @Override
+    public void undoExceptionalCommand() throws CommandException {
+        ReadOnlyAddressBook state = addressBook.recoverPreviousStateWithoutSaving();
+        this.setAddressBook(state);
+    }
 }

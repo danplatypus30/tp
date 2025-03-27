@@ -23,7 +23,7 @@ function searchFunction() {
 
     // Select only the links in the Table of Contents
     var tocLinks = document.querySelectorAll("a[href^='#']");
-    
+
     tocLinks.forEach(function(link) {
         var txtValue = link.textContent || link.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -387,16 +387,16 @@ List of available commands and syntax.
 
 ## ❓ **FAQs & Troubleshooting** {#faqs--troubleshooting}
 
-**Q: Where is my data stored?**  
+**Q: Where is my data stored?**
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.
 
-**Q: Can I undo a deletion?**  
+**Q: Can I undo a deletion?**
 **A:** No. There is **no undo** feature, so backup your data frequently.
 
-**Q: How do I transfer data to another device?**  
+**Q: How do I transfer data to another device?**
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
 
-**Q: What happens when I run `clear`?**  
+**Q: What happens when I run `clear`?**
 **A:** It **deletes all data permanently**. Use it with caution.
 
 

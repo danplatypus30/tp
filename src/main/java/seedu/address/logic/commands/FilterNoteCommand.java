@@ -28,8 +28,8 @@ public class FilterNoteCommand extends Command {
             + "Parameters: KEYWORDS ...\n"
             + "Example: " + COMMAND_WORD + " [index]" + " nt/[title]";
 
-    public static final String MESSAGE_SUCCESS = "Note for %1$s:\n\n%2$s";
-
+    public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
+  
     private final Index index;
 
     private final String title;
@@ -68,11 +68,8 @@ public class FilterNoteCommand extends Command {
             throw new CommandException(MESSAGE_NOTE_NOT_FOUND);
         }
 
-        String notesContent = matchingNotes.stream()
-                .map(note -> "Title: " + note.getTitle() + "\nContent: " + note.getContent())
-                .collect(Collectors.joining("\n\n"));
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToFilter.getName().fullName, notesContent));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToFilter.getName().fullName),
+                false, false, false, null, matchingNotes);
     }
 
     @Override

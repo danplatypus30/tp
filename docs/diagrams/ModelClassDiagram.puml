@@ -15,7 +15,6 @@ Class UserPrefs
 Class UniquePatientList
 Class Patient
 Class Address
-Class Email
 Class Name
 Class Phone
 Class Tag

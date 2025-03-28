@@ -18,4 +18,5 @@ Patient *--> Name
 Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
+Patient *--> "*" Note
 @enduml

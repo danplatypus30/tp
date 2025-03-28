@@ -19,6 +19,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Note
 
 Class I #FFFFFF
 }
@@ -42,6 +43,7 @@ Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
 Patient *--> "*" Tag
+Patient *--> "*" Note
 
 Patient -[hidden]up--> I
 UniquePatientList -[hidden]right-> I

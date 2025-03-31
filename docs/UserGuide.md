@@ -197,7 +197,7 @@ add n/John Doe p/98005442 e/john.doe@email.com a/123 Clementi Street t/ADHD
 Patient added: John Doe (Phone: 98005442, Email: john.doe@email.com)
 ```
 
-⚠️ **Warning:** Avoid duplicate names for clarity.<br>
+⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
 
 [🔝 Back to Top](#table-of-contents)

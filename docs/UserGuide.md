@@ -195,6 +195,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -219,6 +220,7 @@ edit 1 p/91234567
 💡 **Tip:** You can edit just one piece of data, like only the phone number.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -245,6 +247,7 @@ delete 3
 💡 **Tip:** You can **undo** a delete using the undo command!
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -270,6 +273,7 @@ viewnotes 1
 💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -295,6 +299,7 @@ filternote 1 nt/23
 💡 **Tip:** Keywords should be part of the note's title for better results.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -349,6 +354,7 @@ View the changes after:
 💡 **Tip:** You can edit only the necessary fields without altering other details.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -376,6 +382,7 @@ View the changes after:
 💡 **Tip:** Keep backups if needed.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -398,7 +405,7 @@ View the changes after:
 
 
 [🔝 Back to Top](#table-of-contents)
-
+<div style="page-break-after: always;"></div>
 ---
 
 ### **Redo** {#redo}
@@ -438,6 +445,7 @@ clear
 💡 **Tip:** You can recover your lost data using the **undo** command.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 
@@ -457,6 +465,7 @@ help
 💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
 
 [🔝 Back to Top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ---
 

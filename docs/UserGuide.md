@@ -28,7 +28,7 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
    - [Edit a Note](#editing-a-note)
    - [Delete a Note](#deleting-a-note)
    - [Undo](#undo)
-   - [#Redo](#redo)
+   - [Redo](#redo)
    - [Clear All Data](#clear-data)
    - [Help](#help)
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)

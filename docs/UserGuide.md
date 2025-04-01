@@ -71,6 +71,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
   ```bash
   java -jar NeuroSync.jar
   ```
+  <img src="images/javaJar.png" alt="image" width="800"/>
 - For Mac:
   * Press `Command (⌘) + Space` to open spotlight search, search for **Terminal** and open it
   * Type `cd` (followed by a space), then drag and drop the folder where NeuroSync is saved into the Terminal window
@@ -109,7 +110,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 | **Action**                            | **Command Syntax**                                                         |
 |---------------------------------------|----------------------------------------------------------------------------|
 | [List Patients](#listing-patients)    | `list`                                                                     |
-| [Find Patient](#finding-a-patient)    | `find KEYWORD [MORE_KEYWORDS]`<br>`find John`                              |
+| [Find Patient](#finding-a-patient)    | `find KEYWORD [MORE_KEYWORDS]`<br>`find yu`                              |
 | [Add Patient](#adding-a-patient)      | `add n/NAME p/PHONE_NUMBER a/ADDRESS [t/TAG]…​`<br>`add n/John Doe p/98005442 a/123 Clementi Street t/ADHD` |
 | [Edit Patient](#editing-a-patient)    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]…​`<br>`edit 1 p/91234567` |
 | [Delete Patient](#deleting-a-patient) | `delete INDEX`<br>`delete 1` |
@@ -142,10 +143,7 @@ list
 
 ✔️ **Expected Output:**
 
-```
-1. John Doe (Phone: 98005442)
-2. Jane Smith (Phone: 91234567)
-```
+<img src="images/listCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.<br>
 💡 **Tip:** Use the **Find** command to quickly locate a patient.
@@ -163,14 +161,12 @@ find KEYWORD [MORE_KEYWORDS]
 **Example:**
 
 ```bash
-find John
+find yu
 ```
 
 ✔️ **Expected Output:**
 
-```
-1. John Doe (Phone: 98005442)
-```
+<img src="images/findCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** Multiple matches may be returned if you use a common name.<br>
 💡 **Tip:** Use specific names or IDs to narrow your search.
@@ -193,9 +189,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 
 ✔️ **Expected Output:**
 
-```
-Patient added: John Doe (Phone: 98005442)
-```
+<img src="images/addCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
@@ -218,9 +212,8 @@ edit 1 p/91234567
 
 ✔️ **Expected Output:**
 
-```
-Updated patient: John Doe (Phone: 91234567)
-```
+<img src="images/editCommand.png" alt="image" width="800"/>
+
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, like only the phone number.
@@ -240,14 +233,13 @@ delete INDEX
 **Example:**
 
 ```bash
-delete 2
+delete 3
 ```
 
 ✔️ **Expected Output:**
 
-```
-Deleted patient at index 2.
-```
+<img src="images/deleteCommand.png" alt="image" width="800"/>
+
 
 💡 **Tip:** Be careful when using this command, especially with large patient lists.<br>
 💡 **Tip:** You can **undo** a delete using the undo command!
@@ -272,10 +264,7 @@ viewnotes 1
 
 ✔️ **Expected Output:**
 
-```
-1. Mood Assessment - Discussed mood swings.
-2. Sleep Patterns - Irregular sleep schedule.
-```
+<img src="images/viewNotesCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** If a patient has many notes, it may take a moment to load.<br>
 💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
@@ -294,14 +283,13 @@ filternote INDEX nt/TITLE_KEYWORD
 **Example:**
 
 ```bash
-filternote 1 nt/anxiety
+filternote 1 nt/23
 ```
 
 ✔️ **Expected Output:**
 
-```
-Showing notes for Patient 1 with keyword: "anxiety"
-```
+<img src="images/filterNoteCommand.png" alt="image" width="800"/>
+
 
 ⚠️ **Warning:** Be specific with keywords to avoid too many results.<br>
 💡 **Tip:** Keywords should be part of the note's title for better results.
@@ -320,14 +308,16 @@ note INDEX nt/TITLE nc/CONTENT
 **Example:**
 
 ```bash
-note 1 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
+note 2 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 ```
 
 ✔️ **Expected Output:**
 
-```
-Note added for Patient 1: "Mood Assessment"
-```
+<img src="images/noteCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
+<img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
 
@@ -345,14 +335,16 @@ editnote INDEX nt/TITLE nc/CONTENT
 **Example:**
 
 ```bash
-editnote 1 nt/Mood Assessment nc/Updated content with more details.
+editnote 2 nt/Mood Assessment nc/Patient showed signs of suicide. Discussed mood swings and coping strategies.
 ```
 
 ✔️ **Expected Output:**
 
-```
-Note updated for Patient 1: "Mood Assessment"
-```
+<img src="images/editNoteCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
+<img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** You can edit only the necessary fields without altering other details.
 
@@ -370,14 +362,16 @@ deletenote INDEX nt/TITLE
 **Example:**
 
 ```bash
-deletenote 1 nt/Mood Assessment
+deletenote 2 nt/Mood Assessment
 ```
 
 ✔️ **Expected Output:**
 
-```
-Deleted note: "Mood Assessment" for Patient 1.
-```
+<img src="images/deleteNoteCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
+<img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** Keep backups if needed.
 
@@ -396,9 +390,12 @@ undo
 
 ✔️ **Expected Output:**
 
-```
-The previous change has been undone.
-```
+<img src="images/undoCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
+<img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -415,9 +412,11 @@ redo
 
 ✔️ **Expected Output:**
 
-```
-The patient list has gone back to the future!
-```
+<img src="images/redoCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
+<img src="images/viewAfterRedoCommand.png" alt="image" width="800"/>
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -434,9 +433,7 @@ clear
 
 ✔️ **Expected Output:**
 
-```
-All patient and note data cleared.
-```
+<img src="images/clearCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** You can recover your lost data using the **undo** command.
 
@@ -455,9 +452,7 @@ help
 
 ✔️ **Expected Output:**
 
-```
-List of available commands and syntax.
-```
+<img src="images/helpCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
 

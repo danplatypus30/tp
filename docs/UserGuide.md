@@ -314,6 +314,9 @@ note 2 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 ✔️ **Expected Output:**
 
 <img src="images/noteCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
 <img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
@@ -338,6 +341,9 @@ editnote 2 nt/Mood Assessment nc/Patient showed signs of suicide. Discussed mood
 ✔️ **Expected Output:**
 
 <img src="images/editNoteCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
 <img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** You can edit only the necessary fields without altering other details.
@@ -362,6 +368,9 @@ deletenote 2 nt/Mood Assessment
 ✔️ **Expected Output:**
 
 <img src="images/deleteNoteCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
 <img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>
 
 💡 **Tip:** Keep backups if needed.
@@ -382,6 +391,9 @@ undo
 ✔️ **Expected Output:**
 
 <img src="images/undoCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
 <img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
 
 
@@ -401,6 +413,9 @@ redo
 ✔️ **Expected Output:**
 
 <img src="images/redoCommand.png" alt="image" width="800"/>
+
+View the changes after:
+
 <img src="images/viewAfterRedoCommand.png" alt="image" width="800"/>
 
 [🔝 Back to Top](#table-of-contents)

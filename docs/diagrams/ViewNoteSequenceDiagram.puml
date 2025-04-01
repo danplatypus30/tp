@@ -1,0 +1,49 @@
+@startuml
+
+actor User as user
+participant ":Logic" as logic
+participant ":AddressBookParser" as abp
+participant ":ViewNoteCommandParser" as vncp
+participant ":ViewNoteCommand" as vnc
+participant ":Model" as model
+participant ":CommandResult" as cr
+
+user -> logic : execute("viewnote 1")
+activate logic
+
+logic -> abp : parseCommand("viewnote 1")
+activate abp
+
+abp -> vncp** : create()
+activate vncp
+
+abp -> vncp : parse("1")
+
+vncp -> vnc** : create(index)
+activate vnc
+
+vncp --> abp : v:ViewNoteCommand
+deactivate vncp
+
+abp --> logic : v:ViewNoteCommand
+deactivate abp
+
+logic -> vnc : execute()
+
+vnc -> model : getPatientNotes(index)
+activate model
+model --> vnc : notes
+deactivate model
+
+vnc -> cr** : create(result)
+activate cr
+cr --> vnc : c:CommandResult
+deactivate cr
+
+vnc --> logic : c:CommandResult
+deactivate vnc
+
+logic --> user : c:CommandResult
+deactivate logic
+
+@enduml

@@ -153,6 +153,7 @@ list
 ---
 
 ### **Finding a Patient** {#finding-a-patient}
+You can find a specific patient by keyword, using the `find` command.
 
 ```bash
 find KEYWORD [MORE_KEYWORDS]
@@ -176,6 +177,7 @@ find yu
 ---
 
 ### **Adding a Patient** {#adding-a-patient}
+You can add new patients using their name, phone number, and email address. 
 
 ```bash
 add n/NAME p/PHONE_NUMBER a/ADDRESS [t/TAG]…​
@@ -200,6 +202,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 ---
 
 ### **Editing a Patient** {#editing-a-patient}
+You can change a patient's information using the `edit` command!
 
 ```bash
 edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]…​
@@ -225,7 +228,7 @@ edit 1 p/91234567
 ---
 
 ### **Deleting a Patient** {#deleting-a-patient}
-You may want to delete a patient after they have recovered
+You may want to delete a patient after they have recovered.
 
 
 ```bash

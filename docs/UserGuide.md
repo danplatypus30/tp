@@ -332,6 +332,7 @@ View the changes after:
 [🔝 Back to Top](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Editing a Note** {#editing-a-note}
 You can always make changes to your **note content** after creating it, using the `editnote` command!

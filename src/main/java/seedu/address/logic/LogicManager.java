@@ -95,7 +95,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    private boolean shouldSavePatientList(Command command) {
+    public boolean shouldSavePatientList(Command command) {
         boolean isUndoCommand = command instanceof UndoCommand;
         boolean isRedoCommand = command instanceof RedoCommand;
         boolean isListCommand = command instanceof ListCommand;

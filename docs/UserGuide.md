@@ -7,7 +7,6 @@ title: User Guide
 
 NeuroSync helps psychiatrists **manage patient records and session notes efficiently**. Choose a topic below to get step-by-step instructions, troubleshoot issues, and maximize your productivity!
 
-
 ---
 
 ## 📜 Table of Contents {#table-of-contents}
@@ -177,7 +176,7 @@ find yu
 ---
 
 ### **Adding a Patient** {#adding-a-patient}
-You can add new patients using their name, phone number, and email address. 
+You can add new patients using their name, phone number, and address. 
 
 ```bash
 add n/NAME p/PHONE_NUMBER a/ADDRESS [t/TAG]…​

@@ -28,8 +28,8 @@ public class NoteCommand extends Command {
             + PREFIX_NOTE_TITLE + "[NOTE TITLE] "
             + PREFIX_NOTE_CONTENT + "[NOTE CONTENT]\n"
             + "Example: " + COMMAND_WORD + " 1"
-            + PREFIX_NOTE_TITLE + "Patient has allergies!"
-            + PREFIX_NOTE_CONTENT + "Allergies include:\n - Penicillin\n - Nuts";
+            + PREFIX_NOTE_TITLE + "Patient has allergies! "
+            + PREFIX_NOTE_CONTENT + "Allergies include: Penicillin, Nuts";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Note Title: %2$s, Note Content: %3$s";
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
 

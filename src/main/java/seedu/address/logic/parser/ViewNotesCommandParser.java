@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.ALPHANUMERIC_REGEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_SPECIAL_CHARACTERS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewNotesCommand;
@@ -10,10 +12,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new ViewNotesCommand object.
  */
 public class ViewNotesCommandParser implements Parser<ViewNotesCommand> {
-
-    public static final String MESSAGE_SPECIAL_CHARACTERS = "Command contains special characters.\n"
-            + "Only letters, numbers, and spaces are allowed.\n%1$s";
-    private static final String VALID_INPUT_REGEX = "^[a-zA-Z0-9\\s]+$";
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -34,7 +32,7 @@ public class ViewNotesCommandParser implements Parser<ViewNotesCommand> {
         }
 
         // Check for special characters before any other validation
-        if (!trimmedArgs.matches(VALID_INPUT_REGEX)) {
+        if (!trimmedArgs.matches(ALPHANUMERIC_REGEX)) {
             throw new ParseException(
                     String.format(MESSAGE_SPECIAL_CHARACTERS, ViewNotesCommand.MESSAGE_USAGE));
         }

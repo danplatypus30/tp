@@ -34,7 +34,7 @@ public class EditNoteCommand extends Command {
         + PREFIX_NOTE_TITLE + "[NOTE TITLE] "
         + PREFIX_NOTE_CONTENT + "[NOTE CONTENT]\n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NOTE_TITLE + "Patient has allergies! "
-        + PREFIX_NOTE_CONTENT + "Allergies include:\n - Shellfish\n - Mushrooms";
+        + PREFIX_NOTE_CONTENT + "Allergies include: Shellfish, Mushrooms";
 
     public static final String MESSAGE_ARGUMENTS = "UserIndex: %1$d, ListIndex: %1$d, Content: %3$s";
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note of Person: %1$s";
@@ -66,7 +66,7 @@ public class EditNoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
         if (isValidNote(noteTitle, content) == false) {
-            throw new CommandException(MESSAGE_NOT_ADDED_NOTE + noteTitle + content);
+            throw new CommandException(MESSAGE_NOT_ADDED_NOTE);
         }
 
         Patient patientToEdit = lastShownList.get(userIndex.getZeroBased());
@@ -74,7 +74,7 @@ public class EditNoteCommand extends Command {
         TreeSet<Note> updatedNotes = patientToEdit.getNotes();
         TreeSet<Note> newCopyNotes = new TreeSet<>(updatedNotes);
         if (newCopyNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_NO_NOTES);
+            throw new CommandException(String.format(MESSAGE_NO_NOTES, userIndex.getOneBased()));
         }
 
         Note deleteNote = null;

@@ -30,8 +30,8 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "Schizophrenia "
+            + PREFIX_TAG + "Anxiety";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
 

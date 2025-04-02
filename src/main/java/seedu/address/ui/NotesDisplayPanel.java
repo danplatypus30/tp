@@ -170,7 +170,9 @@ public class NotesDisplayPanel extends UiPart<Region> {
         // Date information in its own container
         VBox dateBox = new VBox();
         dateBox.getStyleClass().add("note-date-box");
-        Label dateLabel = new Label("Created: " + note.getDateTimeCreated().toString());
+        String formattedDateTime = note.getDateTimeCreated().format(
+                java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        Label dateLabel = new Label("Created: " + formattedDateTime);
         dateLabel.getStyleClass().add("note-date");
         dateBox.getChildren().add(dateLabel);
 

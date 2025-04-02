@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ViewNotesCommandParser.MESSAGE_SPECIAL_CHARACTERS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
 import org.junit.jupiter.api.Test;
@@ -25,16 +26,31 @@ public class ViewNotesCommandParserTest {
     }
 
     @Test
+    public void parse_specialCharacters_throwsParseException() {
+        // Test special characters
+        assertParseFailure(parser, "@1",
+                String.format(MESSAGE_SPECIAL_CHARACTERS, ViewNotesCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1!",
+                String.format(MESSAGE_SPECIAL_CHARACTERS, ViewNotesCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "#all",
+                String.format(MESSAGE_SPECIAL_CHARACTERS, ViewNotesCommand.MESSAGE_USAGE));
+        // Test negative numbers (contains special character '-')
+        assertParseFailure(parser, "-1",
+                String.format(MESSAGE_SPECIAL_CHARACTERS, ViewNotesCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ViewNotesCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ViewNotesCommand.MESSAGE_USAGE));
+        // Test non-numeric input (letters only)
+        assertParseFailure(parser, "abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ViewNotesCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "   ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewNotesCommand.MESSAGE_USAGE));
     }
 }

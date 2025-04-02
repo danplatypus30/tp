@@ -1,464 +1,623 @@
+# NeuroSync Developer Guide
+
+## Table of Contents
+
+- [Introduction](#introduction)
+  - [Purpose](#purpose)
+  - [How to Use This Guide](#how-to-use-this-guide)
+  - [Getting Help](#getting-help)
+- [Setting Up](#setting-up)
+  - [Development Environment](#development-environment)
+  - [Project Configuration](#project-configuration)
+  - [Running the Application](#running-the-application)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI Component](#ui-component)
+  - [Logic Component](#logic-component)
+  - [Model Component](#model-component)
+  - [Storage Component](#storage-component)
+  - [Common Classes](#common-classes)
+- [Implementation](#implementation)
+  - [Patient Management](#patient-management)
+  - [Notes System](#notes-system)
+  - [Undo/Redo Feature](#undoredo-feature)
+- [Documentation](#documentation)
+- [Testing](#testing)
+  - [Running Tests](#running-tests)
+  - [Writing Tests](#writing-tests)
+  - [Test Coverage](#test-coverage)
+- [Dev Ops](#dev-ops)
+  - [Build Process](#build-process)
+  - [Deployment](#deployment)
+  - [CI/CD](#cicd)
+- [Appendix](#appendix)
+  - [Glossary](#glossary)
+  - [API Reference](#api-reference)
+  - [Troubleshooting](#troubleshooting)
+
 ---
-layout: page
-title: Developer Guide
+
+## Introduction
+
+NeuroSync is a desktop application designed for psychiatrists to manage patient records and session notes efficiently. This guide provides detailed technical information for developers who want to understand the codebase and contribute to the project.
+
+### Purpose
+
+This developer guide aims to:
+
+- Help new developers understand the codebase structure
+- Document implementation details of key features
+- Provide guidelines for testing and maintenance
+- Serve as a reference for future development
+
+### How to Use This Guide
+
+1. Start with the [Setting Up](#setting-up) section if you're new to the project
+2. Read through the [Design](#design) section to understand the architecture
+3. Refer to specific sections in [Implementation](#implementation) for detailed feature documentation
+4. Use the [Appendix](#appendix) for reference materials and troubleshooting
+
+### Getting Help
+
+If you need assistance:
+
+- Check the [Troubleshooting](#troubleshooting) section in the Appendix
+- Review existing GitHub issues
+- Contact the development team
+
 ---
 
-- Table of Contents
-  {:toc}
+## Setting Up
+
+For detailed setup instructions, please refer to the [Getting Started](UserGuide.md#getting-started) section in our [User Guide](UserGuide.md).
 
 ---
 
-## **Acknowledgements**
-
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
----
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
----
-
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
+## Design
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The architecture follows a component-based design with clear separation of concerns. Each component is designed to be modular and maintainable.
 
-Given below is a quick overview of main components and how they interact with each other.
+#### Core Components
 
-**Main components of the architecture**
+- **UI**: Handles user interaction and display
+- **Logic**: Processes commands and business logic
+- **Model**: Manages data and state
+- **Storage**: Handles data persistence
+- **Commons**: Shared utilities and helpers
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+#### Component Interactions
 
-- At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
-- At shut down, it shuts down the other components and invokes cleanup methods where necessary.
-
-The bulk of the app's work is done by the following four components:
-
-- [**`UI`**](#ui-component): The UI of the App.
-- [**`Logic`**](#logic-component): The command executor.
-- [**`Model`**](#model-component): Holds the data of the App in memory.
-- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-**How the architecture components interact with each other**
-
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The sequence diagram below shows how components interact when processing a `delete 1` command:
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+Each component:
 
-- defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- Defines its API in an `interface` with the same name as the component
+- Implements functionality using a concrete `{Component Name}Manager` class
+- Interacts with other components through their interfaces rather than concrete classes
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+### UI Component
 
-<img src="images/ComponentManagers.png" width="300" />
+The UI component manages all user-facing elements of the application.
 
-The sections below give more details of each component.
+#### Key Classes
 
-### UI component
+- `MainWindow`: The root UI container
+- `CommandBox`: Handles command input
+- `ResultDisplay`: Shows command results
+- `PatientListPanel`: Displays patient list
+- `NotesDisplayPanel`: Shows patient notes
+- `StatusBarFooter`: Displays status information
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+#### Implementation
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+The UI:
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+- Uses JavaFX framework
+- Defines layouts in `.fxml` files under `src/main/resources/view`
+- Follows MVVM pattern for data binding
+- Implements responsive design principles
+- Uses custom styling defined in `styles.css`
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+#### Component API
 
-The `UI` component,
+```java
+public interface Ui {
+    /** Starts the UI (and the App). */
+    void start(Stage primaryStage);
 
-- executes user commands using the `Logic` component.
-- listens for changes to `Model` data so that the UI can be updated with the modified data.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Patient` object residing in the `Model`.
+    /** Returns the primary stage. */
+    Stage getPrimaryStage();
+}
+```
 
-### Logic component
+### Logic Component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The Logic component handles command processing and business rules.
 
-Here's a (partial) class diagram of the `Logic` component:
+#### Command Flow
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+1. User enters command through UI
+2. `LogicManager` receives command
+3. `AddressBookParser` parses command
+4. Appropriate command class executes
+5. Results returned through component chain
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+#### Key Classes
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+The Logic component uses a command pattern for handling different operations. Here's how it works:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
-<br>
+1. **Command Classes**:
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("note 1 nt/Session 1 nc/Patient anxious")` API call as an example.
+   - `Command`: Abstract base class for all commands
+   - Specific implementations like:
+     - `AddCommand`: Adds a new patient
+     - `DeleteCommand`: Removes a patient
+     - `EditCommand`: Modifies patient details
+     - `NoteCommand`: Adds/manages patient notes
+     - `ListCommand`: Shows all patients
 
-![Interactions Inside the Logic Component for the `note 1 nt/Session 1 nc/Patient anxious` Command](images/AddNoteSequenceDiagram.png)
+2. **Parser Classes**:
+   <img src="images/ParserClasses.png" width="600"/>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `NoteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
-<br>
+   - `Parser`: Interface that all command parsers implement
+   - Specific implementations like:
+     - `AddCommandParser`: Parses add command arguments
+     - `DeleteCommandParser`: Parses delete command index
+     - `NoteCommandParser`: Parses note command arguments
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletenote 1 nt/JohnAngry")` API call as an example.
+The term "XYZ" in the documentation represents a placeholder for specific command names. For example:
 
-![Interactions Inside the Logic Component for the `deletenote 1 nt/JohnAngry` Command](images/DeleteNoteSequenceDiagram.png)
+- `XYZCommand` could be `AddCommand`, `DeleteCommand`, etc.
+- `XYZCommandParser` could be `AddCommandParser`, `DeleteCommandParser`, etc.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteNoteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
+#### Command Processing Example
 
-How the `Logic` component works:
+Here's how a note command is processed:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a patient).<br>
-   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+<img src="images/AddNoteSequenceDiagram.png" width="800"/>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+1. User enters: `note 1 nt/Session 1 nc/Patient anxious`
+2. `LogicManager` receives command
+3. `AddressBookParser` creates `NoteCommandParser`
+4. Parser validates and creates `NoteCommand`
+5. Command executes and updates model
 
-<img src="images/ParserClasses.png" width="600"/>
+#### Storage Integration
 
-How the parsing works:
+<img src="images/StorageClassDiagram.png" width="550"/>
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+The Storage component provides JSON-based persistence with:
 
-### Model component
+- `JsonAddressBookStorage`: Handles patient data
+- `JsonUserPrefsStorage`: Manages user preferences
+- `JsonAdaptedPatient`: Converts between JSON and Patient objects
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+#### Model Structure
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="450"/>
 
-The `Model` component,
+The Model component maintains:
 
-- stores the address book data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
-- stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- Patient data in `UniquePatientList`
+- User preferences in `UserPrefs`
+- Filtered patient views
+- Note management system
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
+#### Undo/Redo Implementation
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+The undo/redo feature uses state management:
 
-</div>
+<img src="images/UndoRedoState0.png" width="300"/>
+Initial state when app launches
 
-### Storage component
+<img src="images/UndoRedoState1.png" width="300"/>
+After `delete 5` command
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+<img src="images/UndoRedoState2.png" width="300"/>
+After `add n/David` command
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/UndoRedoState3.png" width="300"/>
+After `undo` command
 
-The `Storage` component,
+<img src="images/UndoRedoState4.png" width="300"/>
+After `list` command (no state change)
 
-- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+<img src="images/UndoRedoState5.png" width="300"/>
+After `clear` command
 
-### Common classes
+The undo/redo mechanism is handled by:
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+<img src="images/UndoSequenceDiagram-Logic.png" width="600"/>
+Logic component handling undo
+
+<img src="images/UndoSequenceDiagram-Model.png" width="400"/>
+Model component handling undo
+
+### Model Component
+
+The Model component manages application data and state.
+
+#### Key Features
+
+- Stores address book data
+- Maintains filtered lists
+- Manages user preferences
+- Handles patient notes
+- Implements undo/redo
+
+#### Data Structures
+
+- `UniquePatientList`: Core patient storage
+- `TreeSet<Note>`: Ordered note storage
+- `VersionedAddressBook`: Undo/redo support
+
+#### Component API
+
+```java
+public interface Model {
+    void addPatient(Patient patient);
+    void deletePerson(Patient target);
+    void updateFilteredPatientList(Predicate<Patient> predicate);
+    void commitAddressBook();
+}
+```
+
+### Storage Component
+
+The Storage component handles data persistence.
+
+#### Features
+
+- JSON-based storage
+- Automatic saving
+- Data validation
+- Backup support
+
+#### Key Classes
+
+- `Storage`: Main component interface
+- `JsonAddressBookStorage`: Address book storage
+- `JsonUserPrefsStorage`: User preferences storage
+- `JsonAdaptedPatient`: JSON serialization
+
+#### Component API
+
+```java
+public interface Storage {
+    Path getAddressBookFilePath();
+    Optional<ReadOnlyAddressBook> readAddressBook();
+    void saveAddressBook(ReadOnlyAddressBook addressBook);
+}
+```
+
+### Common Classes
+
+Classes used across multiple components:
+
+- `LogsCenter`: Centralized logging
+- `Config`: Application configuration
+- `StringUtil`: String manipulation utilities
+- `CollectionUtil`: Collection helpers
+
+## Implementation
+
+This section describes the implementation details of key features in NeuroSync.
+
+### Patient Management
+
+The patient management system is the core functionality of NeuroSync.
+
+#### Features
+
+- Adding new patients
+- Editing patient information
+- Deleting patients
+- Viewing patient details
+- Search and filter capabilities
+
+#### Implementation Details
+
+```java
+public class Patient {
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
+    private final Address address;
+    private final Set<Tag> tags;
+    private final TreeSet<Note> notes;
+    // ...
+}
+```
+
+The `Patient` class is immutable, ensuring thread safety and preventing accidental modifications.
+
+#### Notable Design Considerations
+
+**Aspect: Patient Data Storage**
+
+- **Alternative 1 (current choice)**: Store all patient data in memory
+  - Pros: Fast access and modifications
+  - Cons: Limited by available memory
+- **Alternative 2**: Store patient data in database
+  - Pros: Can handle large datasets
+  - Cons: More complex setup, slower access
+
+### Notes System
+
+The notes system allows psychiatrists to maintain detailed records of patient sessions.
+
+#### Command Flow
+
+<img src="images/ViewNoteSequenceDiagram.png" width="800" />
+
+1. User enters `viewnote 1` command
+2. Command parsed and validated
+3. Patient retrieved from model
+4. Notes fetched and sorted
+5. Results displayed to user
+
+#### Implementation Details
+
+```java
+public class Note implements Comparable<Note> {
+    private final String title;
+    private final String content;
+    private final LocalDateTime createdAt;
+
+    @Override
+    public int compareTo(Note other) {
+        return createdAt.compareTo(other.createdAt);
+    }
+}
+```
+
+Notes are automatically sorted by creation date using a `TreeSet`.
+
+#### Notable Design Considerations
+
+**Aspect: Note Storage Structure**
+
+- **Alternative 1 (current choice)**: Store notes within Patient object
+  - Pros: Direct access, simpler implementation
+  - Cons: Larger memory footprint
+- **Alternative 2**: Store notes separately with references
+  - Pros: Memory efficient
+  - Cons: More complex querying
+
+### Undo/Redo Feature
+
+The undo/redo mechanism allows users to reverse or reapply changes. This feature is implemented using command pattern and state management.
+
+#### State Management Implementation
+
+The undo/redo feature uses state management to track changes in the address book. Below are the different states and transitions:
+
+##### Initial State
+
+<img src="images/UndoRedoState0.png" width="300"/>
+
+- When the app launches, it starts with a single address book state
+- Current state pointer points to the initial state
+
+##### After `delete 5` Command
+
+<img src="images/UndoRedoState1.png" width="300"/>
+
+- A new `AddressBook` state is created
+- Current state pointer is moved to the new state
+- Previous state is preserved for potential undo
+
+##### After `add n/David` Command
+
+<img src="images/UndoRedoState2.png" width="300"/>
+
+- Another new `AddressBook` state is created
+- Current state pointer moves to this new state
+- All previous states are preserved in sequence
+
+##### After `undo` Command
+
+<img src="images/UndoRedoState3.png" width="300"/>
+
+- Current state pointer moves back to previous state
+- State is restored to before `add n/David` was executed
+- Most recent state is preserved for potential redo
+
+##### After `list` Command
+
+<img src="images/UndoRedoState4.png" width="300"/>
+
+- List command does not modify address book state
+- Current state pointer remains unchanged
+- No new state is created
+
+##### After `clear` Command
+
+<img src="images/UndoRedoState5.png" width="300"/>
+
+- New state is created with empty address book
+- Current state pointer moves to new state
+- All previous states are preserved for potential undo
+
+#### Implementation Details
+
+The feature is implemented using the `VersionedAddressBook` class:
+
+```java
+public class VersionedAddressBook extends AddressBook {
+    private List<ReadOnlyAddressBook> addressBookStateList;
+    private int currentStatePointer;
+
+    public void commit() {
+        // Save current state
+    }
+
+    public void undo() {
+        // Restore previous state
+    }
+
+    public void redo() {
+        // Restore next state
+    }
+}
+```
+
+#### Command Processing Flow
+
+The sequence diagrams below illustrate how undo/redo commands are processed:
+
+##### Logic Component Handling
+
+<img src="images/UndoSequenceDiagram-Logic.png" width="600"/>
+
+- Shows how the Logic component processes the undo command
+- Demonstrates interaction between command classes and model
+
+##### Model Component Handling
+
+<img src="images/UndoSequenceDiagram-Model.png" width="400"/>
+
+- Shows how the Model component handles state changes
+- Illustrates state pointer management during undo operations
+
+#### Design Considerations
+
+**Aspect: State Storage Method**
+
+- **Alternative 1 (current choice)**: Store full states
+  - Pros: Simple implementation, reliable
+  - Cons: Higher memory usage
+- **Alternative 2**: Store command history
+  - Pros: Memory efficient
+  - Cons: Complex implementation, potential bugs
 
 ---
 
-## **Implementation**
+## Documentation
 
-This section describes some noteworthy details on how certain features are implemented.
+Documentation is crucial for maintaining and extending NeuroSync. We maintain two key documents:
 
-### \[Proposed\] Undo/redo feature
+1. **Developer Guide** (this document): Technical documentation for developers
+2. [**User Guide**](UserGuide.md): End-user documentation
 
-#### Proposed Implementation
+### Documentation Maintenance
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+- Keep documentation synchronized with code changes
+- Update diagrams when architecture changes
+- Include code examples for key features
+- Maintain clear formatting and structure
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+### Diagrams
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The following UML diagrams illustrate NeuroSync's architecture and components:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+1. **Architecture Overview**:
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+   - [Architecture Diagram](diagrams/ArchitectureDiagram.puml) - High-level system architecture
+   - [Architecture Sequence Diagram](diagrams/ArchitectureSequenceDiagram.puml) - Component interactions
 
-![UndoRedoState0](images/UndoRedoState0.png)
+2. **Component Details**:
 
-Step 2. The user executes `delete 5` command to delete the 5th patient in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+   - [UI Class Diagram](diagrams/UiClassDiagram.puml) - UI component structure and relationships
+   - [Model Class Diagram](diagrams/ModelClassDiagram.puml) - Model component classes and associations
+   - [Storage Class Diagram](diagrams/StorageClassDiagram.puml) - Storage component organization
 
-![UndoRedoState1](images/UndoRedoState1.png)
+3. **Feature Implementations**:
+   - [Add Note Sequence Diagram](diagrams/AddNoteSequenceDiagram.puml) - Note creation process flow
 
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+Each diagram is accompanied by detailed explanations in their respective sections.
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Testing
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+To run all tests, use:
+
+```
+./gradlew test
+```
+
+To write new tests:
+
+1. Create a new test class in the `src/test/java` directory
+2. Annotate test methods with `@Test`
+3. Follow the naming convention: `{MethodName}_{TestScenario}_expectedBehavior`
+   Example: `delete_validIndex_success()`
+
+To check test coverage:
+
+```
+./gradlew jacocoTestReport
+```
+
+The report will be generated in `build/reports/jacoco/test/html/index.html`
+
+To run specific test classes:
+
+```
+./gradlew test --tests "seedu.address.logic.commands.AddCommandTest"
+```
 
 ---
 
-## **Appendix: Requirements**
-
-### Product scope
-
-**Target user profile**:
-
-- Psychiatrists who have to keep track a lot of patients' details and session notes
-
-- has a need to manage a significant number of contacts
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
-
-**Value proposition**: All-in one platform to keep track of patient's contacts, details and notes from their sessions. No more searching and ruffling through thick files of paper - simply type in a patient's name and see all their details at a glance!
-
-### User stories
-
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​      | I want to …​                   | So that I can…​                                          |
-| -------- | ------------ | ------------------------------ | -------------------------------------------------------- |
-| `* * *`  | New User     | see usage instructions         | refer to instructions when I forget how to use NeuroSync |
-| `* * *`  | Psychiatrist | add a new patient              |                                                          |
-| `* * *`  | Psychiatrist | delete a patient               | remove patients who have recovered                       |
-| `* * *`  | Psychiatrist | view all patient's information | I can have a quick view of all the patients I have       |
-
-_{More to be added}_
-
-### Use cases
-
-(For all use cases below, the **System** is the `NeuroSync` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a patient**
-
-**MSS**
-
-1.  User requests to list patients
-2.  NeuroSync shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  NeuroSync deletes the patient
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-- 3a. The given index is invalid.
-
-  - 3a1. NeuroSync shows an error message.
-
-    Use case resumes at step 2.
-
-**Use case: View all patients**
-
-**MSS**
-
-1.  User requests to list patients
-2.  NeuroSync shows list of all patients
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Add a patient**
-
-**MSS**
-
-1.  User requests to add a patient
-2.  NeuroSync adds the patient
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The given patient has missing information.
-
-  - 2a1. NeuroSync shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. Duplicate patient exists.
-
-  - 2b1. NeuroSync shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. The given patient has invalid phone number format.
-
-  - 2b1. NeuroSync shows an error message.
-
-  Use case resumes at step 1.
-
-- 2d. The given patient's name contains special characters.
-
-  - 2d1. NeuroSync shows an error message.
-
-  Use case resumes at step 1.
-
-- 2e. The given patient's name exceeds the maximum length of 50 characters.
-
-  - 2e1. NeuroSync shows an error message.
-
-  Use case resumes at step 1.
-
-- 2f. The given patient's occupation exceeds the maximum length of 50 characters.
-
-  - 2f1. NeuroSync shows an error message.
-
-  Use case resumes at step 1.
-
-_{More to be added}_
-
-### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
+## Appendix
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Psyhiatrist**: A medical doctor who specializes in mental health. They diagnose, treat, and prevent mental, emotional, and behavioral disorders.
-- **Patient**: A patient of the psychiatrist, a patient who is seeking mental health treatment.
+| Term                 | Definition                                                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| API                  | Application Programming Interface - A set of definitions and protocols for building and integrating application software |
+| AddressBook          | The core data structure that stores all patient information in NeuroSync                                                 |
+| CLI                  | Command Line Interface - A text-based interface for interacting with the application                                     |
+| CRUD                 | Create, Read, Update, Delete - Basic operations for persistent storage                                                   |
+| Component            | A major architectural unit in the application (e.g., UI, Logic, Model, Storage)                                          |
+| FXML                 | XML-based user interface markup language used with JavaFX                                                                |
+| GUI                  | Graphical User Interface - The visual interface of the application                                                       |
+| JavaFX               | A software platform for creating desktop applications, used for NeuroSync's UI                                           |
+| JSON                 | JavaScript Object Notation - A lightweight data format used for data storage                                             |
+| MVVM                 | Model-View-ViewModel - The architectural pattern used in the UI component                                                |
+| Parser               | A component that converts user input text into command objects                                                           |
+| Patient              | An individual seeking psychiatric treatment, the main entity in the system                                               |
+| State                | The condition of the system at a specific point in time (used in undo/redo)                                              |
+| UI                   | User Interface - All components that handle user interaction                                                             |
+| UML                  | Unified Modeling Language - Standardized modeling language used in software engineering                                  |
+| Undo/Redo            | Feature that allows reverting or reapplying previous commands                                                            |
+| VersionedAddressBook | Extended AddressBook that supports undo/redo operations                                                                  |
 
----
+### Technical Terms
 
-## **Appendix: Instructions for manual testing**
+| Term      | Definition                                                      |
+| --------- | --------------------------------------------------------------- |
+| Exception | An error that occurs during program execution                   |
+| Gradle    | Build automation tool used for building and testing the project |
+| Interface | A contract that specifies what methods a class must implement   |
+| JUnit     | Testing framework used for unit testing                         |
 
-Given below are instructions to test the app manually.
+### Domain-Specific Terms
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+| Term           | Definition                                                                |
+| -------------- | ------------------------------------------------------------------------- |
+| Note           | A record of a patient session, including observations and treatment plans |
+| Session        | A meeting between psychiatrist and patient                                |
+| Treatment      | Medical care provided to a patient                                        |
+| Diagnosis      | Identification of a mental health condition                               |
+| Medical Record | Complete history of a patient's medical care                              |
+| Prescription   | Medical treatment ordered for a patient                                   |
+| Follow-up      | Subsequent appointment to monitor patient progress                        |
 
-</div>
+### API Reference
 
-### Launch and shutdown
+- [NeuroSync API](https://api.neurosynctest.com)
 
-1. Initial launch
+### Troubleshooting
 
-   1. Download the jar file and copy into an empty folder
+If you encounter issues, please:
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a patient
-
-1. Deleting a patient while all patients are being shown
-
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+- Check the [NeuroSync GitHub issues](https://github.com/se-edu/addressbook-level3/issues)
+- Contact the development team

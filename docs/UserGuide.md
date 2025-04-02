@@ -125,11 +125,6 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 | [Clear Data](#clear-data)             | `clear`                                                                    |
 | [Help](#help)                         | `help`                                                                     |
 
-[🔝 Back to Top](#table-of-contents)
-
----
-<div style="page-break-after: always;"></div>
-
 ## 🎯 **Commands & Usage** {#commands--usage}
 
 Each command is designed to make patient and session management **fast and intuitive**.
@@ -153,7 +148,6 @@ list
 [🔝 Back to Top](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
 
 ### **Finding a Patient** {#finding-a-patient}
 You can find a specific patient by keyword, using the `find` command.

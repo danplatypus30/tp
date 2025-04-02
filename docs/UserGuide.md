@@ -4,14 +4,14 @@ title: User Guide
 ---
 
 # **Welcome to the NeuroSync User Guide!**
-
 NeuroSync helps psychiatrists **manage patient records and session notes efficiently**. Choose a topic below to get step-by-step instructions, troubleshoot issues, and maximize your productivity!
 
+<img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## 📜 Table of Contents {#table-of-contents}
-
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Core Features](#core-features)
@@ -36,6 +36,7 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 8. [Acknowledgemets](#acknowledgements)
 9. [Contact & Support](#contact-support)
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## 📢 **Introduction** {#introduction}
@@ -153,6 +154,7 @@ list
 ---
 
 ### **Finding a Patient** {#finding-a-patient}
+You can find a specific patient by keyword, using the `find` command.
 
 ```bash
 find KEYWORD [MORE_KEYWORDS]
@@ -176,6 +178,7 @@ find yu
 ---
 
 ### **Adding a Patient** {#adding-a-patient}
+You can add new patients using their name, phone number, and address. 
 
 ```bash
 add n/NAME p/PHONE_NUMBER a/ADDRESS [t/TAG]…​
@@ -200,6 +203,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 ---
 
 ### **Editing a Patient** {#editing-a-patient}
+You can change a patient's information using the `edit` command!
 
 ```bash
 edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG]…​
@@ -225,7 +229,7 @@ edit 1 p/91234567
 ---
 
 ### **Deleting a Patient** {#deleting-a-patient}
-You may want to delete a patient after they have recovered
+You may want to delete a patient after they have recovered.
 
 
 ```bash
@@ -320,6 +324,7 @@ note 2 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 
 <img src="images/noteCommand.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 View the changes after:
 
 <img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
@@ -328,7 +333,9 @@ View the changes after:
 
 [🔝 Back to Top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 ---
+
 
 ### **Editing a Note** {#editing-a-note}
 You can always make changes to your **note content** after creating it, using the `editnote` command!
@@ -427,6 +434,8 @@ View the changes after:
 
 [🔝 Back to Top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ---
 
 ### **Clear All Data** {#clear-data}
@@ -475,7 +484,7 @@ help
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.
 
 **Q: Can I undo a deletion?**
-**A:** Yes! There is an **undo** feature, to recover data or undo edits.
+**A:** Yes! There is an [undo](#undo) feature, to recover data or undo edits.
 
 **Q: How do I transfer data to another device?**
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.

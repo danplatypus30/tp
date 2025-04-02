@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2425S2-CS2103T-F13-1/tp/actions)
 # NeuroSync: All-In-One app for Psychiatrists!
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/ugFrontPagePhoto.png)
 
 NeuroSync is a **all-in-one platform** to keep track of patients’ _contacts_, _details_ and _notes_ from their sessions. No more searching and ruffling through thick files of paper - simply type in a patient's name and see all their details at a glance!
 

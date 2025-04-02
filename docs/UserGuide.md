@@ -6,6 +6,11 @@ title: User Guide
 # **Welcome to the NeuroSync User Guide!**
 NeuroSync helps psychiatrists **manage patient records and session notes efficiently**. Choose a topic below to get step-by-step instructions, troubleshoot issues, and maximize your productivity!
 
+<img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
+
+<div style="page-break-after: always;"></div>
+---
+
 ## 📜 Table of Contents {#table-of-contents}
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
@@ -30,6 +35,8 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 7. [Technology Stack](#technology-stack)
 8. [Acknowledgemets](#acknowledgements)
 9. [Contact & Support](#contact-support)
+
+<div style="page-break-after: always;"></div>
 ---
 
 ## 📢 **Introduction** {#introduction}

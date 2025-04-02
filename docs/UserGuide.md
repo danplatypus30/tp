@@ -8,8 +8,8 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 
 <img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
 
-<div style="page-break-after: always;"></div>
 ---
+<div style="page-break-after: always;"></div>
 
 ## 📜 Table of Contents {#table-of-contents}
 1. [Introduction](#introduction)
@@ -36,8 +36,8 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 8. [Acknowledgemets](#acknowledgements)
 9. [Contact & Support](#contact-support)
 
-<div style="page-break-after: always;"></div>
 ---
+<div style="page-break-after: always;"></div>
 
 ## 📢 **Introduction** {#introduction}
 
@@ -105,6 +105,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 [🔝 Back to Top](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## 🧭 **Command Summary** {#command-summary}
 
@@ -176,9 +177,10 @@ find yu
 [🔝 Back to Top](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Adding a Patient** {#adding-a-patient}
-You can add new patients using their name, phone number, and address. 
+You can add new patients using their name, phone number, and address.
 
 ```bash
 add n/NAME p/PHONE_NUMBER a/ADDRESS [t/TAG]…​
@@ -198,9 +200,9 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Editing a Patient** {#editing-a-patient}
 You can change a patient's information using the `edit` command!
@@ -224,9 +226,9 @@ edit 1 p/91234567
 💡 **Tip:** You can edit just one piece of data, like only the phone number.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Deleting a Patient** {#deleting-a-patient}
 You may want to delete a patient after they have recovered.
@@ -251,9 +253,9 @@ delete 3
 💡 **Tip:** You can **undo** a delete using the undo command!
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Viewing Notes** {#viewing-notes}
 To see all notes at a glance!
@@ -277,9 +279,9 @@ viewnotes 1
 💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Filtering Notes** {#filtering-notes}
 To see specific notes for one patient!
@@ -303,9 +305,9 @@ filternote 1 nt/23
 💡 **Tip:** Keywords should be part of the note's title for better results.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Adding a Note** {#adding-a-note}
 You can add notes to a patient to keep track of discussions, diagnoses, etc.
@@ -333,9 +335,8 @@ View the changes after:
 
 [🔝 Back to Top](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
 ---
-
+<div style="page-break-after: always;"></div>
 
 ### **Editing a Note** {#editing-a-note}
 You can always make changes to your **note content** after creating it, using the `editnote` command!
@@ -354,6 +355,7 @@ editnote 2 nt/Mood Assessment nc/Patient showed signs of suicide. Discussed mood
 
 <img src="images/editNoteCommand.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 View the changes after:
 
 <img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
@@ -361,9 +363,9 @@ View the changes after:
 💡 **Tip:** You can edit only the necessary fields without altering other details.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Deleting a Note** {#deleting-a-note}
 If you made an oopsie, don't stress! You can delete the note.
@@ -389,9 +391,9 @@ View the changes after:
 💡 **Tip:** Keep backups if needed.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Undo** {#undo}
 If you made a mistake, don't stress! You can **undo your previous change** using this command.
@@ -406,14 +408,16 @@ undo
 
 <img src="images/undoCommand.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 View the changes after:
 
 <img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
 
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
+
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Redo** {#redo}
 If you need to get back a change you undid, don't stress! You can **redo your previous change** using this command.
@@ -428,15 +432,15 @@ redo
 
 <img src="images/redoCommand.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 View the changes after:
 
 <img src="images/viewAfterRedoCommand.png" alt="image" width="800"/>
 
 [🔝 Back to Top](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Clear All Data** {#clear-data}
 ⚠️ **Warning:** Use with caution! This will instantly remove all data.<br>
@@ -454,9 +458,9 @@ clear
 💡 **Tip:** You can recover your lost data using the **undo** command.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### **Help** {#help}
 Opens a pop-up to give you the link to this User Guide
@@ -474,9 +478,9 @@ help
 💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
 
 [🔝 Back to Top](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## ❓ **FAQs & Troubleshooting** {#faqs--troubleshooting}
 

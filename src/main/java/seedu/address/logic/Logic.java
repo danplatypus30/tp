@@ -49,5 +49,11 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Checks whether the addressbook should be saved before the command
+     *
+     * @param command
+     * @return boolean indicating whether addressbook should be saved
+     */
     boolean shouldSavePatientList(Command command);
 }

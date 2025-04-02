@@ -324,6 +324,7 @@ note 2 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 
 <img src="images/noteCommand.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 View the changes after:
 
 <img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
@@ -483,7 +484,7 @@ help
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.
 
 **Q: Can I undo a deletion?**
-**A:** Yes! There is an **undo** feature, to recover data or undo edits.
+**A:** Yes! There is an [undo](#undo) feature, to recover data or undo edits.
 
 **Q: How do I transfer data to another device?**
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.

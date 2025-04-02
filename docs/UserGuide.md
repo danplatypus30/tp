@@ -433,6 +433,7 @@ View the changes after:
 [🔝 Back to Top](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
+
 ---
 
 ### **Clear All Data** {#clear-data}

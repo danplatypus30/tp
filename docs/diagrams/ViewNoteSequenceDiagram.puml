@@ -1,29 +1,40 @@
 @startuml
+!include style.puml
+skinparam ArrowFontStyle plain
 
-actor User as user
-participant ":Logic" as logic
-participant ":AddressBookParser" as abp
-participant ":ViewNoteCommandParser" as vncp
-participant ":ViewNoteCommand" as vnc
-participant ":Model" as model
-participant ":CommandResult" as cr
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as logic LOGIC_COLOR
+participant ":AddressBookParser" as abp LOGIC_COLOR
+participant ":ViewNoteCommandParser" as vncp LOGIC_COLOR
+participant "v:ViewNoteCommand" as vnc LOGIC_COLOR
+participant "r:CommandResult" as cr LOGIC_COLOR
+end box
 
-user -> logic : execute("viewnote 1")
+box Model MODEL_COLOR_T1
+participant "m:Model" as model MODEL_COLOR
+end box
+
+[-> logic : execute("viewnote 1")
 activate logic
 
 logic -> abp : parseCommand("viewnote 1")
 activate abp
 
-abp -> vncp** : create()
+create vncp
+abp -> vncp
 activate vncp
 
 abp -> vncp : parse("1")
 
-vncp -> vnc** : create(index)
+create vnc
+vncp -> vnc
 activate vnc
 
 vncp --> abp : v:ViewNoteCommand
 deactivate vncp
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+vncp -[hidden]-> abp
+destroy vncp
 
 abp --> logic : v:ViewNoteCommand
 deactivate abp
@@ -35,15 +46,16 @@ activate model
 model --> vnc : notes
 deactivate model
 
-vnc -> cr** : create(result)
+create cr
+vnc -> cr
 activate cr
-cr --> vnc : c:CommandResult
+cr --> vnc : r
 deactivate cr
 
-vnc --> logic : c:CommandResult
+vnc --> logic : r
 deactivate vnc
 
-logic --> user : c:CommandResult
+[<--logic
 deactivate logic
 
 @enduml

@@ -32,6 +32,7 @@ title: Developer Guide
   - [Requirements](#requirements)
   - [API Reference](#api-reference)
   - [Troubleshooting](#troubleshooting)
+
 ---
 
 ## Introduction
@@ -61,7 +62,6 @@ If you need assistance:
 - Check the [Troubleshooting](#troubleshooting) section in the Appendix
 - Review existing GitHub issues
 - Contact the development team
-
 
 ### Setting Up
 
@@ -335,7 +335,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 #### Command Flow: Add Note
 
-<img src="images/AddNoteSequenceDiagram.png" width="800"/>
+<img src="diagrams/AddNoteSequenceDiagram.png" width="800"/>
 
 1. User enters: `note 1 nt/Session 1 nc/Patient anxious`
 2. `LogicManager` receives command
@@ -345,7 +345,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 #### Command Flow: View Notes
 
-<img src="images/ViewNoteSequenceDiagram.png" width="800" />
+<img src="diagrams/ViewNoteSequenceDiagram.png" width="800" />
 
 1. User enters `viewnote 1` command
 2. Command parsed and validated
@@ -532,30 +532,19 @@ Each diagram is accompanied by detailed explanations in their respective section
 
 [🔝 Back to Top](#table-of-contents)
 
----
+## Appendix
 
-## Testing
+### Testing
 
-To run all tests, use:
+This section describes how to run tests and write new tests for NeuroSync.
+
+#### Running Tests
+
+To run all tests:
 
 ```
 ./gradlew test
 ```
-
-To write new tests:
-
-1. Create a new test class in the `src/test/java` directory
-2. Annotate test methods with `@Test`
-3. Follow the naming convention: `{MethodName}_{TestScenario}_expectedBehavior`
-   Example: `delete_validIndex_success()`
-
-To check test coverage:
-
-```
-./gradlew jacocoTestReport
-```
-
-The report will be generated in `build/reports/jacoco/test/html/index.html`
 
 To run specific test classes:
 
@@ -563,11 +552,165 @@ To run specific test classes:
 ./gradlew test --tests "seedu.address.logic.commands.AddCommandTest"
 ```
 
+#### Writing Tests
+
+When writing new tests:
+
+1. Create a new test class in the `src/test/java` directory
+2. Annotate test methods with `@Test`
+3. Follow the naming convention: `{MethodName}_{TestScenario}_expectedBehavior`  
+   Example: `delete_validIndex_success()`
+
+#### Test Coverage
+
+To check test coverage:
+
+```
+./gradlew jacocoTestReport
+```
+
+The coverage report will be generated in `build/reports/jacoco/test/html/index.html`
+
+### Instructions for Manual Testing
+
+Given below are instructions to test the app manually.
+
+Note: These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
+
+### Launch and Shutdown
+
+#### Initial Launch
+
+1. Download the jar file and copy into an empty folder
+2. Double-click the jar file  
+   Expected outcome: GUI appears and shows a set of sample patients.
+
+#### Saving Window Preferences
+
+1. Resize the window to an optimum size
+2. Move the window to a different location
+3. Close the window
+4. Re-launch the app by double-clicking the jar file  
+   Expected outcome: The most recent window size and location is retained.
+
+### Patient Management
+
+Prerequisites for all patient management commands:
+
+- Use the `list` command to see all patients and their indices before executing any command
+- For editing or deleting patients, at least one patient must exist in the list
+- For commands requiring a specific patient index, the index must be valid (positive integer within list range)
+
+#### Adding a Patient
+
+Test case: `add n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/Schizophrenia t/Anxiety`  
+Expected outcome: New patient is added into the list.
+
+Test case: `add n/John Doe p/123 a/Address` (Testing duplicate patient)  
+Expected outcome: No patient is added.  
+Expected error message: This patient already exists in the app. Duplicate patient name is not allowed.
+
+#### Editing a Patient
+
+Test case: `edit 1 n/John Smith`  
+Expected outcome: Patient at index 1 is renamed to "John Smith".
+
+Test case: `edit 999 n/John Smith` (Testing invalid index)  
+Expected outcome: No patient is edited.  
+Expected error message: The patient index provided is invalid.
+
+#### Deleting a Patient
+
+Test case: `delete 1`  
+Expected outcome: Patient at index 1 is deleted from the list.
+
+Test case: `delete 999` (Testing invalid index)  
+Expected outcome: No patient is deleted.  
+Expected error message: Invalid index! Please provide a positive integer within the patient list range!
+
+### Note Management
+
+Prerequisites for all note management commands:
+
+- At least one patient must exist in the list
+- For viewing, editing, or deleting notes, the patient must have at least one existing note
+- Use the `list` command to see all patients and their indices
+- For commands requiring a specific note, the note title must exist for the patient
+
+#### Adding a Note
+
+Test case: `note 1 nt/First Visit nc/Patient shows symptoms of anxiety`  
+Expected outcome: New note is added to patient at index 1.
+
+Test case: `note 999 nt/First Visit nc/Patient anxious` (Testing invalid index)  
+Expected outcome: No note is added.  
+Expected error message: The patient index provided is invalid.
+
+Test case: `note 1 nt/First Visit nc/Patient anxious` (Testing duplicate note title)  
+Expected outcome: No new note is added.  
+Expected error message: Note with title First Visit already exists!
+
+#### Viewing Notes
+
+Test case: `viewnotes 1`  
+Expected outcome: Notes of patient at index 1 are displayed.
+
+Test case: `viewnotes 999` (Testing invalid index)  
+Expected outcome: Error details shown in the status message.  
+Expected error message: The patient index provided (999) is invalid.
+
+#### Filtering Notes
+
+Test case: `filternote 1 nt/Visit`  
+Expected outcome: Notes of patient at index 1 containing "Visit" in their titles are displayed.
+
+Test case: `filternote 1 nt/Nonexistent` (Filtering non-existent note title)
+Expected outcome: Error details shown in the status message.  
+Expected error message: Note Title does not exist: Nonexistent
+
+#### Editing a Note
+
+Test case: `editnote 1 nt/First Visit nc/Updated assessment: Patient showing improvement`  
+Expected outcome: Note content is updated.
+
+Test case: `editnote 1 nt/Nonexistent nc/Test` (Editing non-existent note title)
+Expected outcome: Error details shown in the status message.  
+Expected error message: Note Title does not exist: Nonexistent
+
+#### Deleting a Note
+
+Test case: `deletenote 1 nt/First Visit`  
+Expected outcome: Note is deleted from patient at index 1.
+
+Test case: `deletenote 1 nt/Nonexistent` (Deleting non-existent note title)
+Expected outcome: Error details shown in the status message.  
+Expected error message: Note Title does not exist: Nonexistent
+
+### Undo/Redo
+
+#### Undo Command
+
+Prerequisites: Multiple commands executed before executing this command.
+
+Test case: `undo`  
+Expected outcome: The most recent command is undone.
+
+Test case: `undo` (Testing when no more commands to undo)  
+Expected outcome: Error details shown in the status message.  
+Expected error message: No command to undo!
+
+#### Redo Command
+
+Prerequisites: Multiple patients in the list. Multiple undoable commands executed and undone.
+
+Test case: `redo`  
+Expected outcome: The most recently undone command is redone.
+
+Test case: `redo` (Testing when no more commands to redo)  
+Expected outcome: Error details shown in the status message.  
+Expected error message: No command to redo!
+
 [🔝 Back to Top](#table-of-contents)
-
----
-
-## Appendix
 
 ### Glossary
 
@@ -601,16 +744,14 @@ To run specific test classes:
 
 ### Domain-Specific Terms
 
-| Term           | Definition                                                                |
-| -------------- | ------------------------------------------------------------------------- |
-| Note           | A record of a patient session, including observations and treatment plans |
-| Session        | A meeting between psychiatrist and patient                                |
-| Treatment      | Medical care provided to a patient                                        |
-| Diagnosis      | Identification of a mental health condition                               |
-| Prescription   | Medical treatment ordered for a patient                                   |
-| Follow-up      | Subsequent appointment to monitor patient progress                        |
-
-[🔝 Back to Top](#table-of-contents)
+| Term         | Definition                                                                |
+| ------------ | ------------------------------------------------------------------------- |
+| Note         | A record of a patient session, including observations and treatment plans |
+| Session      | A meeting between psychiatrist and patient                                |
+| Treatment    | Medical care provided to a patient                                        |
+| Diagnosis    | Identification of a mental health condition                               |
+| Prescription | Medical treatment ordered for a patient                                   |
+| Follow-up    | Subsequent appointment to monitor patient progress                        |
 
 ### User Stories
 
@@ -618,7 +759,7 @@ As a psychiatrist, I can view all the patients' information including name, phon
 
 As a psychiatrist, I can easily add new patients to the app, so that I can maintain an organized record of my patients.
 
-As a psychiatrist having many patients, I can easily search for a patient in the list by inputting any 
+As a psychiatrist having many patients, I can easily search for a patient in the list by inputting any
 user information (name, phone, address), so that I can get their details or view their meeting notes.
 
 As a psychiatrist in a consultation session with a patient, I can take note of information
@@ -632,6 +773,7 @@ of the upcoming patient, so that I can recall any important information about th
 Difficulty level: Moderate, twice as hard as Individual Project
 
 Challenges faced:
+
 - Reading through and understanding AB3 codes, many layers of abstraction, many unfamiliar models, classes, methods
 - Implementing new commands, was difficult finding where to add various chunks of code, many classes from all over the application had to be changed, tests had to be added
 - Git workflows, merge conflicts, so many additional steps to make sure things go smoothly
@@ -639,18 +781,33 @@ Challenges faced:
 Effort required: High
 
 Achievements of the project:
+
 - Very familiar with git workflows now, comfortable working on team projects iteratively
 - Learnt and appreciated the abstractions of code in AB3, even though it looks like a lot of redundant work for such a simple application, it made sure that everything ran smoothly and greatly reduced the potential number of bugs
 - Learnt about proper documentation and standard conventions in code and git
 
 ### Planned Enhancements
 
+#### User Interface Improvements
+
 - Support for various languages including right-justified languages
+- Keyboard shortcuts for common operations
+
+#### Security Features
+
 - Adding of NRIC numbers and masking it
+- End-to-end encryption for sensitive patient data
+- Audit logging for all data modifications
+
+#### Patient Management
+
+- Appointment scheduling
+- Prescription management system
 
 ### Appendix: Requirements
 
 System Requirements:
+
 - Java: Version 17
 - Compatibility: Windows, macOS, Linux
 
@@ -658,13 +815,9 @@ System Requirements:
 
 - The application should load the main interface within 10 seconds on standard hardware.
 - Searching for a patient should return results in under 1 second for up
-to 10,000 contacts.
+  to 10,000 contacts.
 - The response to any use action should become visible within 5 seconds.
 - The user interface should be intuitive enough for users who are not IT-savvy.
-
-### API Reference
-
-- [NeuroSync API](https://api.neurosynctest.com)
 
 ### Troubleshooting
 
@@ -674,4 +827,3 @@ If you encounter issues, please:
 - Contact the development team
 
 [🔝 Back to Top](#table-of-contents)
-

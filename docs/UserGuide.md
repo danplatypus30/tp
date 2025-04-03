@@ -8,6 +8,13 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 
 <img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
 
+## 💡 **Core Features** {#core-features}
+
+- 📁 **Manage Patient Records** - Add, edit, and delete patient details.
+- 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
+- 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
+- ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
+
 ---
 <div style="page-break-after: always;"></div>
 
@@ -16,21 +23,29 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 2. [Getting Started](#getting-started)
 3. [Core Features](#core-features)
 4. [Command Summary](#command-summary)
+---
 5. [Commands & Usage](#commands--usage)
-   - [View All Patients](#listing-patients)
-   - [Finding a Patient](#finding-a-patient)
-   - [Adding a Patient](#adding-a-patient)
-   - [Editing a Patient](#editing-a-patient)
-   - [Deleting a Patient](#deleting-a-patient)
-   - [Viewing Notes](#viewing-notes)
-   - [Filtering Notes](#filtering-notes)
-   - [Adding a Note](#adding-a-note)
-   - [Edit a Note](#editing-a-note)
-   - [Delete a Note](#deleting-a-note)
-   - [Undo](#undo)
-   - [Redo](#redo)
-   - [Clear All Data](#clear-data)
-   - [Help](#help)
+
+  - **Patient Management Commands**
+    - [View All Patients](#listing-patients)
+    - [Finding a Patient](#finding-a-patient)
+    - [Adding a Patient](#adding-a-patient)
+    - [Editing a Patient](#editing-a-patient)
+    - [Deleting a Patient](#deleting-a-patient)
+
+  - **Note Management Commands**
+    - [Viewing Notes](#viewing-notes)
+    - [Filtering Notes](#filtering-notes)
+    - [Adding a Note](#adding-a-note)
+    - [Edit a Note](#editing-a-note)
+    - [Delete a Note](#deleting-a-note)
+
+  - **General Commands**
+    - [Undo](#undo)
+    - [Redo](#redo)
+    - [Clear All Data](#clear-data)
+    - [Help](#help)
+---
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)
 7. [Technology Stack](#technology-stack)
 8. [Acknowledgemets](#acknowledgements)
@@ -58,29 +73,29 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ### **1️⃣ Download & Install**
 
-1. **Download** the latest release from [NeuroSync Releases](https://github.com/AY2425S2-CS2103T-F13-1/tp/releases).
+1. Download the latest release from [NeuroSync Releases](https://github.com/AY2425S2-CS2103T-F13-1/tp/releases).
 2. Move the downloaded jar file to your preferred folder where you'd like to store your NeuroSync app
-3. Check your **Java version**:
+3. Check your Java version:
 - NeuroSync runs exclusively on Java version 17
 - To check your Java version, you can follow this [tutorial](https://www.java.com/en/download/help/version_manual.html)
 
 4. Open NeuroSync:
 - For Windows:
   * Open the folder where NeuroSync is saved
-  * Hold **shift**, right-click in the folder, select "Open Command Window Here"
+  * Hold shift, right-click in the folder, select "Open Command Window Here"
   * Type the following command and press Enter.
   ```bash
   java -jar NeuroSync.jar
   ```
   <img src="images/javaJar.png" alt="image" width="800"/>
 - For Mac:
-  * Press `Command (⌘) + Space` to open spotlight search, search for **Terminal** and open it
+  * Press `Command (⌘) + Space` to open spotlight search, search for Terminal and open it
   * Type `cd` (followed by a space), then drag and drop the folder where NeuroSync is saved into the Terminal window
-  * Press **Enter**, then type:
+  * Press Enter, then type:
   ```bash
   java -jar NeuroSync.jar
   ```
-  * Press **Enter**
+  * Press Enter
 
 5. You can now use NeuroSync!
 
@@ -94,17 +109,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 [🔝 Back to Top](#table-of-contents)
 
 ---
-
-## 💡 **Core Features** {#core-features}
-
-- 📁 **Manage Patient Records** - Add, edit, and delete patient details.
-- 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
-- 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
-- ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
-
-[🔝 Back to Top](#table-of-contents)
-
----
+<div style="page-break-after: always;"></div>
 
 ## 🧭 **Command Summary** {#command-summary}
 
@@ -125,6 +130,31 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 | [Clear Data](#clear-data)             | `clear`                                                                    |
 | [Help](#help)                         | `help`                                                                     |
 
+---
+<div style="page-break-after: always;"></div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/ADHD` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/ADHD`, `t/ADHD t/Depression` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</div>
+
+
 ## 🎯 **Commands & Usage** {#commands--usage}
 
 Each command is designed to make patient and session management **fast and intuitive**.
@@ -143,7 +173,7 @@ list
 <img src="images/listCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.<br>
-💡 **Tip:** Use the **Find** command to quickly locate a patient.
+💡 **Tip:** Use the [Find](#finding-a-patient) command to quickly locate a patient.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -237,7 +267,9 @@ edit 1 p/91234567
 <div style="page-break-after: always;"></div>
 
 ### **Deleting a Patient** {#deleting-a-patient}
-You may want to delete a patient after they have recovered.
+After a patient recovers, you can delete them from NeuroSync using the index number listed next to their name.
+
+📝 **Note**: Deleting a patient also deletes all of their notes.
 
 
 ```bash
@@ -255,8 +287,7 @@ delete 3
 <img src="images/deleteCommand.png" alt="image" width="800"/>
 
 
-💡 **Tip:** Be careful when using this command, especially with large patient lists.<br>
-💡 **Tip:** You can **undo** a delete using the undo command!
+💡 **Tip:** You can undo a delete using the [undo](#undo) command!
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -282,7 +313,7 @@ viewnotes 1
 <img src="images/viewNotesCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** If a patient has many notes, it may take a moment to load.<br>
-💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
+💡 **Tip:** Use [Filter Notes](#filtering-notes) to narrow down results if you have many notes.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -374,7 +405,7 @@ View the changes after:
 <div style="page-break-after: always;"></div>
 
 ### **Deleting a Note** {#deleting-a-note}
-If you made an oopsie, don't stress! You can delete the note.
+If you no longer need a note, you can delete it using the `deletenote` command.
 
 ```bash
 deletenote INDEX nt/TITLE
@@ -482,7 +513,7 @@ help
 
 <img src="images/helpCommand.png" alt="image" width="800"/>
 
-💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
+💡 **Tip:** Use **help** if you forget a command.
 
 [🔝 Back to Top](#table-of-contents)
 

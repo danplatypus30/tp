@@ -91,9 +91,12 @@ public class NoteCommand extends Command {
      * @param note The note to check for duplicates.
      * @return true if the note title already exists, false otherwise.
      */
-    private boolean alreadyHasNoteTitle(TreeSet<Note> updatedNotes, Note note) {
+    public boolean alreadyHasNoteTitle(TreeSet<Note> updatedNotes, Note note) {
+        requireAllNonNull(updatedNotes, note);
+        List<Note> notesList = updatedNotes.stream().toList();
+
         String newNoteTitle = note.getTitle().toLowerCase();
-        for (Note existingNote : updatedNotes) {
+        for (Note existingNote : notesList) {
             String existingNoteTitle = existingNote.getTitle().toLowerCase();
             if (existingNoteTitle.equals(newNoteTitle)) {
                 return true;

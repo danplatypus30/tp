@@ -49,6 +49,10 @@ public class NoteCommand extends Command {
         this.note = note;
     }
 
+    /**
+     * Executes the command to add a note to the patient at the specified index.
+     * If the index is invalid or note title already exists, a CommandException is thrown.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Patient> lastShownList = model.getFilteredPatientList();
@@ -64,7 +68,7 @@ public class NoteCommand extends Command {
 
         // Not allowed to create notes with the same title
         if (alreadyHasNoteTitle(updatedNotes, note)) {
-            throw new CommandException(Messages.MESSAGE_NOTE_ALREADY_EXISTS);
+            throw new CommandException(String.format(Messages.MESSAGE_NOTE_ALREADY_EXISTS, note.getTitle()));
         }
         
         updatedNotes.add(note);

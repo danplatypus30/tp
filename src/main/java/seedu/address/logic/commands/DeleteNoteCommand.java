@@ -90,7 +90,7 @@ public class DeleteNoteCommand extends Command {
         model.deletePatientNote(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_NOTE_SUCCESS, Messages.format(patientToEdit)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_NOTE_SUCCESS, Messages.format(editedPatient)));
     }
 
     @Override

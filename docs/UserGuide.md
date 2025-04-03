@@ -73,29 +73,29 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ### **1️⃣ Download & Install**
 
-1. **Download** the latest release from [NeuroSync Releases](https://github.com/AY2425S2-CS2103T-F13-1/tp/releases).
+1. Download the latest release from [NeuroSync Releases](https://github.com/AY2425S2-CS2103T-F13-1/tp/releases).
 2. Move the downloaded jar file to your preferred folder where you'd like to store your NeuroSync app
-3. Check your **Java version**:
+3. Check your Java version:
 - NeuroSync runs exclusively on Java version 17
 - To check your Java version, you can follow this [tutorial](https://www.java.com/en/download/help/version_manual.html)
 
 4. Open NeuroSync:
 - For Windows:
   * Open the folder where NeuroSync is saved
-  * Hold **shift**, right-click in the folder, select "Open Command Window Here"
+  * Hold shift, right-click in the folder, select "Open Command Window Here"
   * Type the following command and press Enter.
   ```bash
   java -jar NeuroSync.jar
   ```
   <img src="images/javaJar.png" alt="image" width="800"/>
 - For Mac:
-  * Press `Command (⌘) + Space` to open spotlight search, search for **Terminal** and open it
+  * Press `Command (⌘) + Space` to open spotlight search, search for Terminal and open it
   * Type `cd` (followed by a space), then drag and drop the folder where NeuroSync is saved into the Terminal window
-  * Press **Enter**, then type:
+  * Press Enter, then type:
   ```bash
   java -jar NeuroSync.jar
   ```
-  * Press **Enter**
+  * Press Enter
 
 5. You can now use NeuroSync!
 
@@ -173,7 +173,7 @@ list
 <img src="images/listCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.<br>
-💡 **Tip:** Use the **Find** command to quickly locate a patient.
+💡 **Tip:** Use the [Find](#finding-a-patient) command to quickly locate a patient.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -256,7 +256,9 @@ edit 1 p/91234567
 <div style="page-break-after: always;"></div>
 
 ### **Deleting a Patient** {#deleting-a-patient}
-You may want to delete a patient after they have recovered.
+After a patient recovers, you can delete them from NeuroSync using the index number listed next to their name.
+
+📝 **Note**: Deleting a patient also deletes all of their notes.
 
 
 ```bash
@@ -274,8 +276,7 @@ delete 3
 <img src="images/deleteCommand.png" alt="image" width="800"/>
 
 
-💡 **Tip:** Be careful when using this command, especially with large patient lists.<br>
-💡 **Tip:** You can **undo** a delete using the undo command!
+💡 **Tip:** You can undo a delete using the [undo](#undo) command!
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -301,7 +302,7 @@ viewnotes 1
 <img src="images/viewNotesCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** If a patient has many notes, it may take a moment to load.<br>
-💡 **Tip:** Use **Filter Notes** to narrow down results if you have many notes.
+💡 **Tip:** Use [Filter Notes](#filtering-notes) to narrow down results if you have many notes.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -393,7 +394,7 @@ View the changes after:
 <div style="page-break-after: always;"></div>
 
 ### **Deleting a Note** {#deleting-a-note}
-If you made an oopsie, don't stress! You can delete the note.
+If you no longer need a note, you can delete it using the `deletenote` command.
 
 ```bash
 deletenote INDEX nt/TITLE
@@ -501,7 +502,7 @@ help
 
 <img src="images/helpCommand.png" alt="image" width="800"/>
 
-💡 **Tip:** Use **help** if you forget a command or need to refer to syntax quickly.
+💡 **Tip:** Use **help** if you forget a command.
 
 [🔝 Back to Top](#table-of-contents)
 

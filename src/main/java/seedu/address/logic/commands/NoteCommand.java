@@ -70,7 +70,7 @@ public class NoteCommand extends Command {
         if (alreadyHasNoteTitle(updatedNotes, note)) {
             throw new CommandException(String.format(Messages.MESSAGE_NOTE_ALREADY_EXISTS, note.getTitle()));
         }
-        
+
         updatedNotes.add(note);
 
         // Create updated patient
@@ -90,7 +90,7 @@ public class NoteCommand extends Command {
     /**
      * Returns true if the note title already exists in the updated notes.
      * Method is case-insensitive, meaning "Note" and "note" are considered the same.
-     * 
+     *
      * @param updatedNotes The updated notes of the patient.
      * @param note The note to check for duplicates.
      * @return true if the note title already exists, false otherwise.
@@ -110,8 +110,8 @@ public class NoteCommand extends Command {
     }
 
     /**
-     * Stores the details to add the note with. Each non-empty field value will replace the
-     * corresponding field value of the note.
+     * Stores the details to add the note with. Each non-empty field value 
+     * will replace the corresponding field value of the note.
      */
     public static class AddNoteDescriptor {
         private String title;

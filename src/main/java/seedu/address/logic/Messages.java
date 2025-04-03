@@ -13,14 +13,16 @@ import seedu.address.model.patient.Patient;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command. You can refer" +
+            " to the User Guide for the correct command format! ";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
     public static final String MESSAGE_INVALID_NOTE_DELETE_TITLE = "The note title provided is invalid";
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the app";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the app. Duplicate" +
+            " patient name is not allowed. ";
     public static final String MESSAGE_NOTE_NOT_FOUND = "Note Title does not exist: %1$s";
     public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes";
     public static final String MESSAGE_NOT_ADDED_NOTE = "Note must have title and content!";

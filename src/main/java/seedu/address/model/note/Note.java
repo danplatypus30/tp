@@ -66,7 +66,10 @@ public class Note implements Comparable<Note> {
      */
     public static boolean isValidNote(String title, String content) {
         // trim to make sure that title and content is not just whitespace
-        return !title.trim().isEmpty() && !content.trim().isEmpty();
+        return title != null
+                && content != null
+                && !title.trim().isEmpty()
+                && !content.trim().isEmpty();
     }
 
     /**

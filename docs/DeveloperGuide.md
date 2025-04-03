@@ -532,6 +532,8 @@ Each diagram is accompanied by detailed explanations in their respective section
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## Appendix
 
 ### Testing
@@ -767,6 +769,89 @@ about this session, so that I can refer to it during the patient's next visit.
 
 As a psychiatrist preparing for my next consultation session, I can view all the notes
 of the upcoming patient, so that I can recall any important information about this patient.
+
+### Use Cases
+
+**System:** NeuroSync  
+**Use case:** UC1 - Add Patient  
+**Actor:** Psychiatrist  
+
+**Main Success Scenario (MSS):**  
+1. Psychiatrist adds patient and enters patient’s details (name, phone number, address, tags).  
+2. NeuroSync saves the patient and his/her details.  
+**Use case ends.**
+
+**Extensions:**  
+**1a.** Psychiatrist leaves a required field blank or enters invalid data.  
+&nbsp;&nbsp;&nbsp;&nbsp;1a1. NeuroSync highlights the invalid/missing fields and displays an error message.  
+&nbsp;&nbsp;&nbsp;&nbsp;1a2. Psychiatrist corrects the data.  
+&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1–1a2 are repeated until data are valid and not empty.  
+&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.  
+
+**2a.** NeuroSync detects a duplicate patient record.  
+&nbsp;&nbsp;&nbsp;&nbsp;2a1. NeuroSync displays an error message saying that the user already exists.  
+&nbsp;&nbsp;&nbsp;&nbsp;**Use case ends.**
+
+---
+
+**System:** NeuroSync  
+**Use case:** UC2 - Find Patient  
+**Actor:** Psychiatrist  
+
+**Main Success Scenario (MSS):**  
+1. Psychiatrist searches for patient based on his/her name.  
+2. NeuroSync displays a list of matching patients.  
+**Use case ends.**
+
+**Extensions:**  
+**1a.** Psychiatrist enters invalid input (e.g., unsupported characters or incomplete query).  
+&nbsp;&nbsp;&nbsp;&nbsp;1a1. NeuroSync displays an error message showing the error.  
+&nbsp;&nbsp;&nbsp;&nbsp;1a2. Psychiatrist corrects the input.  
+&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.  
+
+**2a.** No patients match the search criteria.  
+&nbsp;&nbsp;&nbsp;&nbsp;2a1. NeuroSync displays a message saying no patients are found.  
+&nbsp;&nbsp;&nbsp;&nbsp;**Use case ends.**
+
+---
+
+**System:** NeuroSync  
+**Use case:** UC3 - Add Notes to Patient  
+**Actor:** Psychiatrist  
+
+**Main Success Scenario (MSS):**  
+1. Psychiatrist selects a patient from the patient list.  
+2. Psychiatrist adds a new note to the patient, specifying the note title and contents.  
+3. NeuroSync saves the note under the specified patient.  
+**Use case ends.**
+
+**Extensions:**  
+**2a.** Psychiatrist leaves the note title or content blank.  
+&nbsp;&nbsp;&nbsp;&nbsp;2a1. NeuroSync displays an error message indicating that the note title and content cannot be empty.  
+&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.  
+
+**2b.** Note title already exists for the same patient. *(Duplicate title detected)*  
+&nbsp;&nbsp;&nbsp;&nbsp;2b1. NeuroSync displays an error message indicating that the note title already exists.  
+&nbsp;&nbsp;&nbsp;&nbsp;2b2. Psychiatrist edits the note title to a unique one.  
+&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 3.
+
+---
+
+**System:** NeuroSync  
+**Use case:** UC4 - View Patient’s Notes  
+**Actor:** Psychiatrist  
+
+**Main Success Scenario (MSS):**  
+1. Psychiatrist selects a patient from the patient list.  
+2. Psychiatrist chooses to view notes belonging to the selected patient.  
+3. NeuroSync displays a list of all notes associated with the patient.  
+**Use case ends.**
+
+**Extensions:**  
+**3a.** Selected patient has no notes.  
+&nbsp;&nbsp;&nbsp;&nbsp;3a1. NeuroSync displays a message saying this patient has no notes.  
+&nbsp;&nbsp;&nbsp;&nbsp;**Use case ends.**
+
 
 ### Appendix: Effort
 

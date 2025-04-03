@@ -23,21 +23,29 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 2. [Getting Started](#getting-started)
 3. [Core Features](#core-features)
 4. [Command Summary](#command-summary)
+---
 5. [Commands & Usage](#commands--usage)
-   - [View All Patients](#listing-patients)
-   - [Finding a Patient](#finding-a-patient)
-   - [Adding a Patient](#adding-a-patient)
-   - [Editing a Patient](#editing-a-patient)
-   - [Deleting a Patient](#deleting-a-patient)
-   - [Viewing Notes](#viewing-notes)
-   - [Filtering Notes](#filtering-notes)
-   - [Adding a Note](#adding-a-note)
-   - [Edit a Note](#editing-a-note)
-   - [Delete a Note](#deleting-a-note)
-   - [Undo](#undo)
-   - [Redo](#redo)
-   - [Clear All Data](#clear-data)
-   - [Help](#help)
+
+  - **Patient Management Commands**
+    - [View All Patients](#listing-patients)
+    - [Finding a Patient](#finding-a-patient)
+    - [Adding a Patient](#adding-a-patient)
+    - [Editing a Patient](#editing-a-patient)
+    - [Deleting a Patient](#deleting-a-patient)
+
+  - **Note Management Commands**
+    - [Viewing Notes](#viewing-notes)
+    - [Filtering Notes](#filtering-notes)
+    - [Adding a Note](#adding-a-note)
+    - [Edit a Note](#editing-a-note)
+    - [Delete a Note](#deleting-a-note)
+
+  - **General Commands**
+    - [Undo](#undo)
+    - [Redo](#redo)
+    - [Clear All Data](#clear-data)
+    - [Help](#help)
+---
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)
 7. [Technology Stack](#technology-stack)
 8. [Acknowledgemets](#acknowledgements)

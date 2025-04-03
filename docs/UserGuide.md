@@ -180,7 +180,8 @@ list
 ---
 
 ### **Finding a Patient** {#finding-a-patient}
-You can find a specific patient by keyword, using the `find` command.
+You can find a specific patient by their name,
+phone number or address, using the `find` command.
 
 ```bash
 find KEYWORD [MORE_KEYWORDS]
@@ -197,7 +198,7 @@ find yu
 <img src="images/findCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** Multiple matches may be returned if you use a common name.<br>
-💡 **Tip:** Use specific names or IDs to narrow your search.
+💡 **Tip:** Use specific names or words to narrow your search.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -222,7 +223,12 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 <img src="images/addCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
-💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
+
+> 💡 **Tip: Name Constraints**<br>
+> Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
+> Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -248,7 +254,12 @@ edit 1 p/91234567
 
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
-💡 **Tip:** You can edit just one piece of data, like only the phone number.
+💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
+
+> 💡 **Tip: Name Constraints**<br>
+> Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
+> Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)
+
 
 [🔝 Back to Top](#table-of-contents)
 

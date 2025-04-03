@@ -598,9 +598,10 @@ As a psychiatrist, I can view all the patients' information including name, phon
 
 As a psychiatrist, I can easily add new patients to the app, so that I can maintain an organized record of my patients.
 
-As a psychiatrist having many patients, I can easily search for a patient in the list by inputting any user information (name, phone, address), so that I can get their details or view their meeting notes.
+As a psychiatrist having many patients, I can easily search for a patient in the list by inputting any 
+user information (name, phone, address), so that I can get their details or view their meeting notes.
 
-As a psychiatrist in a consultation session with a patient, I can take note of information 
+As a psychiatrist in a consultation session with a patient, I can take note of information
 about this session, so that I can refer to it during the patient's next visit.
 
 As a psychiatrist preparing for my next consultation session, I can view all the notes
@@ -611,9 +612,9 @@ of the upcoming patient, so that I can recall any important information about th
 > to be updated
 
 ### Non-Functional Requirements
- 
+
 - The application should load the main interface within 10 seconds on standard hardware.
-- Searching for a patient should return results in under 1 second for up 
+- Searching for a patient should return results in under 1 second for up
 to 10,000 contacts.
 - The response to any use action should become visible within 5 seconds.
 - The user interface should be intuitive enough for users who are not IT-savvy.
@@ -663,3 +664,4 @@ If you encounter issues, please:
 - Contact the development team
 
 [🔝 Back to Top](#table-of-contents)
+

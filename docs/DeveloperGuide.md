@@ -8,10 +8,6 @@ title: Developer Guide
 ## Table of Contents {#table-of-contents}
 
 - [Introduction](#introduction)
-  - [Purpose](#purpose)
-  - [How to Use This Guide](#how-to-use-this-guide)
-  - [Getting Help](#getting-help)
-  - [Setting Up](#setting-up)
 - [Design](#design)
   - [Architecture](#architecture)
   - [Logic Component](#logic-component)
@@ -25,14 +21,17 @@ title: Developer Guide
   - [Undo/Redo Feature](#undoredo-feature)
 - [Documentation](#documentation)
 - [Testing](#testing)
+
 - [Appendix](#appendix)
   - [Glossary](#glossary)
-  - [Technical Terms](#technical-terms)
-  - [Domain-Specific Terms](#domain-specific-terms)
-  - [User Stories and Use Cases](#user-stories-and-use-cases)
+  - [User Stories](#user-stories)
+  - [Use Cases](#use-cases)
+  - [Instructions for Manual Testing](#instructions-for-manual-testing)
+  - [Effort](#effort)
+  - [Planned Enhancements](#planned-enhancements)
+  - [Requirements](#requirements)
   - [API Reference](#api-reference)
   - [Troubleshooting](#troubleshooting)
-
 ---
 
 ## Introduction
@@ -632,9 +631,13 @@ of the upcoming patient, so that I can recall any important information about th
 
 > to be updated
 
+[🔝 Back to Top](#table-of-contents)
+
 ### Instructions for Manual Testing
 
 > to be updated
+
+[🔝 Back to Top](#table-of-contents)
 
 ### Appendix: Effort
 
@@ -651,7 +654,6 @@ Achievements of the project:
 - Very familiar with git workflows now, comfortable working on team projects iteratively
 - Learnt and appreciated the abstractions of code in AB3, even though it looks like a lot of redundant work for such a simple application, it made sure that everything ran smoothly and greatly reduced the potential number of bugs
 - Learnt about proper documentation and standard conventions in code and git
-
 
 ### Planned Enhancements
 

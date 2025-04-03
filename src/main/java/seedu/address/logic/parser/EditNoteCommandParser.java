@@ -24,6 +24,9 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
             PREFIX_NOTE_TITLE, PREFIX_NOTE_CONTENT);
 
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE_TITLE, PREFIX_NOTE_CONTENT);
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

@@ -69,6 +69,7 @@ For detailed setup instructions, please refer to the [Getting Started](UserGuide
 
 [🔝 Back to Top](#table-of-contents)
 
+---
 
 ## Design
 
@@ -99,6 +100,8 @@ Each component:
 - Interacts with other components through their interfaces rather than concrete classes
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ## Logic Component
 
@@ -142,6 +145,8 @@ The term "XYZ" in the documentation represents a placeholder for specific comman
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## Model Component
 
 #### Model Structure
@@ -184,6 +189,8 @@ The Model component maintains:
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## Storage Component
 
 The Storage component handles data persistence.
@@ -224,6 +231,8 @@ The Storage component provides JSON-based persistence with:
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## UI Component
 
 The UI component manages all user-facing elements of the application.
@@ -261,6 +270,8 @@ public interface Ui {
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## Common Classes
 
 Classes used across multiple components:
@@ -271,6 +282,8 @@ Classes used across multiple components:
 - `CollectionUtil`: Collection helpers
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ## Implementation
 
@@ -313,6 +326,8 @@ The `Patient` class is immutable, ensuring thread safety and preventing accident
 - **Alternative 2**: Store patient data in database
   - Pros: Can handle large datasets
   - Cons: More complex setup, slower access
+
+---
 
 ### Notes Feature
 
@@ -367,6 +382,8 @@ Notes are automatically sorted by creation date using a `TreeSet`.
   - Cons: More complex querying
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ### Undo/Redo Feature
 
@@ -477,6 +494,7 @@ The sequence diagrams below illustrate how undo/redo commands are processed:
 
 [🔝 Back to Top](#table-of-contents)
 
+---
 
 ## Documentation
 
@@ -514,6 +532,8 @@ Each diagram is accompanied by detailed explanations in their respective section
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## Testing
 
 To run all tests, use:
@@ -544,6 +564,8 @@ To run specific test classes:
 ```
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ## Appendix
 

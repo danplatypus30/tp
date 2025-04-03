@@ -592,9 +592,64 @@ To run specific test classes:
 
 [🔝 Back to Top](#table-of-contents)
 
-### User Stories and Use Cases
+### User Stories
+
+As a psychiatrist, I can view all the patients' information including name, phone number,address so that it is easier for me to have a quick view of all the patients I have.
+
+As a psychiatrist, I can easily add new patients to the app, so that I can maintain an organized record of my patients.
+
+As a psychiatrist having many patients, I can easily search for a patient in the list by inputting any user information (name, phone, address), so that I can get their details or view their meeting notes.
+
+As a psychiatrist in a consultation session with a patient, I can take note of information 
+about this session, so that I can refer to it during the patient's next visit.
+
+As a psychiatrist preparing for my next consultation session, I can view all the notes
+of the upcoming patient, so that I can recall any important information about this patient.
+
+### Use Cases
+
+> to be updated
+
+### Non-Functional Requirements
  
-> To be updated
+- The application should load the main interface within 10 seconds on standard hardware.
+- Searching for a patient should return results in under 1 second for up 
+to 10,000 contacts.
+- The response to any use action should become visible within 5 seconds.
+- The user interface should be intuitive enough for users who are not IT-savvy.
+
+### Instructions for Manual Testing
+
+> to be updated
+
+### Appendix: Effort
+
+Difficulty level: Moderate, twice as hard as Individual Project
+
+Challenges faced:
+- Reading through and understanding AB3 codes, many layers of abstraction, many unfamiliar models, classes, methods
+- Implementing new commands, was difficult finding where to add various chunks of code, many classes from all over the application had to be changed, tests had to be added
+- Git workflows, merge conflicts, so many additional steps to make sure things go smoothly
+
+Effort required: High
+
+Achievements of the project:
+- Very familiar with git workflows now, comfortable working on team projects iteratively
+- Learnt and appreciated the abstractions of code in AB3, even though it looks like a lot of redundant work for such a simple application, it made sure that everything ran smoothly and greatly reduced the potential number of bugs
+- Learnt about proper documentation and standard conventions in code and git
+
+
+### Planned Enhancements
+
+- Support for various languages including right-justified languages
+- Adding of NRIC numbers and masking it
+
+### Appendix: Requirements
+
+System Requirements:
+- Java: Version 17
+- Compatibility: Windows, macOS, Linux
+
 
 ### API Reference
 

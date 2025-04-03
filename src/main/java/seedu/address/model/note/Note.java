@@ -26,6 +26,7 @@ public class Note implements Comparable<Note> {
     /**
      * Initializes a new Note object with the given title and content
      * dateTimeCreated is initialized to the current time
+     *
      * @param title   title of the note
      * @param content content of the note
      */
@@ -40,6 +41,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * Initializes a new Note object with the given title, content and LocalDateTime
+     *
      * @param title title of the note
      * @param content content of the note
      * @param dateTimeCreated date and time the note was created
@@ -57,6 +59,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * Check if a note's title and contents are empty or whitespace
+     *
      * @param title
      * @param content
      * @return
@@ -76,6 +79,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * Gets content of a note
+     *
      * @return content of the note
      */
     public String getContent() {
@@ -83,7 +87,8 @@ public class Note implements Comparable<Note> {
     }
 
     /**
-     * Gets content of a note
+     * Gets titled content of a note
+     *
      * @return content of the note
      */
     public String getTitledContent() {
@@ -92,6 +97,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * Gets the date and time the note was created
+     *
      * @return LocalDateTime object, which stores the date and time the note was created
      */
     public LocalDateTime getDateTimeCreated() {
@@ -100,6 +106,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * Enables sorting of notes based on date and time created
+     *
      * @param other another note object to compare with
      * @return 0 if the two notes were created at the same time, a positive integer if
      *     this note was created after the other note, and a negative integer if this
@@ -112,6 +119,7 @@ public class Note implements Comparable<Note> {
 
     /**
      * Checks if two notes are equal
+     *
      * @param other another object to compare with
      * @return true if the two notes are equal, false otherwise
      */

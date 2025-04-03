@@ -38,6 +38,7 @@ public class NoteCommand extends Command {
 
     /**
      * Creates a NoteCommand to add the specified {@code Note}
+     *
      * @param index index of the patient in the filtered patient list
      * @param title title of the note
      * @param content content of the note
@@ -47,12 +48,6 @@ public class NoteCommand extends Command {
         this.index = index;
         this.note = note;
     }
-
-    // @Override
-    // public CommandResult execute(Model model) throws CommandException {
-    //     throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), this.note.getTitle(),
-    //             this.note.getContent()));
-    // }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -66,6 +61,12 @@ public class NoteCommand extends Command {
 
         // Copy existing notes and add the new note
         TreeSet<Note> updatedNotes = new TreeSet<>(patientToEdit.getNotes());
+
+        // Not allowed to create notes with the same title
+        if (alreadyHasNoteTitle(updatedNotes, note)) {
+            throw new CommandException(Messages.MESSAGE_NOTE_ALREADY_EXISTS);
+        }
+        
         updatedNotes.add(note);
 
         // Create updated patient
@@ -80,6 +81,25 @@ public class NoteCommand extends Command {
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         return new CommandResult(generateSuccessMessage(editedPatient));
+    }
+
+    /**
+     * Returns true if the note title already exists in the updated notes.
+     * Method is case-insensitive, meaning "Note" and "note" are considered the same.
+     * 
+     * @param updatedNotes The updated notes of the patient.
+     * @param note The note to check for duplicates.
+     * @return true if the note title already exists, false otherwise.
+     */
+    private boolean alreadyHasNoteTitle(TreeSet<Note> updatedNotes, Note note) {
+        String newNoteTitle = note.getTitle().toLowerCase();
+        for (Note existingNote : updatedNotes) {
+            String existingNoteTitle = existingNote.getTitle().toLowerCase();
+            if (existingNoteTitle.equals(newNoteTitle)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -120,6 +140,9 @@ public class NoteCommand extends Command {
 
     /**
      * Generates a command execution success message when a note is added.
+     *
+     * @param patientToEdit The patient to which the note was added.
+     * @return The success message.
      */
     private String generateSuccessMessage(Patient patientToEdit) {
         return String.format(MESSAGE_ADD_NOTE_SUCCESS, Messages.format(patientToEdit));

@@ -24,6 +24,7 @@ public class Messages {
     public static final String MESSAGE_NOTE_NOT_FOUND = "Note Title does not exist: %1$s";
     public static final String MESSAGE_NO_NOTES = "Patient %1$s has no notes";
     public static final String MESSAGE_NOT_ADDED_NOTE = "Note must have title and content!";
+    public static final String MESSAGE_NOTE_ALREADY_EXISTS = "Note with title %1$s already exists!";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index! Please provide a positive integer within range.";
     public static final String MESSAGE_UNDO_FAILURE = "No command to undo!";
     public static final String MESSAGE_REDO_FAILURE = "No command to redo!";

@@ -110,7 +110,7 @@ public class NoteCommand extends Command {
     }
 
     /**
-     * Stores the details to add the note with. Each non-empty field value 
+     * Stores the details to add the note with. Each non-empty field value
      * will replace the corresponding field value of the note.
      */
     public static class AddNoteDescriptor {

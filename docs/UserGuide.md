@@ -15,37 +15,30 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 - 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
 - ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
 
----
-<div style="page-break-after: always;"></div>
 
 ## 📜 Table of Contents {#table-of-contents}
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Core Features](#core-features)
 4. [Command Summary](#command-summary)
----
-5. [Commands & Usage](#commands--usage)
-
+5. [Commands & Usage](#commands--usage)<br>
   - **Patient Management Commands**
     - [View All Patients](#listing-patients)
     - [Finding a Patient](#finding-a-patient)
     - [Adding a Patient](#adding-a-patient)
     - [Editing a Patient](#editing-a-patient)
-    - [Deleting a Patient](#deleting-a-patient)
-
+    - [Deleting a Patient](#deleting-a-patient)<br>
   - **Note Management Commands**
     - [Viewing Notes](#viewing-notes)
     - [Filtering Notes](#filtering-notes)
     - [Adding a Note](#adding-a-note)
     - [Edit a Note](#editing-a-note)
-    - [Delete a Note](#deleting-a-note)
-
+    - [Delete a Note](#deleting-a-note)<br>
   - **General Commands**
     - [Undo](#undo)
     - [Redo](#redo)
     - [Clear All Data](#clear-data)
     - [Help](#help)
----
 6. [FAQs & Troubleshooting](#faqs--troubleshooting)
 7. [Technology Stack](#technology-stack)
 8. [Acknowledgemets](#acknowledgements)
@@ -131,7 +124,6 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 | [Help](#help)                         | `help`                                                                     |
 
 ---
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
@@ -154,6 +146,8 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+---
+<div style="page-break-after: always;"></div>
 
 ## 🎯 **Commands & Usage** {#commands--usage}
 

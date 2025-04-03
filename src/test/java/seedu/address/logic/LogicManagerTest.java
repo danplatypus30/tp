@@ -1,12 +1,23 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_CONTENT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_CONTENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_TITLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
@@ -18,18 +29,27 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteNoteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.note.Note;
 import seedu.address.model.patient.Patient;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 
 public class LogicManagerTest {
@@ -84,6 +104,36 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientList().remove(0));
+    }
+
+    @Test
+    public void shouldSavePatientList_commandsThatShouldBeSaved_true() {
+        Patient validPatient = new PatientBuilder().build();
+        Patient editedPatient = new PatientBuilder(validPatient)
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .build();
+        EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
+
+        Command addCommand = new AddCommand(validPatient);
+        Command clearCommand = new ClearCommand();
+        Command deleteCommand = new DeleteCommand(INDEX_FIRST_PATIENT);
+        Command deleteNoteCommand = new DeleteNoteCommand(INDEX_FIRST_PATIENT, "1ST SESSION");
+        Command editCommand = new EditCommand(INDEX_FIRST_PATIENT, descriptor);
+        Command editNoteCommand = new EditNoteCommand(INDEX_FIRST_PATIENT,
+                VALID_NOTE_TITLE_BOB, VALID_NOTE_CONTENT_BOB);
+        Command noteCommand = new NoteCommand(INDEX_FIRST_PATIENT,
+                new Note(VALID_NOTE_TITLE_AMY, VALID_NOTE_CONTENT_AMY));
+
+        assertTrue(logic.shouldSavePatientList(addCommand));
+        assertTrue(logic.shouldSavePatientList(clearCommand));
+        assertTrue(logic.shouldSavePatientList(deleteCommand));
+        assertTrue(logic.shouldSavePatientList(deleteNoteCommand));
+        assertTrue(logic.shouldSavePatientList(editCommand));
+        assertTrue(logic.shouldSavePatientList(editNoteCommand));
+        assertTrue(logic.shouldSavePatientList(noteCommand));
     }
 
     /**

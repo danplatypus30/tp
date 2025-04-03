@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -47,4 +48,12 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Checks whether the addressbook should be saved before the command
+     *
+     * @param command
+     * @return boolean indicating whether addressbook should be saved
+     */
+    boolean shouldSavePatientList(Command command);
 }

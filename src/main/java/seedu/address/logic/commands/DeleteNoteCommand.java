@@ -28,7 +28,7 @@ public class DeleteNoteCommand extends Command {
             + ": Deletes a specified note of a patient identified by the title string used "
             + "in the displayed note list.\n"
             + "Parameters: INDEX (must be a positive integer) nt/TITLE (must be a valid string)\n"
-            + "Example: " + COMMAND_WORD + " 1 nt/JohnFirstCrashout";
+            + "Example: " + COMMAND_WORD + " 1 nt/Session 32";
 
     public static final String MESSAGE_DELETE_PATIENT_NOTE_SUCCESS = "Deleted Note of Patient: %1$s";
 
@@ -65,7 +65,7 @@ public class DeleteNoteCommand extends Command {
         TreeSet<Note> newCopyNotes = new TreeSet<>(allNotes);
 
         if (newCopyNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_NO_NOTES);
+            throw new CommandException(String.format(MESSAGE_NO_NOTES, targetIndex.getOneBased()));
         }
 
         Note matchingNote = newCopyNotes.stream()

@@ -59,7 +59,7 @@ public class FilterNoteCommand extends Command {
         TreeSet<Note> allNotes = patientToFilter.getNotes();
 
         if (allNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_NO_NOTES);
+            throw new CommandException(String.format(MESSAGE_NO_NOTES, index.getOneBased()));
         }
 
         List<Note> matchingNotes = allNotes.stream()

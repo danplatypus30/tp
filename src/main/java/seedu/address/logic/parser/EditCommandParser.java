@@ -30,9 +30,10 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        args = args.trim();
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG);
-
         Index index;
 
         try {
@@ -42,7 +43,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
-
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

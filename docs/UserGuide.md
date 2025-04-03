@@ -126,10 +126,6 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 | [Clear Data](#clear-data)             | `clear`                                                                    |
 | [Help](#help)                         | `help`                                                                     |
 
-[🔝 Back to Top](#table-of-contents)
-
----
-
 ## 🎯 **Commands & Usage** {#commands--usage}
 
 Each command is designed to make patient and session management **fast and intuitive**.
@@ -384,6 +380,7 @@ deletenote 2 nt/Mood Assessment
 
 <img src="images/deleteNoteCommand.png" alt="image" width="800"/>
 
+<div style="page-break-after: always;"></div>
 View the changes after:
 
 <img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>

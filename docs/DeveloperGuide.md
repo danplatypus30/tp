@@ -295,7 +295,6 @@ The patient management system is the core functionality of NeuroSync.
 public class Patient {
     private final Name name;
     private final Phone phone;
-    private final Email email;
     private final Address address;
     private final Set<Tag> tags;
     private final TreeSet<Note> notes;

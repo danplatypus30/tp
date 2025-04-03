@@ -30,7 +30,7 @@ public class EditNoteCommand extends Command {
         + ": Edits the notes of the person identified "
         + "by the index number used in the last person listing. "
         + "Existing note will be overwritten by the input.\n"
-        + "Parameters: USER_INDEX (must be a positive integer) "
+        + "Parameters: INDEX (must be a positive integer, not more than 8 digits) "
         + PREFIX_NOTE_TITLE + "[NOTE TITLE] "
         + PREFIX_NOTE_CONTENT + "[NOTE CONTENT]\n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NOTE_TITLE + "Patient has allergies! "

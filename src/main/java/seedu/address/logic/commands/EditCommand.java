@@ -196,23 +196,25 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          * Ensures no duplicate tag names (case-insensitive) are present.
-         * If duplicates are found, keeps only one instance.
+         * Preserves the first occurrence of each unique tag name.
          */
         public void setTags(Set<Tag> tags) {
             if (tags == null) {
                 this.tags = null;
                 return;
             }
-            
+
             // Use a map to track tags by lowercase name for case-insensitive comparison
             Map<String, Tag> uniqueTags = new HashMap<>();
-            
-            // Process each tag, keeping only one instance for case-insensitive duplicates
+
+            // Process each tag, keeping only the first instance for case-insensitive duplicates
             for (Tag tag : tags) {
                 String lowercaseTagName = tag.tagName.toLowerCase();
-                uniqueTags.putIfAbsent(lowercaseTagName, tag);
+                if (!uniqueTags.containsKey(lowercaseTagName)) {
+                    uniqueTags.put(lowercaseTagName, tag);
+                }
             }
-            
+
             this.tags = new HashSet<>(uniqueTags.values());
         }
 

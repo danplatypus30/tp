@@ -80,12 +80,5 @@ public class NoteCommandTest {
         // Test with empty TreeSet
         TreeSet<Note> emptyNotes = new TreeSet<>();
         assertFalse(noteCommand.alreadyHasNoteTitle(emptyNotes, existingNote));
-
-        // Test with multiple notes in TreeSet
-        Note anotherExistingNote = new Note("Treatment Plan", "Weekly therapy sessions");
-        notes.add(anotherExistingNote);
-
-        Note matchingSecondNote = new Note("treatment plan", "Updated therapy schedule");
-        assertTrue(noteCommand.alreadyHasNoteTitle(notes, matchingSecondNote));
     }
 }

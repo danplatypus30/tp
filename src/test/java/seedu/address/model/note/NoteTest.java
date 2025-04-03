@@ -24,4 +24,24 @@ public class NoteTest {
         Note differentNote = new Note("Different Title", "Different Content");
         assertFalse(note.equals(differentNote));
     }
+
+    @Test
+    public void isValidNote_invalidNoteParameters_returnsFalse() {
+        assertFalse(Note.isValidNote(null, null));
+        assertFalse(Note.isValidNote(null, ""));
+        assertFalse(Note.isValidNote("", null));
+        assertFalse(Note.isValidNote("", ""));
+        assertFalse(Note.isValidNote(" ", " "));
+        assertFalse(Note.isValidNote("Title", ""));
+        assertFalse(Note.isValidNote("", "Content"));
+        assertFalse(Note.isValidNote(" ", "Content"));
+        assertFalse(Note.isValidNote("Title", " "));
+    }
+
+    @Test
+    public void isValidNote_validNoteParameters_returnsTrue() {
+        assertTrue(Note.isValidNote("Title", "Content"));
+        assertTrue(Note.isValidNote("Title", "  Content  "));
+        assertTrue(Note.isValidNote("  Title  ", "Content"));
+    }
 }

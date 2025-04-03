@@ -17,6 +17,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -27,6 +30,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 
@@ -199,6 +203,50 @@ public class EditCommandTest {
         String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editPatientDescriptor="
                 + editPatientDescriptor + "}";
         assertEquals(expected, editCommand.toString());
+    }
+
+    @Test
+    public void setTags_duplicateTagsWithDifferentCases_onlyAddsOneOfEachTag() {
+        EditPatientDescriptor descriptor = new EditPatientDescriptor();
+
+        // Create tags with duplicate names in different cases
+        Set<Tag> tagsWithDuplicates = new HashSet<>();
+        tagsWithDuplicates.add(new Tag("ADHD"));
+        tagsWithDuplicates.add(new Tag("adhd"));
+        tagsWithDuplicates.add(new Tag("Suicidal"));
+        tagsWithDuplicates.add(new Tag("suicidal"));
+        tagsWithDuplicates.add(new Tag("Depression"));
+        tagsWithDuplicates.add(new Tag("depression"));
+
+        // Set the tags in the descriptor
+        descriptor.setTags(tagsWithDuplicates);
+
+        // Get the tags from the descriptor
+        Set<Tag> resultTags = descriptor.getTags().get();
+
+        // Check that we only have 3 tags instead of 6
+        assertEquals(3, resultTags.size(), "Should only have one tag for each unique name (case-insensitive)");
+
+        // Verify that we can find each type of tag (regardless of case)
+        boolean hasAdhd = false;
+        boolean hasSuicidal = false;
+        boolean hasDepression = false;
+
+        for (Tag tag : resultTags) {
+            String lowercaseTagName = tag.tagName.toLowerCase();
+
+            if (lowercaseTagName.equals("adhd")) {
+                hasAdhd = true;
+            } else if (lowercaseTagName.equals("suicidal")) {
+                hasSuicidal = true;
+            } else if (lowercaseTagName.equals("depression")) {
+                hasDepression = true;
+            }
+        }
+
+        assertEquals(true, hasAdhd, "Should have an ADHD tag");
+        assertEquals(true, hasSuicidal, "Should have a Suicidal tag");
+        assertEquals(true, hasDepression, "Should have a Depression tag");
     }
 
 }

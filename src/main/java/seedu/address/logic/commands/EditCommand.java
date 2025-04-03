@@ -9,8 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -193,9 +195,27 @@ public class EditCommand extends Command {
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         * Ensures no duplicate tag names (case-insensitive) are present.
+         * Preserves the first occurrence of each unique tag name.
          */
         public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            if (tags == null) {
+                this.tags = null;
+                return;
+            }
+
+            // Use a map to track tags by lowercase name for case-insensitive comparison
+            Map<String, Tag> uniqueTags = new HashMap<>();
+
+            // Process each tag, keeping only the first instance for case-insensitive duplicates
+            for (Tag tag : tags) {
+                String lowercaseTagName = tag.tagName.toLowerCase();
+                if (!uniqueTags.containsKey(lowercaseTagName)) {
+                    uniqueTags.put(lowercaseTagName, tag);
+                }
+            }
+
+            this.tags = new HashSet<>(uniqueTags.values());
         }
 
         /**

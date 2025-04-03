@@ -67,7 +67,7 @@ public class FilterNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (matchingNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_NOTE_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, title));
         }
 
         String message = String.format(MESSAGE_SUCCESS, patientToFilter.getName().fullName);

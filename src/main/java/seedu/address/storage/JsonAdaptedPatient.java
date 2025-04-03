@@ -68,10 +68,11 @@ class JsonAdaptedPatient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted patient object into the model's {@code Patient} object.
+     * Converts this Jackson-friendly adapted patient object into the model's
+     * {@code Patient} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      * @return the converted {@code Patient} object.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
         if (name == null) {

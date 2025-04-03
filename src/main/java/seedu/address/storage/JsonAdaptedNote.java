@@ -38,10 +38,11 @@ class JsonAdaptedNote {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Note} object.
+     * Converts this Jackson-friendly adapted tag object into the model's
+     * {@code Note} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      * @return the converted {@code Note} object.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Note toModelType() throws IllegalValueException {
         if (!Note.isValidNote(this.title, this.content)) {

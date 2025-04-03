@@ -1,40 +1,37 @@
-# NeuroSync Developer Guide
+---
+layout: page
+title: Developer Guide
+---
 
-## Table of Contents
+# **Welcome to the NeuroSync Developer Guide!**
+
+## Table of Contents {#table-of-contents}
 
 - [Introduction](#introduction)
-  - [Purpose](#purpose)
-  - [How to Use This Guide](#how-to-use-this-guide)
-  - [Getting Help](#getting-help)
-- [Setting Up](#setting-up)
-  - [Development Environment](#development-environment)
-  - [Project Configuration](#project-configuration)
-  - [Running the Application](#running-the-application)
 - [Design](#design)
   - [Architecture](#architecture)
-  - [UI Component](#ui-component)
   - [Logic Component](#logic-component)
   - [Model Component](#model-component)
   - [Storage Component](#storage-component)
+  - [UI Component](#ui-component)
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
   - [Patient Management](#patient-management)
-  - [Notes System](#notes-system)
+  - [Notes Feature](#notes-feature)
   - [Undo/Redo Feature](#undoredo-feature)
 - [Documentation](#documentation)
 - [Testing](#testing)
-  - [Running Tests](#running-tests)
-  - [Writing Tests](#writing-tests)
-  - [Test Coverage](#test-coverage)
-- [Dev Ops](#dev-ops)
-  - [Build Process](#build-process)
-  - [Deployment](#deployment)
-  - [CI/CD](#cicd)
+
 - [Appendix](#appendix)
   - [Glossary](#glossary)
+  - [User Stories](#user-stories)
+  - [Use Cases](#use-cases)
+  - [Instructions for Manual Testing](#instructions-for-manual-testing)
+  - [Effort](#effort)
+  - [Planned Enhancements](#planned-enhancements)
+  - [Requirements](#requirements)
   - [API Reference](#api-reference)
   - [Troubleshooting](#troubleshooting)
-
 ---
 
 ## Introduction
@@ -65,11 +62,12 @@ If you need assistance:
 - Review existing GitHub issues
 - Contact the development team
 
----
 
-## Setting Up
+### Setting Up
 
 For detailed setup instructions, please refer to the [Getting Started](UserGuide.md#getting-started) section in our [User Guide](UserGuide.md).
+
+[🔝 Back to Top](#table-of-contents)
 
 ---
 
@@ -83,11 +81,11 @@ The architecture follows a component-based design with clear separation of conce
 
 #### Core Components
 
-- **UI**: Handles user interaction and display
 - **Logic**: Processes commands and business logic
 - **Model**: Manages data and state
 - **Storage**: Handles data persistence
-- **Commons**: Shared utilities and helpers
+- **UI**: Handles user interaction and display
+- **Common Classes**: Shared utilities and helpers
 
 #### Component Interactions
 
@@ -101,42 +99,11 @@ Each component:
 - Implements functionality using a concrete `{Component Name}Manager` class
 - Interacts with other components through their interfaces rather than concrete classes
 
-### UI Component
+[🔝 Back to Top](#table-of-contents)
 
-The UI component manages all user-facing elements of the application.
+---
 
-#### Key Classes
-
-- `MainWindow`: The root UI container
-- `CommandBox`: Handles command input
-- `ResultDisplay`: Shows command results
-- `PatientListPanel`: Displays patient list
-- `NotesDisplayPanel`: Shows patient notes
-- `StatusBarFooter`: Displays status information
-
-#### Implementation
-
-The UI:
-
-- Uses JavaFX framework
-- Defines layouts in `.fxml` files under `src/main/resources/view`
-- Follows MVVM pattern for data binding
-- Implements responsive design principles
-- Uses custom styling defined in `styles.css`
-
-#### Component API
-
-```java
-public interface Ui {
-    /** Starts the UI (and the App). */
-    void start(Stage primaryStage);
-
-    /** Returns the primary stage. */
-    Stage getPrimaryStage();
-}
-```
-
-### Logic Component
+## Logic Component
 
 The Logic component handles command processing and business rules.
 
@@ -176,70 +143,13 @@ The term "XYZ" in the documentation represents a placeholder for specific comman
 - `XYZCommand` could be `AddCommand`, `DeleteCommand`, etc.
 - `XYZCommandParser` could be `AddCommandParser`, `DeleteCommandParser`, etc.
 
-#### Command Processing Example
+[🔝 Back to Top](#table-of-contents)
 
-Here's how a note command is processed:
+---
 
-<img src="images/AddNoteSequenceDiagram.png" width="800"/>
-
-1. User enters: `note 1 nt/Session 1 nc/Patient anxious`
-2. `LogicManager` receives command
-3. `AddressBookParser` creates `NoteCommandParser`
-4. Parser validates and creates `NoteCommand`
-5. Command executes and updates model
-
-#### Storage Integration
-
-<img src="images/StorageClassDiagram.png" width="550"/>
-
-The Storage component provides JSON-based persistence with:
-
-- `JsonAddressBookStorage`: Handles patient data
-- `JsonUserPrefsStorage`: Manages user preferences
-- `JsonAdaptedPatient`: Converts between JSON and Patient objects
+## Model Component
 
 #### Model Structure
-
-<img src="images/ModelClassDiagram.png" width="450"/>
-
-The Model component maintains:
-
-- Patient data in `UniquePatientList`
-- User preferences in `UserPrefs`
-- Filtered patient views
-- Note management system
-
-#### Undo/Redo Implementation
-
-The undo/redo feature uses state management:
-
-<img src="images/UndoRedoState0.png" width="300"/>
-Initial state when app launches
-
-<img src="images/UndoRedoState1.png" width="300"/>
-After `delete 5` command
-
-<img src="images/UndoRedoState2.png" width="300"/>
-After `add n/David` command
-
-<img src="images/UndoRedoState3.png" width="300"/>
-After `undo` command
-
-<img src="images/UndoRedoState4.png" width="300"/>
-After `list` command (no state change)
-
-<img src="images/UndoRedoState5.png" width="300"/>
-After `clear` command
-
-The undo/redo mechanism is handled by:
-
-<img src="images/UndoSequenceDiagram-Logic.png" width="600"/>
-Logic component handling undo
-
-<img src="images/UndoSequenceDiagram-Model.png" width="400"/>
-Model component handling undo
-
-### Model Component
 
 The Model component manages application data and state.
 
@@ -268,7 +178,20 @@ public interface Model {
 }
 ```
 
-### Storage Component
+<img src="images/ModelClassDiagram.png" width="450"/>
+
+The Model component maintains:
+
+- Patient data in `UniquePatientList`
+- User preferences in `UserPrefs`
+- Filtered patient views
+- Note management system
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## Storage Component
 
 The Storage component handles data persistence.
 
@@ -296,7 +219,60 @@ public interface Storage {
 }
 ```
 
-### Common Classes
+#### Storage Integration
+
+<img src="images/StorageClassDiagram.png" width="550"/>
+
+The Storage component provides JSON-based persistence with:
+
+- `JsonAddressBookStorage`: Handles patient data
+- `JsonUserPrefsStorage`: Manages user preferences
+- `JsonAdaptedPatient`: Converts between JSON and Patient objects
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## UI Component
+
+The UI component manages all user-facing elements of the application.
+
+#### Key Classes
+
+- `MainWindow`: The root UI container
+- `CommandBox`: Handles command input
+- `ResultDisplay`: Shows command results
+- `PatientListPanel`: Displays patient list
+- `NotesDisplayPanel`: Shows patient notes
+- `StatusBarFooter`: Displays status information
+
+#### Implementation
+
+The UI:
+
+- Uses JavaFX framework
+- Defines layouts in `.fxml` files under `src/main/resources/view`
+- Follows MVVM pattern for data binding
+- Implements responsive design principles
+- Uses custom styling defined in `styles.css`
+
+#### Component API
+
+```java
+public interface Ui {
+    /** Starts the UI (and the App). */
+    void start(Stage primaryStage);
+
+    /** Returns the primary stage. */
+    Stage getPrimaryStage();
+}
+```
+
+[🔝 Back to Top](#table-of-contents)
+
+---
+
+## Common Classes
 
 Classes used across multiple components:
 
@@ -304,6 +280,10 @@ Classes used across multiple components:
 - `Config`: Application configuration
 - `StringUtil`: String manipulation utilities
 - `CollectionUtil`: Collection helpers
+
+[🔝 Back to Top](#table-of-contents)
+
+---
 
 ## Implementation
 
@@ -327,7 +307,6 @@ The patient management system is the core functionality of NeuroSync.
 public class Patient {
     private final Name name;
     private final Phone phone;
-    private final Email email;
     private final Address address;
     private final Set<Tag> tags;
     private final TreeSet<Note> notes;
@@ -348,11 +327,23 @@ The `Patient` class is immutable, ensuring thread safety and preventing accident
   - Pros: Can handle large datasets
   - Cons: More complex setup, slower access
 
-### Notes System
+---
+
+### Notes Feature
 
 The notes system allows psychiatrists to maintain detailed records of patient sessions.
 
-#### Command Flow
+#### Command Flow: Add Note
+
+<img src="images/AddNoteSequenceDiagram.png" width="800"/>
+
+1. User enters: `note 1 nt/Session 1 nc/Patient anxious`
+2. `LogicManager` receives command
+3. `AddressBookParser` creates `NoteCommandParser`
+4. Parser validates and creates `NoteCommand`
+5. Command executes and updates model
+
+#### Command Flow: View Notes
 
 <img src="images/ViewNoteSequenceDiagram.png" width="800" />
 
@@ -389,6 +380,10 @@ Notes are automatically sorted by creation date using a `TreeSet`.
 - **Alternative 2**: Store notes separately with references
   - Pros: Memory efficient
   - Cons: More complex querying
+
+[🔝 Back to Top](#table-of-contents)
+
+---
 
 ### Undo/Redo Feature
 
@@ -497,6 +492,8 @@ The sequence diagrams below illustrate how undo/redo commands are processed:
   - Pros: Memory efficient
   - Cons: Complex implementation, potential bugs
 
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
 ## Documentation
@@ -533,6 +530,8 @@ The following UML diagrams illustrate NeuroSync's architecture and components:
 
 Each diagram is accompanied by detailed explanations in their respective sections.
 
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
 ## Testing
@@ -564,6 +563,8 @@ To run specific test classes:
 ./gradlew test --tests "seedu.address.logic.commands.AddCommandTest"
 ```
 
+[🔝 Back to Top](#table-of-contents)
+
 ---
 
 ## Appendix
@@ -575,7 +576,6 @@ To run specific test classes:
 | API                  | Application Programming Interface - A set of definitions and protocols for building and integrating application software |
 | AddressBook          | The core data structure that stores all patient information in NeuroSync                                                 |
 | CLI                  | Command Line Interface - A text-based interface for interacting with the application                                     |
-| CRUD                 | Create, Read, Update, Delete - Basic operations for persistent storage                                                   |
 | Component            | A major architectural unit in the application (e.g., UI, Logic, Model, Storage)                                          |
 | FXML                 | XML-based user interface markup language used with JavaFX                                                                |
 | GUI                  | Graphical User Interface - The visual interface of the application                                                       |
@@ -607,9 +607,72 @@ To run specific test classes:
 | Session        | A meeting between psychiatrist and patient                                |
 | Treatment      | Medical care provided to a patient                                        |
 | Diagnosis      | Identification of a mental health condition                               |
-| Medical Record | Complete history of a patient's medical care                              |
 | Prescription   | Medical treatment ordered for a patient                                   |
 | Follow-up      | Subsequent appointment to monitor patient progress                        |
+
+[🔝 Back to Top](#table-of-contents)
+
+### User Stories
+
+As a psychiatrist, I can view all the patients' information including name, phone number,address so that it is easier for me to have a quick view of all the patients I have.
+
+As a psychiatrist, I can easily add new patients to the app, so that I can maintain an organized record of my patients.
+
+As a psychiatrist having many patients, I can easily search for a patient in the list by inputting any 
+user information (name, phone, address), so that I can get their details or view their meeting notes.
+
+As a psychiatrist in a consultation session with a patient, I can take note of information
+about this session, so that I can refer to it during the patient's next visit.
+
+As a psychiatrist preparing for my next consultation session, I can view all the notes
+of the upcoming patient, so that I can recall any important information about this patient.
+
+### Use Cases
+
+> to be updated
+
+[🔝 Back to Top](#table-of-contents)
+
+### Instructions for Manual Testing
+
+> to be updated
+
+[🔝 Back to Top](#table-of-contents)
+
+### Appendix: Effort
+
+Difficulty level: Moderate, twice as hard as Individual Project
+
+Challenges faced:
+- Reading through and understanding AB3 codes, many layers of abstraction, many unfamiliar models, classes, methods
+- Implementing new commands, was difficult finding where to add various chunks of code, many classes from all over the application had to be changed, tests had to be added
+- Git workflows, merge conflicts, so many additional steps to make sure things go smoothly
+
+Effort required: High
+
+Achievements of the project:
+- Very familiar with git workflows now, comfortable working on team projects iteratively
+- Learnt and appreciated the abstractions of code in AB3, even though it looks like a lot of redundant work for such a simple application, it made sure that everything ran smoothly and greatly reduced the potential number of bugs
+- Learnt about proper documentation and standard conventions in code and git
+
+### Planned Enhancements
+
+- Support for various languages including right-justified languages
+- Adding of NRIC numbers and masking it
+
+### Appendix: Requirements
+
+System Requirements:
+- Java: Version 17
+- Compatibility: Windows, macOS, Linux
+
+#### Non-Functional Requirements
+
+- The application should load the main interface within 10 seconds on standard hardware.
+- Searching for a patient should return results in under 1 second for up
+to 10,000 contacts.
+- The response to any use action should become visible within 5 seconds.
+- The user interface should be intuitive enough for users who are not IT-savvy.
 
 ### API Reference
 
@@ -621,3 +684,6 @@ If you encounter issues, please:
 
 - Check the [NeuroSync GitHub issues](https://github.com/se-edu/addressbook-level3/issues)
 - Contact the development team
+
+[🔝 Back to Top](#table-of-contents)
+

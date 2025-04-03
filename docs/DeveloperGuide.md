@@ -532,6 +532,8 @@ Each diagram is accompanied by detailed explanations in their respective section
 
 [🔝 Back to Top](#table-of-contents)
 
+---
+
 ## Appendix
 
 ### Testing

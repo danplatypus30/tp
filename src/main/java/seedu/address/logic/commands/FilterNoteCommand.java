@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 
@@ -52,7 +52,7 @@ public class FilterNoteCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() < 0 || index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
         Patient patientToFilter = lastShownList.get(index.getZeroBased());

@@ -627,18 +627,6 @@ about this session, so that I can refer to it during the patient's next visit.
 As a psychiatrist preparing for my next consultation session, I can view all the notes
 of the upcoming patient, so that I can recall any important information about this patient.
 
-### Use Cases
-
-> to be updated
-
-[🔝 Back to Top](#table-of-contents)
-
-### Instructions for Manual Testing
-
-> to be updated
-
-[🔝 Back to Top](#table-of-contents)
-
 ### Appendix: Effort
 
 Difficulty level: Moderate, twice as hard as Individual Project

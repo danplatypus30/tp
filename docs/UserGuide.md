@@ -22,19 +22,19 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 3. [Core Features](#core-features)
 4. [Command Summary](#command-summary)
 5. [Commands & Usage](#commands--usage)<br>
-  - **Patient Management Commands**
+  * **Patient Management Commands**
     - [View All Patients](#listing-patients)
     - [Finding a Patient](#finding-a-patient)
     - [Adding a Patient](#adding-a-patient)
     - [Editing a Patient](#editing-a-patient)
     - [Deleting a Patient](#deleting-a-patient)<br>
-  - **Note Management Commands**
+  * **Note Management Commands**
     - [Viewing Notes](#viewing-notes)
     - [Filtering Notes](#filtering-notes)
     - [Adding a Note](#adding-a-note)
     - [Edit a Note](#editing-a-note)
     - [Delete a Note](#deleting-a-note)<br>
-  - **General Commands**
+  * **General Commands**
     - [Undo](#undo)
     - [Redo](#redo)
     - [Clear All Data](#clear-data)
@@ -123,9 +123,9 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 | [Clear Data](#clear-data)             | `clear`                                                                    |
 | [Help](#help)                         | `help`                                                                     |
 
----
 
 <div markdown="block" class="alert alert-info">
+
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -145,6 +145,8 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+[🔝 Back to Top](#table-of-contents)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -217,11 +219,8 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 <img src="images/addCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
-💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
-
-> 💡 **Tip: Name Constraints**<br>
-> Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
-> Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)
+💡 **Tip:** Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
+Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)<br>
 
 
 [🔝 Back to Top](#table-of-contents)
@@ -249,10 +248,7 @@ edit 1 p/91234567
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
-
-> 💡 **Tip: Name Constraints**<br>
-> Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
-> Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)
+💡 You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
 
 
 [🔝 Back to Top](#table-of-contents)

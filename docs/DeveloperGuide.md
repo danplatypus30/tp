@@ -20,17 +20,16 @@ title: Developer Guide
   - [Notes Feature](#notes-feature)
   - [Undo/Redo Feature](#undoredo-feature)
 - [Documentation](#documentation)
-- [Testing](#testing)
 
 - [Appendix](#appendix)
+  - [Testing](#testing)
+  - [Instructions for Manual Testing](#instructions-for-manual-testing)
   - [Glossary](#glossary)
   - [User Stories](#user-stories)
   - [Use Cases](#use-cases)
-  - [Instructions for Manual Testing](#instructions-for-manual-testing)
-  - [Effort](#effort)
+  - [Effort](#appendix-effort)
   - [Planned Enhancements](#planned-enhancements)
-  - [Requirements](#requirements)
-  - [API Reference](#api-reference)
+  - [Requirements](#appendix-requirements)
   - [Troubleshooting](#troubleshooting)
 
 ---
@@ -573,6 +572,8 @@ To check test coverage:
 
 The coverage report will be generated in `build/reports/jacoco/test/html/index.html`
 
+[🔝 Back to Top](#table-of-contents)
+
 ### Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
@@ -594,6 +595,8 @@ Note: These instructions only provide a starting point for testers to work on; t
 3. Close the window
 4. Re-launch the app by double-clicking the jar file  
    Expected outcome: The most recent window size and location is retained.
+
+[🔝 Back to Top](#table-of-contents)
 
 ### Patient Management
 
@@ -629,6 +632,8 @@ Expected outcome: Patient at index 1 is deleted from the list.
 Test case: `delete 999` (Testing invalid index)  
 Expected outcome: No patient is deleted.  
 Expected error message: Invalid index! Please provide a positive integer within the patient list range!
+
+[🔝 Back to Top](#table-of-contents)
 
 ### Note Management
 
@@ -687,6 +692,8 @@ Expected outcome: Note is deleted from patient at index 1.
 Test case: `deletenote 1 nt/Nonexistent` (Deleting non-existent note title)
 Expected outcome: Error details shown in the status message.  
 Expected error message: Note Title does not exist: Nonexistent
+
+[🔝 Back to Top](#table-of-contents)
 
 ### Undo/Redo
 

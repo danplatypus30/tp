@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class DeleteNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 nt/Session 32";
 
     public static final String MESSAGE_DELETE_PATIENT_NOTE_SUCCESS = "Deleted Note of Patient: %1$s";
+    public static final String MESSAGE_MISSING_PREFIX = "Missing note title prefix: " + PREFIX_NOTE_TITLE;
 
     private final Index targetIndex;
     private final String targetTitle;
@@ -88,7 +90,7 @@ public class DeleteNoteCommand extends Command {
         model.deletePatientNote(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_NOTE_SUCCESS, Messages.format(patientToEdit)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_NOTE_SUCCESS, Messages.format(editedPatient)));
     }
 
     @Override

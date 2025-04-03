@@ -8,6 +8,13 @@ NeuroSync helps psychiatrists **manage patient records and session notes efficie
 
 <img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
 
+## 💡 **Core Features** {#core-features}
+
+- 📁 **Manage Patient Records** - Add, edit, and delete patient details.
+- 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
+- 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
+- ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
+
 ---
 <div style="page-break-after: always;"></div>
 
@@ -94,17 +101,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 [🔝 Back to Top](#table-of-contents)
 
 ---
-
-## 💡 **Core Features** {#core-features}
-
-- 📁 **Manage Patient Records** - Add, edit, and delete patient details.
-- 📝 **Session Notes** - Keep track of discussions, diagnoses, and treatments.
-- 🔎 **Powerful Search & Filters** - Quickly retrieve any patient or note.
-- ⚡ **Command-Based Interface** - Fast, efficient, and easy to use.
-
-[🔝 Back to Top](#table-of-contents)
-
----
+<div style="page-break-after: always;"></div>
 
 ## 🧭 **Command Summary** {#command-summary}
 

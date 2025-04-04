@@ -6,7 +6,18 @@ title: User Guide
 # **Welcome to the NeuroSync User Guide!**
 NeuroSync helps psychiatrists **manage patient records and session notes efficiently**. Choose a topic below to get step-by-step instructions, troubleshoot issues, and maximize your productivity!
 
-<img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
+<div style="position: relative; display: inline-block;">
+  <img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
+  <div style="position: absolute; top: 41px; left: 8px; width: 785px; height: 20px; border: 2px solid red;"></div>
+  <div style="position: absolute; top: 20px; left: 70px; color: red;">Command input box</div>
+  <div style="position: absolute; top: 72px; left: 8px; width: 785px; height: 45px; border: 2px solid red;"></div>
+  <div style="position: absolute; top: 110px; left: 70px; color: red;">Main window</div>
+  <div style="position: absolute; top: 138px; left: 8px; width: 350px; height: 310px; border: 2px solid red;"></div>
+  <div style="position: absolute; top: 450px; left: 70px; color: red;">Patient list panel</div>
+  <div style="position: absolute; top: 150px; left: 370px; width: 420px; height: 298px; border: 2px solid red;"></div>
+  <div style="position: absolute; top: 450px; left: 400px; color: red;">Noted display panel</div>
+</div>
+
 
 ## 💡 **Core Features** {#core-features}
 
@@ -223,6 +234,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 <img src="images/addCommand.png" alt="image" width="800"/>
 
 ⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
+⚠️ **Warning:** Please do not add patients by changing `addressbook.json`. Same warning applies <br>
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
 
 > 💡 **Tip: Name Constraints**<br>
@@ -366,8 +378,10 @@ note 2 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
-
+<div style="position: relative; display: inline-block;">
+  <img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
+  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
+</div></br>
 💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
 
 [🔝 Back to Top](#table-of-contents)
@@ -395,7 +409,10 @@ editnote 2 nt/Mood Assessment nc/Patient showed signs of suicide. Discussed mood
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
+<div style="position: relative; display: inline-block;">
+  <img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
+  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
+</div>
 
 💡 **Tip:** You can edit only the necessary fields without altering other details.
 
@@ -424,7 +441,10 @@ deletenote 2 nt/Mood Assessment
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>
+<div style="position: relative; display: inline-block;">
+  <img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>
+  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
+</div>
 
 💡 **Tip:** Keep backups if needed.
 
@@ -436,7 +456,7 @@ View the changes after:
 ### **Undo** {#undo}
 If you made a mistake, don't stress! You can **undo your previous change** using this command.
 
-**Example:**
+**Example (following the example in `deletenote`):**
 
 ```bash
 undo
@@ -449,7 +469,10 @@ undo
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
+<div style="position: relative; display: inline-block;">
+  <img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
+  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
+</div>
 
 
 [🔝 Back to Top](#table-of-contents)
@@ -460,7 +483,7 @@ View the changes after:
 ### **Redo** {#redo}
 If you need to get back a change you undid, don't stress! You can **redo your previous change** using this command.
 
-**Example:**
+**Example (following the example in `undo`):**
 
 ```bash
 redo
@@ -473,7 +496,10 @@ redo
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<img src="images/viewAfterRedoCommand.png" alt="image" width="800"/>
+<div style="position: relative; display: inline-block;">
+  <img src="images/viewAfterRedoCommand.png" alt="image" width="800"/>
+  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
+</div>
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -523,7 +549,8 @@ help
 ## ❓ **FAQs & Troubleshooting** {#faqs--troubleshooting}
 
 **Q: Where is my data stored?**
-**A:** Your data is saved in `addressbook.json` inside the `/data` folder.
+**A:** Your data is saved in `addressbook.json` inside the `/data` folder.<br>
+⚠️ **Warning:** Please do not modify `addressbook.json` as there could be unpredictable effects.<br>
 
 **Q: Can I undo a deletion?**
 **A:** Yes! There is an [undo](#undo) feature, to recover data or undo edits.

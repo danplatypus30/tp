@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
 
@@ -27,7 +27,7 @@ public class FilterNoteCommand extends Command {
             + "belonged to the indexed patient. "
             + "The specified keywords are case-insensitive.\n"
             + "Parameters: KEYWORDS ...\n"
-            + "Example: " + COMMAND_WORD + " [index]" + " nt/[title]";
+            + "Example: " + COMMAND_WORD + " [INDEX]" + " nt/[NOTE TITLE]";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
 
@@ -52,7 +52,7 @@ public class FilterNoteCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() < 0 || index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
         Patient patientToFilter = lastShownList.get(index.getZeroBased());
@@ -67,7 +67,7 @@ public class FilterNoteCommand extends Command {
                 .collect(Collectors.toList());
 
         if (matchingNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_NOTE_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_NOTE_NOT_FOUND, title));
         }
 
         String message = String.format(MESSAGE_SUCCESS, patientToFilter.getName().fullName);

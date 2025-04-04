@@ -27,7 +27,7 @@ public class NoteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NOTE_TITLE + "[NOTE TITLE] "
             + PREFIX_NOTE_CONTENT + "[NOTE CONTENT]\n"
-            + "Example: " + COMMAND_WORD + " 1"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE_TITLE + "Patient has allergies! "
             + PREFIX_NOTE_CONTENT + "Allergies include: Penicillin, Nuts";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Note Title: %2$s, Note Content: %3$s";
@@ -38,6 +38,7 @@ public class NoteCommand extends Command {
 
     /**
      * Creates a NoteCommand to add the specified {@code Note}
+     *
      * @param index index of the patient in the filtered patient list
      * @param title title of the note
      * @param content content of the note
@@ -48,12 +49,10 @@ public class NoteCommand extends Command {
         this.note = note;
     }
 
-    // @Override
-    // public CommandResult execute(Model model) throws CommandException {
-    //     throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), this.note.getTitle(),
-    //             this.note.getContent()));
-    // }
-
+    /**
+     * Executes the command to add a note to the patient at the specified index.
+     * If the index is invalid or note title already exists, a CommandException is thrown.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Patient> lastShownList = model.getFilteredPatientList();
@@ -66,6 +65,12 @@ public class NoteCommand extends Command {
 
         // Copy existing notes and add the new note
         TreeSet<Note> updatedNotes = new TreeSet<>(patientToEdit.getNotes());
+
+        // Not allowed to create notes with the same title
+        if (alreadyHasNoteTitle(updatedNotes, note)) {
+            throw new CommandException(String.format(Messages.MESSAGE_NOTE_ALREADY_EXISTS, note.getTitle()));
+        }
+
         updatedNotes.add(note);
 
         // Create updated patient
@@ -83,8 +88,30 @@ public class NoteCommand extends Command {
     }
 
     /**
-     * Stores the details to add the note with. Each non-empty field value will replace the
-     * corresponding field value of the note.
+     * Returns true if the note title already exists in the updated notes.
+     * Method is case-insensitive, meaning "Note" and "note" are considered the same.
+     *
+     * @param updatedNotes The updated notes of the patient.
+     * @param note The note to check for duplicates.
+     * @return true if the note title already exists, false otherwise.
+     */
+    public boolean alreadyHasNoteTitle(TreeSet<Note> updatedNotes, Note note) {
+        requireAllNonNull(updatedNotes, note);
+        List<Note> notesList = updatedNotes.stream().toList();
+
+        String newNoteTitle = note.getTitle().toLowerCase();
+        for (Note existingNote : notesList) {
+            String existingNoteTitle = existingNote.getTitle().toLowerCase();
+            if (existingNoteTitle.equals(newNoteTitle)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Stores the details to add the note with. Each non-empty field value
+     * will replace the corresponding field value of the note.
      */
     public static class AddNoteDescriptor {
         private String title;
@@ -120,6 +147,9 @@ public class NoteCommand extends Command {
 
     /**
      * Generates a command execution success message when a note is added.
+     *
+     * @param patientToEdit The patient to which the note was added.
+     * @return The success message.
      */
     private String generateSuccessMessage(Patient patientToEdit) {
         return String.format(MESSAGE_ADD_NOTE_SUCCESS, Messages.format(patientToEdit));

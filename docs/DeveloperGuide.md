@@ -445,18 +445,18 @@ The feature is implemented using the `VersionedAddressBook` class:
 
 ```java
 public class VersionedAddressBook extends AddressBook {
-    private List<ReadOnlyAddressBook> addressBookStateList;
-    private int currentStatePointer;
+    private final LinkedList<ReadOnlyAddressBook> list = new LinkedList<>();
+    private int pointer = -1;
 
-    public void commit() {
+    public void saveState(ReadOnlyAddressBook state) {
         // Save current state
     }
 
-    public void undo() {
+    public ReadOnlyAddressBook getOldState() throws UndoException {
         // Restore previous state
     }
 
-    public void redo() {
+    public ReadOnlyAddressBook getFutureState() throws RedoException {
         // Restore next state
     }
 }
@@ -884,6 +884,7 @@ Achievements of the project:
 
 - Support for various languages including right-justified languages
 - Keyboard shortcuts for common operations
+- Support the use of up/down on keyboard to toggle among commands
 
 #### Security Features
 
@@ -909,6 +910,7 @@ System Requirements:
 - Searching for a patient should return results in under 1 second for up
   to 10,000 contacts.
 - The response to any use action should become visible within 5 seconds.
+- The application should allow the user to add at least 100 patients.
 - The user interface should be intuitive enough for users who are not IT-savvy.
 
 ### Troubleshooting

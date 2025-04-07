@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PHONE + "PHONE_NUMBER] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -56,7 +56,8 @@ public class EditCommand extends Command {
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
-     * @param index of the patient in the filtered patient list to edit
+     * @param index                 of the patient in the filtered patient list to
+     *                              edit
      * @param editPatientDescriptor details to edit the patient with
      */
     public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
@@ -89,7 +90,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
+     * Creates and returns a {@code Patient} with the details of
+     * {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
     public static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
@@ -129,7 +131,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the patient with. Each non-empty field value will replace the
+     * Stores the details to edit the patient with. Each non-empty field value will
+     * replace the
      * corresponding field value of the patient.
      */
     public static class EditPatientDescriptor {
@@ -139,7 +142,8 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private TreeSet<Note> notes;
 
-        public EditPatientDescriptor() {}
+        public EditPatientDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -207,7 +211,8 @@ public class EditCommand extends Command {
             // Use a map to track tags by lowercase name for case-insensitive comparison
             Map<String, Tag> uniqueTags = new HashMap<>();
 
-            // Process each tag, keeping only the first instance for case-insensitive duplicates
+            // Process each tag, keeping only the first instance for case-insensitive
+            // duplicates
             for (Tag tag : tags) {
                 String lowercaseTagName = tag.tagName.toLowerCase();
                 if (!uniqueTags.containsKey(lowercaseTagName)) {
@@ -219,7 +224,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */

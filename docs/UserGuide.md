@@ -144,6 +144,10 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+* For commands with the `INDEX` parameter, `INDEX` refers to the numbers from the **list of patients currently displayed**. Check that you are giving a valid index for the currently displayed list!
+
+* For commands with the `INDEX` parameter, if you enter the index as `0` or a number longer than 10 digits, the error message will tell you `Invalid command format!`. Doublecheck that you are giving a valid index for the currently displayed list!
 </div>
 
 [🔝 Back to Top](#table-of-contents)

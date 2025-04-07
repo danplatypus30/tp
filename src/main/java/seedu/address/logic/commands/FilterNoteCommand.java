@@ -28,7 +28,7 @@ public class FilterNoteCommand extends Command {
             + "index number used in the displayed patient list. "
             + "The specified keywords are case-insensitive.\n"
             + "Parameters: KEYWORDS ...\n"
-            + "Example: " + COMMAND_WORD + " [INDEX]" + " nt/[NOTE TITLE]";
+            + "Example: " + COMMAND_WORD + " INDEX" + " nt/NOTE TITLE";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
 

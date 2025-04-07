@@ -145,7 +145,12 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+* For commands with the `INDEX` parameter, `INDEX` refers to the numbers from the **list of patients currently displayed**. Check that you are giving a valid index for the currently displayed list!
+
+* For commands with the `INDEX` parameter, if you enter the index as `0` or a number longer than 10 digits, the error message will tell you `Invalid command format!`. Doublecheck that you are giving a valid index for the currently displayed list!
 </div>
 
 [🔝 Back to Top](#table-of-contents)
@@ -225,14 +230,26 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 
 <img src="images/addCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
-💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
+⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.
 
-> 💡 **Tip: Constraints**<br>
->
-> - Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
-> - Additionally one instance of `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)
-> - Phone numbers are allowed from a range of 3 to 15 digits to support multiple countries!
+💡 **Tip:** 
+Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
+
+**Example:**
+```bash
+add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
+```
+In this example, only the tags `ADHD` and `Anxiety` will be preserved.
+
+
+>💡 **Tip: Name Constraints**<br>
+> Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
+> Additionally, one instance of `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)
+
+>💡 **Tip: Phone Number Constraints**<br>
+> Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
+> This allows you to add patients from multiple countries!
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -260,7 +277,19 @@ edit 1 p/91234567
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
-💡 You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+💡 **Tip:** You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
+
+
+**Example:**
+```bash
+add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
+```
+In this example, only the tags `ADHD` and `Anxiety` will be preserved.
+
+>💡 **Tip: Phone Number Constraints**<br>
+> Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
+> This allows you to add patients from overseas as well!
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -353,8 +382,9 @@ filternote 1 nt/23
 <div style="page-break-after: always;"></div>
 
 ### **Adding a Note** {#adding-a-note}
+You can add notes to a patient to keep track of discussions, diagnoses, etc.<br>
+Duplicate note titles (case-insensitive) are not allowed.
 
-You can add notes to a patient to keep track of discussions, diagnoses, etc.
 
 ```bash
 note INDEX nt/TITLE nc/CONTENT
@@ -406,7 +436,9 @@ View the changes after:
 
   <img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
 
-💡 **Tip:** You can edit only the necessary fields without altering other details.
+
+💡 **Tip:** You can only edit the **note content**. If you wish to change a note title, you can [delete a note](#deleting-a-note) and [add a new note](#adding-a-note) with the changed title!
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -547,11 +579,15 @@ help
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.<br>
 ⚠️ **Warning:** Please do not modify `addressbook.json` as there could be unpredictable effects.<br>
 
-**Q: Can I undo a deletion?**
+**Q: Can I undo a deletion?**<br>
 **A:** Yes! There is an [undo](#undo) feature, to recover data or undo edits.
 
-**Q: How do I transfer data to another device?**
+**Q: How do I transfer data to another device?**<br>
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
+
+**Q: Can I use languages other than English?**<br>
+**A:** As of now, NeuroSync only has full support for English. Using other languages is not totally disallowed, but may cause unintended behaviours. Do keep a lookout for future releases supporting more languages!
+
 
 [🔝 Back to Top](#table-of-contents)
 

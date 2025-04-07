@@ -606,34 +606,57 @@ Prerequisites for all patient management commands:
 - For editing or deleting patients, at least one patient must exist in the list
 - For commands requiring a specific patient index, the index must be valid (positive integer within list range)
 
+---
+
 #### Adding a Patient
 
-Test case: `add n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/Schizophrenia t/Anxiety`  
-Expected outcome: New patient is added into the list.
+Test case: `add n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/Schizophrenia t/Anxiety`<br>
+Expected outcome:
+```bash
+New patient added: John Doe; Phone: 98765432; Address: 311, Clementi Ave 2, #02-25; 
+Notes: ; Tags: [Schizophrenia][Anxiety]
+```
+<br>
 
-Test case: `add n/John Doe p/123 a/Address` (Testing duplicate patient)  
-Expected outcome: No patient is added.  
-Expected error message: This patient already exists in the app. Duplicate patient name is not allowed.
+Test case: `add n/John Doe p/123 a/Address` (Testing duplicate patient)<br>
+Expected outcome: No patient is added.<br>
+Expected error message: `This patient already exists in the app. Duplicate patient name is not allowed`.
+
+---
 
 #### Editing a Patient
 
-Test case: `edit 1 n/John Smith`  
-Expected outcome: Patient at index 1 is renamed to "John Smith".
+Test case: `edit 1 n/John Smith`<br>
+Expected outcome:
+```bash
+Edited Patient: John Smith; Phone: 87438807; Address: Blk 30 Geylang Street 29, #06-40; 
+Notes: ; Tags: [friends]
+```
+<br>
 
-Test case: `edit 999 n/John Smith` (Testing invalid index)  
-Expected outcome: No patient is edited.  
-Expected error message: The patient index provided is invalid.
+Test case: `edit 999 n/John Smith` (Testing invalid index)<br>
+Expected outcome: No patient is edited.<br>
+Expected error message: `Invalid index! Please provide a positive integer within the patient list range!`
+
+---
 
 #### Deleting a Patient
 
-Test case: `delete 1`  
-Expected outcome: Patient at index 1 is deleted from the list.
+Test case: `delete 1`<br>
+Expected outcome:
+```bash
+Deleted Patient: John Smith; Phone: 87438807; Address: Blk 30 Geylang Street 29, #06-40; 
+Notes: ; Tags: [friends]
+```
+<br>
 
-Test case: `delete 999` (Testing invalid index)  
-Expected outcome: No patient is deleted.  
-Expected error message: Invalid index! Please provide a positive integer within the patient list range!
+Test case: `delete 999` (Testing invalid index)<br>
+Expected outcome: No patient is deleted.<br>
+Expected error message: `Invalid index! Please provide a positive integer within the patient list range!`
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ### Note Management
 
@@ -644,56 +667,95 @@ Prerequisites for all note management commands:
 - Use the `list` command to see all patients and their indices
 - For commands requiring a specific note, the note title must exist for the patient
 
+---
+
 #### Adding a Note
 
-Test case: `note 1 nt/First Visit nc/Patient shows symptoms of anxiety`  
-Expected outcome: New note is added to patient at index 1.
+Test case: `note 1 nt/First Visit nc/Patient shows symptoms of anxiety`<br>
+Expected outcome:
+```bash
+Added note to Person: Bernice Yu; Phone: 99272758; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
+Notes: [First Visit]Patient shows symptoms of anxiety; Tags: [colleagues][friends]
+```
+<br>
 
-Test case: `note 999 nt/First Visit nc/Patient anxious` (Testing invalid index)  
-Expected outcome: No note is added.  
-Expected error message: The patient index provided is invalid.
+Test case: `note 999 nt/First Visit nc/Patient anxious` (Testing invalid index)<br>
+Expected outcome: No note is added.<br>
+Expected error message: `Invalid index! Please provide a positive integer within the patient list range!`
 
-Test case: `note 1 nt/First Visit nc/Patient anxious` (Testing duplicate note title)  
-Expected outcome: No new note is added.  
-Expected error message: Note with title First Visit already exists!
+Test case: `note 1 nt/First Visit nc/Patient anxious` (Testing duplicate note title)<br>
+Expected outcome: No new note is added.<br>
+Expected error message: `Note with title First Visit already exists!`
+
+---
 
 #### Viewing Notes
 
-Test case: `viewnotes 1`  
-Expected outcome: Notes of patient at index 1 are displayed.
+Test case: `viewnotes 1`<br>
+Expected outcome: Notes of patient at index 1 are displayed.<br>
+Expected output: `Displaying notes for Bernice Yu`
 
-Test case: `viewnotes 999` (Testing invalid index)  
-Expected outcome: Error details shown in the status message.  
-Expected error message: The patient index provided (999) is invalid.
+Test case: `viewnotes 999` (Testing invalid index)<br>
+Expected outcome: Error details shown in the status message.<br>
+Expected error message:
+```bash
+The patient index provided (999) is invalid.
+Please provide a positive number within the range of the patient list.
+viewnotes: Views notes for the patient identified by the index number used in the displayed patient list or views notes for all patients.
+Parameters: INDEX (must be a positive integer) or 'all'
+Example: viewnotes 1 OR viewnotes all
+```
+<br>
+
+---
 
 #### Filtering Notes
 
-Test case: `filternote 1 nt/Visit`  
-Expected outcome: Notes of patient at index 1 containing "Visit" in their titles are displayed.
+Test case: `filternote 1 nt/Visit`<br>
+Expected outcome: Notes of patient at index 1 containing "Visit" in their titles are displayed.<br>
+Expected output: `Displaying notes. See notes panel below.`
 
-Test case: `filternote 1 nt/Nonexistent` (Filtering non-existent note title)
-Expected outcome: Error details shown in the status message.  
-Expected error message: Note Title does not exist: Nonexistent
+Test case: `filternote 1 nt/Nonexistent` (Filtering non-existent note title)<br>
+Expected outcome: Error details shown in the status message.<br>
+Expected error message: `Note Title does not exist: Nonexistent`
+
+---
 
 #### Editing a Note
 
 Test case: `editnote 1 nt/First Visit nc/Updated assessment: Patient showing improvement`  
-Expected outcome: Note content is updated.
+Expected outcome: Note content is updated.<br>
+Expected output:
+```bash
+Edited note of Person: Bernice Yu; Phone: 99272758; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
+Notes: [First Visit]Updated assessment: Patient showing improvement; Tags: [colleagues][friends]
+```
+<br>
 
-Test case: `editnote 1 nt/Nonexistent nc/Test` (Editing non-existent note title)
-Expected outcome: Error details shown in the status message.  
-Expected error message: Note Title does not exist: Nonexistent
+Test case: `editnote 1 nt/Nonexistent nc/Test` (Editing non-existent note title)<br>
+Expected outcome: Error details shown in the status message.<br>
+Expected error message: `Note Title does not exist: Nonexistent`
+
+---
 
 #### Deleting a Note
 
 Test case: `deletenote 1 nt/First Visit`  
-Expected outcome: Note is deleted from patient at index 1.
+Expected outcome: Note is deleted from patient at index 1.<br>
+Expected output:
+```bash
+Deleted Note of Patient: Bernice Yu; Phone: 99272758; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; 
+Notes: ; Tags: [colleagues][friends]
+```
+<br>
 
-Test case: `deletenote 1 nt/Nonexistent` (Deleting non-existent note title)
-Expected outcome: Error details shown in the status message.  
-Expected error message: Note Title does not exist: Nonexistent
+Test case: `deletenote 1 nt/Nonexistent` (Deleting non-existent note title, assuming patient at index 1 has notes)<br>
+Expected outcome: Error details shown in the status message.<br>
+Expected error message: `Note Title does not exist: Nonexistent`
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ### Undo/Redo
 
@@ -701,25 +763,31 @@ Expected error message: Note Title does not exist: Nonexistent
 
 Prerequisites: Multiple commands executed before executing this command.
 
-Test case: `undo`  
-Expected outcome: The most recent command is undone.
+Test case: `undo`<br>
+Expected outcome: The most recent command is undone.<br>
+Expected output: `The previous command has been undone.`
 
-Test case: `undo` (Testing when no more commands to undo)  
-Expected outcome: Error details shown in the status message.  
-Expected error message: No command to undo!
+Test case: `undo` (Testing when no more commands to undo)<br>
+Expected outcome: Error details shown in the status message.<br> 
+Expected error message: `No command to undo!`
+
+---
 
 #### Redo Command
 
 Prerequisites: Multiple patients in the list. Multiple undoable commands executed and undone.
 
-Test case: `redo`  
-Expected outcome: The most recently undone command is redone.
+Test case: `redo`<br>
+Expected outcome: The most recently undone command is redone.<br>
+Expected output: `Previously undone command has been recovered!`
 
-Test case: `redo` (Testing when no more commands to redo)  
-Expected outcome: Error details shown in the status message.  
-Expected error message: No command to redo!
+Test case: `redo` (Testing when no more commands to redo)<br>
+Expected outcome: Error details shown in the status message.<br>  
+Expected error message: `No command to redo!`
 
 [🔝 Back to Top](#table-of-contents)
+
+---
 
 ### Glossary
 
@@ -882,7 +950,7 @@ Achievements of the project:
 
 #### User Interface Improvements
 
-- Support for various languages including right-justified languages
+- Support for more languages, including right-justified languages
 - Keyboard shortcuts for common operations
 - Support the use of up/down on keyboard to toggle among commands
 
@@ -894,6 +962,7 @@ Achievements of the project:
 
 #### Patient Management
 
+- Support for patients with duplicate names - We plan to use **name** and **phone number** together as unique identifiers.
 - Appointment scheduling
 - Prescription management system
 - Emergency contact as a new field for patient information

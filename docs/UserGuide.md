@@ -6,18 +6,7 @@ title: User Guide
 # **Welcome to the NeuroSync User Guide!**
 NeuroSync helps psychiatrists **manage patient records and session notes efficiently**. Choose a topic below to get step-by-step instructions, troubleshoot issues, and maximize your productivity!
 
-<div style="position: relative; display: inline-block;">
   <img src="images/ugFrontPagePhoto.png" alt="image" width="800"/>
-  <div style="position: absolute; top: 41px; left: 8px; width: 785px; height: 20px; border: 2px solid red;"></div>
-  <div style="position: absolute; top: 20px; left: 70px; color: red;">Command input box</div>
-  <div style="position: absolute; top: 72px; left: 8px; width: 785px; height: 45px; border: 2px solid red;"></div>
-  <div style="position: absolute; top: 110px; left: 70px; color: red;">Main window</div>
-  <div style="position: absolute; top: 138px; left: 8px; width: 350px; height: 310px; border: 2px solid red;"></div>
-  <div style="position: absolute; top: 450px; left: 70px; color: red;">Patient list panel</div>
-  <div style="position: absolute; top: 150px; left: 370px; width: 420px; height: 298px; border: 2px solid red;"></div>
-  <div style="position: absolute; top: 450px; left: 400px; color: red;">Noted display panel</div>
-</div>
-
 
 ## 💡 **Core Features** {#core-features}
 
@@ -370,10 +359,9 @@ note 2 nt/Mood Assessment nc/Discussed mood swings and coping strategies.
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<div style="position: relative; display: inline-block;">
+
   <img src="images/viewAfterAddNoteCommand.png" alt="image" width="800"/>
-  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
-</div></br>
+
 💡 **Tip:** Keep notes short and concise, highlighting the most important aspects.
 
 [🔝 Back to Top](#table-of-contents)
@@ -401,10 +389,8 @@ editnote 2 nt/Mood Assessment nc/Patient showed signs of suicide. Discussed mood
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<div style="position: relative; display: inline-block;">
   <img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
-  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
-</div>
+
 
 💡 **Tip:** You can edit only the necessary fields without altering other details.
 
@@ -433,10 +419,8 @@ deletenote 2 nt/Mood Assessment
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<div style="position: relative; display: inline-block;">
+
   <img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>
-  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
-</div>
 
 💡 **Tip:** Keep backups if needed.
 
@@ -461,10 +445,7 @@ undo
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<div style="position: relative; display: inline-block;">
   <img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
-  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
-</div>
 
 
 [🔝 Back to Top](#table-of-contents)
@@ -488,10 +469,9 @@ redo
 <div style="page-break-after: always;"></div>
 View the changes after:
 
-<div style="position: relative; display: inline-block;">
+
   <img src="images/viewAfterRedoCommand.png" alt="image" width="800"/>
-  <div style="position: absolute; top: 350px; left: 360px; width: 420px; height: 150px; border: 2px solid red;"></div>
-</div>
+
 
 [🔝 Back to Top](#table-of-contents)
 

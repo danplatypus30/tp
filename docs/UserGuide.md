@@ -221,12 +221,13 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 
 <img src="images/addCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
+⚠️ **Warning:** Duplicate patient names are not allowed, for clarity. (case insensitive)<br>
 💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
 
->💡 **Tip: Name Constraints**<br>
+>💡 **Name Constraints**<br>
 > Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
-> Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)
+> Additionally, a `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)<br>
+> Only one `s/o` or `d/o` is allowed in the name. 
 
 
 [🔝 Back to Top](#table-of-contents)
@@ -254,7 +255,7 @@ edit 1 p/91234567
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
-💡 You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+💡 You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
 
 
 [🔝 Back to Top](#table-of-contents)

@@ -24,10 +24,11 @@ public class FilterNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "filternote";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter the note with the matching title "
-            + "belonged to the indexed patient. "
+            + "belonging to the patient identified by the\n"
+            + "index number used in the displayed patient list. "
             + "The specified keywords are case-insensitive.\n"
             + "Parameters: KEYWORDS ...\n"
-            + "Example: " + COMMAND_WORD + " [INDEX]" + " nt/[NOTE TITLE]";
+            + "Example: " + COMMAND_WORD + " INDEX" + " nt/[NOTE TITLE]";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
 

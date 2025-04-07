@@ -218,8 +218,16 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 
 <img src="images/addCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.<br>
-💡 **Tip:** Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).<br>
+⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.
+
+💡 **Tip:** 
+Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
+
+**Example:**
+```bash
+add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
+```
+In this example, only the tags `ADHD` and `Anxiety` will be preserved.
 
 >💡 **Tip: Name Constraints**<br>
 > Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
@@ -251,8 +259,13 @@ edit 1 p/91234567
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
-💡 You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+💡 **Tip:** You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
 
+**Example:**
+```bash
+add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
+```
+In this example, only the tags `ADHD` and `Anxiety` will be preserved.
 
 [🔝 Back to Top](#table-of-contents)
 

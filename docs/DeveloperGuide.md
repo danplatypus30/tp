@@ -407,7 +407,7 @@ The undo/redo feature uses state management to track changes in the address book
 - Current state pointer is moved to the new state
 - Previous state is preserved for potential undo
 
-##### After `add n/David` Command
+##### After `add n/David p/88888888 a/NUS` Command
 
 <img src="images/UndoRedoState2.png" width="300"/>
 
@@ -420,7 +420,7 @@ The undo/redo feature uses state management to track changes in the address book
 <img src="images/UndoRedoState3.png" width="300"/>
 
 - Current state pointer moves back to previous state
-- State is restored to before `add n/David` was executed
+- State is restored to before `add n/David p/88888888 a/NUS` was executed
 - Most recent state is preserved for potential redo
 
 ##### After `list` Command
@@ -896,6 +896,7 @@ Achievements of the project:
 
 - Appointment scheduling
 - Prescription management system
+- Emergency contact as a new field for patient information
 
 ### Appendix: Requirements
 

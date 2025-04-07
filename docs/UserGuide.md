@@ -193,7 +193,7 @@ find yu
 
 <img src="images/findCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Multiple matches may be returned if you use a common name.<br>
+⚠️ **Warning:** Multiple matches may be returned if you use a common name/address/phone number.<br>
 💡 **Tip:** Use specific names or words to narrow your search.
 
 [🔝 Back to Top](#table-of-contents)
@@ -288,11 +288,13 @@ delete 3
 <div style="page-break-after: always;"></div>
 
 ### **Viewing Notes** {#viewing-notes}
-To see all notes at a glance!
+To see all notes at a glance! 
 
 ```bash
-viewnotes INDEX
-viewnotes all    # View notes for all patients
+viewnotes INDEX  # INDEX here refers to the index in the currently displayed patient list.
+                 # Use list command before if you want to refer to the index in the complete patient list.
+viewnotes all    # View notes for all patients that are currently in the patient list!
+                 # Use list command before if you want to view notes of all patients.
 ```
 
 **Example:**
@@ -403,7 +405,7 @@ View the changes after:
 If you no longer need a note, you can delete it using the `deletenote` command.
 
 ```bash
-deletenote INDEX nt/TITLE
+deletenote INDEX nt/TITLE  ## INDEX here refers to the index in the currently displayed note list.
 ```
 
 **Example:**
@@ -446,6 +448,8 @@ undo
 View the changes after:
 
   <img src="images/viewAfterUndoCommand.png" alt="image" width="800"/>
+
+💡 **Tip:** `undo` command does not apply to `list`, `find`, `viewnotes`, `filternote`and `help`. 
 
 
 [🔝 Back to Top](#table-of-contents)

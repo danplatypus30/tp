@@ -950,7 +950,7 @@ Achievements of the project:
 
 #### User Interface Improvements
 
-- Support for various languages including right-justified languages
+- Support for more languages, including right-justified languages
 - Keyboard shortcuts for common operations
 - Support the use of up/down on keyboard to toggle among commands
 

@@ -551,11 +551,14 @@ help
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.<br>
 ⚠️ **Warning:** Please do not modify `addressbook.json` as there could be unpredictable effects.<br>
 
-**Q: Can I undo a deletion?**
+**Q: Can I undo a deletion?**<br>
 **A:** Yes! There is an [undo](#undo) feature, to recover data or undo edits.
 
-**Q: How do I transfer data to another device?**
+**Q: How do I transfer data to another device?**<br>
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
+
+**Q: Can I use languages other than English?**<br>
+**A:** As of now, NeuroSync only has full support for English. Using other languages is not totally disallowed, but may cause unintended behaviours. Do keep a lookout for future releases supporting more languages!
 
 
 [🔝 Back to Top](#table-of-contents)

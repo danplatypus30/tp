@@ -353,7 +353,8 @@ filternote 1 nt/23
 <div style="page-break-after: always;"></div>
 
 ### **Adding a Note** {#adding-a-note}
-You can add notes to a patient to keep track of discussions, diagnoses, etc.
+You can add notes to a patient to keep track of discussions, diagnoses, etc.<br>
+Duplicate note titles (case-insensitive) are not allowed.
 
 ```bash
 note INDEX nt/TITLE nc/CONTENT
@@ -405,7 +406,8 @@ View the changes after:
   <img src="images/viewAfterEditNoteCommand.png" alt="image" width="800"/>
 
 
-💡 **Tip:** You can edit only the necessary fields without altering other details.
+💡 **Tip:** You can only edit the **note content**. If you wish to change a note title, you can [delete a note](#deleting-a-note) and [add a new note](#adding-a-note) with the changed title!
+
 
 [🔝 Back to Top](#table-of-contents)
 

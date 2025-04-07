@@ -232,7 +232,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 >
 > - Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
 > - Additionally one instance of `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)
-> - Phone numbers are allowed from a range of 3 to 13 digits to support multiple countries!
+> - Phone numbers are allowed from a range of 3 to 15 digits to support multiple countries!
 
 [🔝 Back to Top](#table-of-contents)
 

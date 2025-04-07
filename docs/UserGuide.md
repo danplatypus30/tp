@@ -550,6 +550,8 @@ help
 **Q: How do I transfer data to another device?**
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
 
+**Q: How many patients does NeuroSync Support??**
+**A:** 999999999, if more are added, unexpected behaviour might happen.
 
 [🔝 Back to Top](#table-of-contents)
 

@@ -334,7 +334,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 #### Command Flow: Add Note
 
-<img src="diagrams/AddNoteSequenceDiagram.png" width="800"/>
+<img src="images/AddNoteSequenceDiagram.png" width="800"/>
 
 1. User enters: `note 1 nt/Session 1 nc/Patient anxious`
 2. `LogicManager` receives command
@@ -344,7 +344,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 #### Command Flow: View Notes
 
-<img src="diagrams/ViewNoteSequenceDiagram.png" width="800" />
+<img src="images/ViewNoteSequenceDiagram.png" width="800" />
 
 1. User enters `viewnote 1` command
 2. Command parsed and validated

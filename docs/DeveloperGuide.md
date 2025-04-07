@@ -894,6 +894,7 @@ Achievements of the project:
 
 #### Patient Management
 
+- Support for patients with duplicate names - We plan to use **name** and **phone number** together as unique identifiers.
 - Appointment scheduling
 - Prescription management system
 

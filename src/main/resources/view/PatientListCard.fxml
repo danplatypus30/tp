@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" styleClass="patient-card" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" styleClass="patient-card" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" minWidth="200">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -19,12 +19,12 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell-big-label" />
-        <Label fx:id="name" styleClass="cell-big-label" />
+        <Label fx:id="id" styleClass="cell-big-label" HBox.hgrow="NEVER" minWidth="30.0" />
+        <Label fx:id="name" styleClass="cell-big-label" HBox.hgrow="ALWAYS" wrapText="true"/>
       </HBox>
       <FlowPane fx:id="tags" styleClass="patient-tags" />
       <Label fx:id="phone" styleClass="cell-small-label" />
-      <Label fx:id="address" styleClass="cell-small-label" />
+      <Label fx:id="address" styleClass="cell-small-label" wrapText="true" />
       <VBox fx:id="notesContainer" maxWidth="Infinity">
         <Label text="Notes:" wrapText="true" styleClass="cell-small-label, notes-label"/>
         <VBox fx:id="notes" maxWidth="Infinity" />

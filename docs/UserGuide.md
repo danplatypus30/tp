@@ -589,7 +589,7 @@ help
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
 
 **Q: How many patients does NeuroSync Support??**
-**A:** 999999999, if more are added, unexpected behaviour might happen.
+**A:** 999999999, if more are added, unexpected behaviour may happen.
 
 **Q: Can I use languages other than English?**<br>
 **A:** As of now, NeuroSync only has full support for English. Using other languages is not totally disallowed, but may cause unintended behaviours. Do keep a lookout for future releases supporting more languages!

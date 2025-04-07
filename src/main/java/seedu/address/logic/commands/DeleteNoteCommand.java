@@ -28,7 +28,7 @@ public class DeleteNoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a specified note of a patient identified by the title string used "
             + "in the displayed note list.\n"
-            + "Parameters: INDEX (must be a positive integer) nt/[NOTE TITLE] (must be a valid string)\n"
+            + "Parameters: INDEX (must be a positive integer) nt/TITLE\n"
             + "Example: " + COMMAND_WORD + " 1 nt/Session 32";
 
     public static final String MESSAGE_DELETE_PATIENT_NOTE_SUCCESS = "Deleted Note of Patient: %1$s";

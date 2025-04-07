@@ -334,7 +334,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 #### Command Flow: Add Note
 
-<img src="diagrams/AddNoteSequenceDiagram.png" width="800"/>
+<img src="images/AddNoteSequenceDiagram.png" width="800"/>
 
 1. User enters: `note 1 nt/Session 1 nc/Patient anxious`
 2. `LogicManager` receives command
@@ -344,7 +344,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 #### Command Flow: View Notes
 
-<img src="diagrams/ViewNoteSequenceDiagram.png" width="800" />
+<img src="images/ViewNoteSequenceDiagram.png" width="800" />
 
 1. User enters `viewnote 1` command
 2. Command parsed and validated
@@ -858,7 +858,7 @@ of the upcoming patient, so that I can recall any important information about th
 
 **Extensions:**  
 **1a.** Psychiatrist leaves a required field blank or enters invalid data.  
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. NeuroSync highlights the invalid/missing fields and displays an error message.  
+&nbsp;&nbsp;&nbsp;&nbsp;1a1. NeuroSync displays an error message.  
 &nbsp;&nbsp;&nbsp;&nbsp;1a2. Psychiatrist corrects the data.  
 &nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1–1a2 are repeated until data are valid and not empty.  
 &nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.  
@@ -968,6 +968,7 @@ Achievements of the project:
 - Support for patients with duplicate names - We plan to use **name** and **phone number** together as unique identifiers.
 - Appointment scheduling
 - Prescription management system
+- Extend tags to accept symbols
 - Emergency contact as a new field for patient information
 
 ### Appendix: Requirements

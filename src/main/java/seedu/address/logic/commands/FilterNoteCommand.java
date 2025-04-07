@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 
 import java.util.List;
 import java.util.TreeSet;
@@ -27,8 +28,8 @@ public class FilterNoteCommand extends Command {
             + "belonging to the patient identified by the\n"
             + "index number used in the displayed patient list. "
             + "The specified keywords are case-insensitive.\n"
-            + "Parameters: KEYWORDS ...\n"
-            + "Example: " + COMMAND_WORD + " INDEX" + " nt/NOTE TITLE";
+            + "Parameters: INDEX (must be a positive integer) " + PREFIX_NOTE_TITLE + "TITLE\n"
+            + "Example: " + COMMAND_WORD + " 1 nt/alex";
 
     public static final String MESSAGE_SUCCESS = "Displaying notes for %1$s";
 

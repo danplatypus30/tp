@@ -27,14 +27,14 @@ import seedu.address.model.patient.Patient;
 public class EditNoteCommand extends Command {
     public static final String COMMAND_WORD = "editnote";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the notes of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing note will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer, not more than 8 digits) "
-            + PREFIX_NOTE_TITLE + "NOTE TITLE "
-            + PREFIX_NOTE_CONTENT + "NOTE CONTENT\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NOTE_TITLE + "Patient has allergies! "
-            + PREFIX_NOTE_CONTENT + "Allergies include: Shellfish, Mushrooms";
+        + ": Edits the notes of the person identified "
+        + "by the index number used in the last person listing. "
+        + "Existing note will be overwritten by the input.\n"
+        + "Parameters: INDEX (must be a positive integer, not more than 8 digits) "
+        + PREFIX_NOTE_TITLE + "TITLE "
+        + PREFIX_NOTE_CONTENT + "CONTENT\n"
+        + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NOTE_TITLE + "Patient has allergies! "
+        + PREFIX_NOTE_CONTENT + "Allergies include: Shellfish, Mushrooms";
 
     public static final String MESSAGE_ARGUMENTS = "UserIndex: %1$d, ListIndex: %1$d, Content: %3$s";
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note of Person: %1$s";

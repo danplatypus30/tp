@@ -280,8 +280,7 @@ edit 1 p/91234567
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
-💡 **Tip:** You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
-
+💡 **Tip:** You may also use **tags** (`t/`) to alphanumerically categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
 
 **Example:**
 ```bash
@@ -292,6 +291,7 @@ In this example, only the tags `ADHD` and `Anxiety` will be preserved.
 >💡 **Tip: Phone Number Constraints**<br>
 > Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
 > This allows you to add patients from overseas as well!
+
 
 
 [🔝 Back to Top](#table-of-contents)
@@ -588,9 +588,11 @@ help
 **Q: How do I transfer data to another device?**<br>
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
 
+**Q: How many patients does NeuroSync Support??**
+**A:** 999999999, if more are added, unexpected behaviour may happen.
+
 **Q: Can I use languages other than English?**<br>
 **A:** As of now, NeuroSync only has full support for English. Using other languages is not totally disallowed, but may cause unintended behaviours. Do keep a lookout for future releases supporting more languages!
-
 
 [🔝 Back to Top](#table-of-contents)
 

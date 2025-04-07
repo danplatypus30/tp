@@ -25,8 +25,8 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new note for the patient identified "
             + "by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NOTE_TITLE + "[NOTE TITLE] "
-            + PREFIX_NOTE_CONTENT + "[NOTE CONTENT]\n"
+            + PREFIX_NOTE_TITLE + "TITLE "
+            + PREFIX_NOTE_CONTENT + "CONTENT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE_TITLE + "Patient has allergies! "
             + PREFIX_NOTE_CONTENT + "Allergies include: Penicillin, Nuts";

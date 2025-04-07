@@ -45,7 +45,7 @@ public class EditNoteCommand extends Command {
 
     /**
      * Creates an EditNoteCommand object
-     * 
+     *
      * @param userIndex
      * @param noteTitle
      * @param content

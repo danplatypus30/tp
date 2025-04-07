@@ -790,7 +790,7 @@ of the upcoming patient, so that I can recall any important information about th
 
 **Extensions:**  
 **1a.** Psychiatrist leaves a required field blank or enters invalid data.  
-&nbsp;&nbsp;&nbsp;&nbsp;1a1. NeuroSync highlights the invalid/missing fields and displays an error message.  
+&nbsp;&nbsp;&nbsp;&nbsp;1a1. NeuroSync displays an error message.  
 &nbsp;&nbsp;&nbsp;&nbsp;1a2. Psychiatrist corrects the data.  
 &nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1–1a2 are repeated until data are valid and not empty.  
 &nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.  

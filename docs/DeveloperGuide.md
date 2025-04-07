@@ -949,6 +949,7 @@ Achievements of the project:
 ### Planned Enhancements
 
 - Add feature to preserve the displayed list after commands that change the data e.g, `add`, `editnote`.
+- We plan to improve the architecture diagrams section, to better illustrate the usage of MVVM in data-binding (as specified in Implementation section)
 
 #### User Interface Improvements
 

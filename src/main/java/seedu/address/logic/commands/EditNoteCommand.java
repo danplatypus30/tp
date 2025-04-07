@@ -35,6 +35,7 @@ public class EditNoteCommand extends Command {
         + PREFIX_NOTE_CONTENT + "CONTENT\n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NOTE_TITLE + "Patient has allergies! "
         + PREFIX_NOTE_CONTENT + "Allergies include: Shellfish, Mushrooms";
+         
 
     public static final String MESSAGE_ARGUMENTS = "UserIndex: %1$d, ListIndex: %1$d, Content: %3$s";
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note of Person: %1$s";
@@ -45,6 +46,7 @@ public class EditNoteCommand extends Command {
 
     /**
      * Creates an EditNoteCommand object
+     *
      * @param userIndex
      * @param noteTitle
      * @param content
@@ -78,7 +80,7 @@ public class EditNoteCommand extends Command {
         }
 
         Note deleteNote = null;
-        for (Note i: newCopyNotes) {
+        for (Note i : newCopyNotes) {
             if (i.getTitle().equalsIgnoreCase(noteTitle)) {
                 deleteNote = i;
                 break;

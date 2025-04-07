@@ -11,8 +11,9 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric and the following: , . ' "
-            + "- and whitespace (case-insensitive)\n"
-            + "Additionally, <name> s/o <parents's name> is allowed. (includes d/o, case insensitive)";
+            + "- and SINGLE whitespace (case-insensitive)\n"
+            + "Additionally, <name> s/o <parents's name> is allowed. (includes d/o, case insensitive)"
+            + "Duplicate names are not allowed (case insensitive)";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

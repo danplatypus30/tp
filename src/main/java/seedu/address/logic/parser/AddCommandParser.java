@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Stream;
@@ -42,12 +45,34 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> rawTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = filterTags(rawTagList);
         TreeSet<Note> notes = new TreeSet<>(); // add command does not allow adding notes straight away
 
         Patient patient = new Patient(name, phone, address, tagList, notes);
 
         return new AddCommand(patient);
+    }
+
+    /**
+     * Filters the given set of tags to remove duplicates based on case-insensitive tag names.
+     * Preserves the first occurrence of each unique tag name
+     * @param rawTagList the set of tags to filter
+     * @return a new set of tags with duplicates removed
+     */
+    protected Set<Tag> filterTags(Set<Tag> rawTagList) {
+        // Use a map to track tags by lowercase name for case-insensitive comparison
+        Map<String, Tag> uniqueTags = new HashMap<>();
+
+        // Process each tag, keeping only the first instance for case-insensitive duplicates
+        for (Tag tag : rawTagList) {
+            String lowercaseTagName = tag.tagName.toLowerCase();
+            if (!uniqueTags.containsKey(lowercaseTagName)) {
+                uniqueTags.put(lowercaseTagName, tag);
+            }
+        }
+
+        return new HashSet<>(uniqueTags.values());
     }
 
     /**

@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -29,6 +31,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
@@ -43,25 +49,6 @@ import seedu.address.testutil.PatientBuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
-    // @Test
-    // public void parse_allFieldsPresent_success() {
-    // Patient expectedPatient = new
-    // PatientBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
-
-    // // whitespace only preamble
-    // assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB +
-    // PHONE_DESC_BOB
-    // + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPatient));
-
-    // // multiple tags - all accepted
-    // Patient expectedPatientMultipleTags = new
-    // PatientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-    // .build();
-    // assertParseSuccess(parser,
-    // NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB +
-    // TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-    // new AddCommand(expectedPatientMultipleTags));
-    // }
     @Test
     public void parse_allFieldsPresent_success() {
         // Expected patient should NOT have any notes — build from scratch
@@ -202,5 +189,95 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    // EP: Duplicate tags with different cases
+    @Test
+    public void filterTags_duplicateTagsWithDifferentCases_preservesFirstOccurrence() throws Exception {
+        // Create a subclass of AddCommandParser with access to the protected method
+        class TestableAddCommandParser extends AddCommandParser {
+            public Set<Tag> testFilterTags(Set<Tag> rawTagList) {
+                return filterTags(rawTagList);
+            }
+        }
+        TestableAddCommandParser parser = new TestableAddCommandParser();
+
+        Set<Tag> rawTags = new LinkedHashSet<>(); // LinkedHashSet to preserve insertion order
+
+        // Add tags with duplicate names in different cases (in specific order)
+        Tag adhd = new Tag("ADHD");
+        Tag depression = new Tag("depression");
+        Tag adhdLowercase = new Tag("adhd");
+        Tag depressionCapitalized = new Tag("Depression");
+        Tag anxiety = new Tag("Anxiety");
+        Tag anxietyUppercase = new Tag("ANXIETY");
+        rawTags.addAll(Arrays.asList(adhd, depression, adhdLowercase,
+                depressionCapitalized, anxiety, anxietyUppercase));
+
+        // Filter the tags & verify correct number of tags
+        Set<Tag> filteredTags = parser.testFilterTags(rawTags);
+        assertEquals(3, filteredTags.size(), "Should only keep one tag per unique name (case-insensitive)");
+
+        // Verify that the first occurrence of each tag was preserved
+        boolean hasUppercaseAdhd = false;
+        boolean hasLowercaseDepression = false;
+        boolean hasMixedCaseAnxiety = false;
+
+        for (Tag tag : filteredTags) {
+            if (tag.tagName.equals("ADHD")) {
+                hasUppercaseAdhd = true;
+            } else if (tag.tagName.equals("depression")) {
+                hasLowercaseDepression = true;
+            } else if (tag.tagName.equals("Anxiety")) {
+                hasMixedCaseAnxiety = true;
+            }
+        }
+
+        assertTrue(hasUppercaseAdhd, "Should preserve the first occurrence ('ADHD')");
+        assertTrue(hasLowercaseDepression, "Should preserve the first occurrence ('depression')");
+        assertTrue(hasMixedCaseAnxiety, "Should preserve the first occurrence ('Anxiety')");
+    }
+
+    // EP: Empty tag set
+    @Test
+    public void filterTags_noTags_returnsEmptySet() throws Exception {
+        // Create a subclass of AddCommandParser with access to the protected method
+        class TestableAddCommandParser extends AddCommandParser {
+            public Set<Tag> testFilterTags(Set<Tag> rawTagList) {
+                return filterTags(rawTagList);
+            }
+        }
+        TestableAddCommandParser parser = new TestableAddCommandParser();
+
+        Set<Tag> rawTags = new LinkedHashSet<>();
+        Set<Tag> filteredTags = parser.testFilterTags(rawTags);
+
+        assertTrue(filteredTags.isEmpty(), "Should return an empty set when given an empty set");
+    }
+
+    // EP: No duplicates in tags
+    @Test
+    public void filterTags_noDuplicates_returnsOriginalTags() throws Exception {
+        // Create a subclass of AddCommandParser with access to the protected method
+        class TestableAddCommandParser extends AddCommandParser {
+            public Set<Tag> testFilterTags(Set<Tag> rawTagList) {
+                return filterTags(rawTagList);
+            }
+        }
+        TestableAddCommandParser parser = new TestableAddCommandParser();
+
+        Set<Tag> rawTags = new LinkedHashSet<>();
+        Tag adhd = new Tag("ADHD");
+        Tag depression = new Tag("Depression");
+        Tag anxiety = new Tag("Anxiety");
+
+        rawTags.addAll(Arrays.asList(adhd, depression, anxiety));
+
+        Set<Tag> filteredTags = parser.testFilterTags(rawTags);
+
+        assertEquals(3, filteredTags.size(), "Should keep all tags when there are no duplicates");
+        assertTrue(filteredTags.contains(adhd), "Should contain the ADHD tag");
+        assertTrue(filteredTags.contains(depression), "Should contain the Depression tag");
+        assertTrue(filteredTags.contains(anxiety), "Should contain the Anxiety tag");
     }
 }

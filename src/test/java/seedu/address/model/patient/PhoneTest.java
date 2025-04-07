@@ -20,7 +20,7 @@ public class PhoneTest {
     }
 
     @Test
-    public void isValidPhone() {
+    public void isValidPhone_validPhoneNumberGiven_success() {
         // null phone number
         assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
 
@@ -31,11 +31,18 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(Phone.isValidPhone("9312+1534")); // plus within digits
+        assertFalse(Phone.isValidPhone("93121534+")); // plus at the end
+        assertFalse(Phone.isValidPhone("+1234567890123456")); // plus at the start and 16 numbers
+        assertFalse(Phone.isValidPhone("1234567890123456")); // 16 numbers
 
         // valid phone numbers
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(Phone.isValidPhone("124293842033123")); // 15 digit long phone numbers
+        assertTrue(Phone.isValidPhone("+6512345678")); // with SG country code
+        assertTrue(Phone.isValidPhone("+123")); // with plus sign and 3 numbers
+        assertTrue(Phone.isValidPhone("+651234567890123")); // with plus sign and 15 numbers
     }
 
     @Test

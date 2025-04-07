@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_NOTE_NOT_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_NO_NOTES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_TITLE;
 
 import java.util.List;

@@ -145,12 +145,14 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+- After executing commands that changes the data, the displayed list will refresh to display all patients again.<br>
+  Commands include: `add`, `edit`, `delete`, `note`, `editnote`, `deletenote`, `undo`, `redo`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
-* For commands with the `INDEX` parameter, `INDEX` refers to the numbers from the **list of patients currently displayed**. Check that you are giving a valid index for the currently displayed list!
+- For commands with the `INDEX` parameter, `INDEX` refers to the numbers from the **list of patients currently displayed**. Check that you are giving a valid index for the currently displayed list!
 
-* For commands with the `INDEX` parameter, if you enter the index as `0` or a number longer than 10 digits, the error message will tell you `Invalid command format!`. Doublecheck that you are giving a valid index for the currently displayed list!
+- For commands with the `INDEX` parameter, if you enter the index as `0` or a number longer than 10 digits, the error message will tell you `Invalid command format!`. Doublecheck that you are giving a valid index for the currently displayed list!
 </div>
 
 [🔝 Back to Top](#table-of-contents)
@@ -230,7 +232,7 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 
 <img src="images/addCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Duplicate patient names are not allowed, for clarity.
+⚠️ **Warning:** Duplicate patient names are not allowed, for clarity. (case insensitive)
 
 💡 **Tip:** 
 Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
@@ -244,7 +246,8 @@ In this example, only the tags `ADHD` and `Anxiety` will be preserved.
 
 >💡 **Tip: Name Constraints**<br>
 > Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
-> Additionally, one instance of `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)
+> Additionally, a `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)<br>
+> Only one `s/o` or `d/o` is allowed in the full name.<br>
 
 >💡 **Tip: Phone Number Constraints**<br>
 > Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>

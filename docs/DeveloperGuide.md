@@ -948,6 +948,8 @@ Achievements of the project:
 
 ### Planned Enhancements
 
+- Add feature to preserve the displayed list after commands that change the data e.g, `add`, `editnote`.
+
 #### User Interface Improvements
 
 - Support for more languages, including right-justified languages

@@ -262,7 +262,7 @@ edit 1 p/91234567
 
 ⚠️ **Warning:** Only update fields that need changing to avoid accidental edits.<br>
 💡 **Tip:** You can edit just one piece of data, e.g, only the phone number. <br>
-💡 You may also use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`).
+💡 You may also use **tags** (`t/`) to alphanumerically categorize patients (e.g., `t/Anxiety`).
 
 
 [🔝 Back to Top](#table-of-contents)

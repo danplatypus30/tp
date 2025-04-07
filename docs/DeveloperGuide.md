@@ -896,6 +896,7 @@ Achievements of the project:
 
 - Appointment scheduling
 - Prescription management system
+- Extend tags to accept symbols
 
 ### Appendix: Requirements
 

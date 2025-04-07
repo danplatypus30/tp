@@ -237,6 +237,10 @@ In this example, only the tags `ADHD` and `Anxiety` will be preserved.
 > Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
 > Additionally, `s/o` and `d/o` are allowed between names (e.g, `Ridwan s/o Mista`)
 
+>💡 **Tip: Phone Number Constraints**<br>
+> Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
+> This allows you to add patients from overseas as well!
+
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -270,6 +274,10 @@ edit 1 p/91234567
 add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
 ```
 In this example, only the tags `ADHD` and `Anxiety` will be preserved.
+
+>💡 **Tip: Phone Number Constraints**<br>
+> Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
+> This allows you to add patients from overseas as well!
 
 [🔝 Back to Top](#table-of-contents)
 

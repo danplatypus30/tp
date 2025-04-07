@@ -8,11 +8,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
+    /**
+     * The phone number:
+     * 1. Can optionally start with a '+' symbol
+     * 2. Must contain only digits after any optional '+' symbol
+     * 3. Must have between 3-15 digits total (excluding the + if present)
+     */
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers must consist of only digits, "
+            + "optionally starting with a '+', and be between 3-15 digits long.";
+    public static final String VALIDATION_REGEX = "^\\+?\\d{3,15}$";
 
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
     /**

@@ -347,8 +347,6 @@ viewnotes 1
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ### **Filtering Notes** {#filtering-notes}
 
 To see specific notes for one patient!
@@ -595,8 +593,6 @@ help
 This project is based on the AddressBook-Level3 project by the SE-EDU initiative.
 
 Visit [se-education.org](https://se-education.org) for more open-source CS education projects.
-
-[🔝 Back to Top](#table-of-contents)
 
 ---
 

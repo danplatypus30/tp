@@ -152,7 +152,7 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 - For commands with the `INDEX` parameter, `INDEX` refers to the numbers from the **list of patients currently displayed**. Check that you are giving a valid index for the currently displayed list!
 
-- For commands with the `INDEX` parameter, if you enter the index as `0` or a number longer than 10 digits, the error message will tell you `Invalid command format!`. Doublecheck that you are giving a valid index for the currently displayed list!
+- For commands with the `INDEX` parameter, if you enter the index as `0` or a number longer than 10 digits, the error message will tell you `Invalid command format!`. Ensure that you are giving a valid index for the currently displayed list!
 </div>
 
 [🔝 Back to Top](#table-of-contents)
@@ -287,12 +287,6 @@ edit 1 p/91234567
 add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
 ```
 In this example, only the tags `ADHD` and `Anxiety` will be preserved.
-
->💡 **Tip: Phone Number Constraints**<br>
-> Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
-> This allows you to add patients from overseas as well!
-
-
 
 [🔝 Back to Top](#table-of-contents)
 

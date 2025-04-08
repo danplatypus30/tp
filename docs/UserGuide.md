@@ -177,7 +177,6 @@ list
 
 <img src="images/listCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** This will show all patients, so be mindful if you have a large list.<br>
 💡 **Tip:** Use the [Find](#finding-a-patient) command to quickly locate a patient.
 
 [🔝 Back to Top](#table-of-contents)
@@ -203,8 +202,7 @@ find yu
 
 <img src="images/findCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Multiple matches may be returned if you use a common name/address/phone number.<br>
-💡 **Tip:** Use specific names or words to narrow your search.
+💡 **Tip:** Multiple matches may be returned if you use a common name/address/phone number. Use specific names or words to narrow your search.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -365,8 +363,7 @@ filternote 1 nt/23
 
 <img src="images/filterNoteCommand.png" alt="image" width="800"/>
 
-⚠️ **Warning:** Be specific with keywords to avoid too many results.<br>
-💡 **Tip:** Keywords should be part of the note's title for better results.
+💡 **Tip:** Be specific with keywords to avoid too many results. Keywords should be part of the note's title for better results.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -536,7 +533,7 @@ clear
 
 <img src="images/clearCommand.png" alt="image" width="800"/>
 
-💡 **Tip:** You can recover your lost data using the **undo** command.
+💡 **Tip:** You can recover your lost data using the [undo](#undo) command.
 
 [🔝 Back to Top](#table-of-contents)
 
@@ -568,7 +565,7 @@ help
 
 ## ❓ **FAQs & Troubleshooting** {#faqs--troubleshooting}
 
-**Q: Where is my data stored?**
+**Q: Where is my data stored?** <br>
 **A:** Your data is saved in `addressbook.json` inside the `/data` folder.<br>
 ⚠️ **Warning:** Please do not modify `addressbook.json` as there could be unpredictable effects.<br>
 
@@ -578,7 +575,7 @@ help
 **Q: How do I transfer data to another device?**<br>
 **A:** Copy the `addressbook.json` file from `/data` and paste it into the same directory on the new device.
 
-**Q: How many patients does NeuroSync Support??**
+**Q: How many patients does NeuroSync Support??** <br>
 **A:** 999999999, if more are added, unexpected behaviour may happen.
 
 **Q: Can I use languages other than English?**<br>

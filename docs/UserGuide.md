@@ -159,8 +159,6 @@ NeuroSync **keeps track of patient details and session notes effortlessly**. No 
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ## 🎯 **Commands & Usage** {#commands--usage}
 
 Each command is designed to make patient and session management **fast and intuitive**.

@@ -346,7 +346,7 @@ The notes system allows psychiatrists to maintain detailed records of patient se
 
 <img src="images/ViewNoteSequenceDiagram.png" width="800" />
 
-1. User enters `viewnote 1` command
+1. User enters `viewnotes 1` command
 2. Command parsed and validated
 3. Patient retrieved from model
 4. Notes fetched and sorted

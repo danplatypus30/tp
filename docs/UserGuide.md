@@ -454,7 +454,7 @@ View the changes after:
 If you no longer need a note, you can delete it using the `deletenote` command.
 
 ```bash
-deletenote INDEX nt/TITLE  ## INDEX here refers to the index in the currently displayed note list.
+deletenote INDEX nt/TITLE 
 ```
 
 **Example:**
@@ -472,7 +472,7 @@ View the changes after:
 
   <img src="images/viewAfterDeleteNoteCommand.png" alt="image" width="800"/>
 
-💡 **Tip:** Keep backups if needed.
+💡 **Tip:** You can undo a deletenote using the [undo](#undo) command!
 
 [🔝 Back to Top](#table-of-contents)
 

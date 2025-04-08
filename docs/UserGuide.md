@@ -233,22 +233,20 @@ add n/John Doe p/98005442 a/123 Clementi Street t/ADHD
 💡 **Tip:** 
 Use **tags** (`t/`) to categorize patients (e.g., `t/Anxiety`). Duplicate tags (case-insensitive) will be auto-filtered to only preserve the first instance seen.
 
+💡 **Tip: Name Constraints**<br>
+Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
+Additionally, a `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)<br>
+Only one `s/o` or `d/o` is allowed in the full name.<br>
+
+💡 **Tip: Phone Number Constraints**<br>
+Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
+This allows you to add patients from multiple countries!
+
 **Example:**
 ```bash
 add n/John Doe p/98005442 a/123 Clementi Street t/ADHD t/adhd t/Anxiety t/ANXIETY
 ```
 In this example, only the tags `ADHD` and `Anxiety` will be preserved.
-
-
->💡 **Tip: Name Constraints**<br>
-> Names should only contain alphabets, numbers, spaces, and certain special characters `,.'-`<br>
-> Additionally, a `s/o` or `d/o` is allowed between names (e.g, `Ridwan s/o Mista`)<br>
-> Only one `s/o` or `d/o` is allowed in the full name.<br>
-
->💡 **Tip: Phone Number Constraints**<br>
-> Phone numbers must consist of only digits, optionally starting with a '+', and be between 3-15 digits long.<br>
-> This allows you to add patients from multiple countries!
-
 
 [🔝 Back to Top](#table-of-contents)
 
